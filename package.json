@@ -24,6 +24,8 @@
     "sass": "^1.22.3"
   },
   "scripts": {
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "prestart": "echo \"GLITCH_URL=react-knowledgeable.glitch.me\" > /app/.env.development",
+    "start": "npm run prestart && gatsby develop -p $PORT"
   }
 }
