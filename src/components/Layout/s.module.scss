@@ -1,0 +1,49 @@
+:root {
+  --aside-width: 230px;
+  --main-width: 900px;
+  --round-corner: 2px;
+}
+
+header, main {
+  @media (min-width: 640px) and (max-width: 1599px) {
+    grid-column: 1 / span 2;
+  }
+
+  @media (min-width: 1600px) {
+    grid-column: 1;
+  }
+}
+
+aside {
+  @media (min-width: 640px) and (max-width: 1599px) {
+    grid-row: 2;
+  }
+  @media (min-width: 1600px) {
+    grid-row: 1 / span 2;
+  }
+}
+
+aside:first-of-type {
+  @media (min-width: 1600px) {
+    grid-column: 2;
+  }
+}
+aside:last-of-type {
+  @media (min-width: 1600px) {
+    grid-column: 3;
+  }
+}
+
+.layout {
+  padding: 0 20px;
+  @media (min-width: 640px) and (max-width: 1599px) {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-column-gap: 5px;
+  }
+  @media (min-width: 1600px) {
+    grid-template-columns: minmax(var(--main-width), 3fr) minmax(var(--aside-width), 1fr) minmax(var(--aside-width), 1fr);
+    display: grid;
+    grid-column-gap: 5px;
+  }
+}
