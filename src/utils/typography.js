@@ -35,7 +35,7 @@ const typography = new Typography({
         marginTop: rhythm(0.9),
         marginBottom: rhythm(0.9),
       },
-      h5: {
+      h6: {
         marginTop: rhythm(0.75),
         marginBottom: rhythm(0.75),
       },
