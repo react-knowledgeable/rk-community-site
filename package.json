@@ -25,7 +25,6 @@
   },
   "scripts": {
     "develop": "gatsby develop",
-    "prestart": "echo \"GLITCH_URL=react-knowledgeable.glitch.me\" > /app/.env.development",
-    "start": "npm run prestart && gatsby develop -p $PORT"
+    "start": "npm run develop"
   }
 }
