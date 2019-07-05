@@ -19,6 +19,7 @@ const typography = new Typography({
         marginTop: rhythm(1.2),
         marginBottom: rhythm(1.2),
       },
+
       h2: {
         marginTop: rhythm(1.1),
         marginBottom: rhythm(1.1),
@@ -45,6 +46,12 @@ const typography = new Typography({
 
       'header, main, aside': {
         padding: '1em',
+      },
+      'h1 a, h2 a, h3 a': {
+        borderBottom: '2px solid #222',
+      },
+      'h1 a:hover, h1 a:active, h2 a:hover, h2 a:active, h3 a:hover, h3 a:active': {
+        borderBottom: '4px solid #222',
       },
       a: {
         color: 'black',

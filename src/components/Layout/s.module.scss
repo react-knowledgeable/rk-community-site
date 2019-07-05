@@ -5,6 +5,7 @@
 }
 
 header, main {
+  max-width: 52rem;
   @media (min-width: 640px) and (max-width: 1599px) {
     grid-column: 1 / span 2;
   }
@@ -36,14 +37,19 @@ aside:last-of-type {
 
 .layout {
   padding: 0 20px;
+  background: white;
+  margin: 0 20px;
+  min-height: 100vh;
   @media (min-width: 640px) and (max-width: 1599px) {
     display: grid;
     grid-template-columns: 60% 40%;
     grid-column-gap: 5px;
+    grid-template-rows: min-content min-content 1fr;
   }
   @media (min-width: 1600px) {
     grid-template-columns: minmax(var(--main-width), 3fr) minmax(var(--aside-width), 1fr) minmax(var(--aside-width), 1fr);
     display: grid;
     grid-column-gap: 5px;
+    grid-template-rows: min-content 1fr;
   }
 }
