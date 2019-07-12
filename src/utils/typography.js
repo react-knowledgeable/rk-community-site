@@ -69,6 +69,9 @@ const typography = new Typography({
       'ul li': {
         marginBottom: '8px',
       },
+      code: {
+        fontFamily: "'IBM Plex Mono', monospace",
+      },
     };
   },
 });
