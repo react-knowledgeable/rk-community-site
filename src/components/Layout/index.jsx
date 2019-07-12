@@ -4,20 +4,30 @@ import { Link } from 'gatsby';
 import s from './s.module.scss';
 
 export default props => {
-  const { children, title, description, image, url, titleTemplate } = props;
+  const {
+    children,
+    title,
+    description,
+    image,
+    url,
+    titleTemplate,
+    twitter,
+  } = props;
   const fullImageUrl = `${url}${image}`;
+  const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
   return (
     <div className={s.layout}>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>
-          {titleTemplate ? titleTemplate.replace('%s', title) : title}
-        </title>
+        <title>{usedTitle}</title>
         <link rel="canonical" href={url} />
+        <meta property="og:title" content={usedTitle} />
         <meta property="og:description" content={description} />
         <meta property="twitter:description" content={description} />
         <meta property="og:image" content={fullImageUrl} />
         <meta property="twitter:image" content={fullImageUrl} />
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:site" content={`@${twitter}`}></meta>
       </Helmet>
       <header>
         <h1>
