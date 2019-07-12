@@ -10,7 +10,9 @@ export default props => {
     <div className={s.layout}>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{titleTemplate.replace('%s', title)}</title>
+        <title>
+          {titleTemplate ? titleTemplate.replace('%s', title) : title}
+        </title>
         <link rel="canonical" href={url} />
         <meta property="og:description" content={description} />
         <meta property="twitter:description" content={description} />
