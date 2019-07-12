@@ -41,7 +41,7 @@ export default ({
       )}
 
       <div className={s.card}>
-        <h3>Speaker Lignup</h3>
+        <h3>Talk Lignup</h3>
         <h3>
           <a href="https://github.com/react-knowledgeable/talks/issues/new/choose">
             Dr.RK could be you
