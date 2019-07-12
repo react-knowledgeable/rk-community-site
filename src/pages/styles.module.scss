@@ -5,3 +5,25 @@
   margin: 0 auto 1em;
   box-shadow: #222 4px 4px 0 0;
 }
+.reachingOutList {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding-left: 0;
+  margin-left: 0;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  grid-row-gap: .5em;
+}
+.reachingOutItem {
+  display: flex;
+  align-items: center;
+  grid-column: 2;
+  margin-left: .25em;
+}
+.reachingOutLogo {
+  margin-left: auto;
+  height: 1rem;
+  margin-bottom: 0;
+  margin-right: 2px;
+  grid-column: 1;
+}

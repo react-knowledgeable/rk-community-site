@@ -53,20 +53,31 @@ export default ({
       <h2>Getting Involved</h2>
       <div className={s.card}>
         <h3>
-          <a href="https://github.com/react-knowledgeable/talks/issues/new/choose">
+          <a href="https://github.com/react-knowledgeable/talks/issues/new?assignees=&labels=talk&template=talk.md&title=%E2%9A%A1%EF%B8%8F+how+not+to+get+caught+and+be+eaten">
             📝 Submit a talk
           </a>
         </h3>
       </div>
       <div className={s.card}>
         <h3>Reaching out</h3>
-        <ul>
-          <li>
-            Twitter{' '}
+        <div className={s.reachingOutList}>
+          <img
+            className={s.reachingOutLogo}
+            src="https://cdn.worldvectorlogo.com/logos/twitter.svg"
+          />
+          <div className={s.reachingOutItem}>
             <a href="https://twitter.com/reknowledgeable">@reknowledgeable</a>
-          </li>
-          <li>YouTube channel</li>
-        </ul>
+          </div>
+          <img
+            src="https://www.meetup.com/mu_static/en-US/logo--mSwarm--2color.4e3feb34.svg"
+            className={s.reachingOutLogo}
+          />
+          <div className={s.reachingOutItem}>
+            <a href="https://meetup.com/React-Knowledgeable">
+              React Knowledgeable
+            </a>
+          </div>
+        </div>
       </div>
     </aside>
 
