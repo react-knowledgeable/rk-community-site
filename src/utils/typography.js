@@ -42,6 +42,7 @@ const typography = new Typography({
       },
       code: {
         fontSize: '1.2em',
+        fontFamily: "'IBM Plex Mono', monospace",
       },
 
       'header, main, aside': {
@@ -68,9 +69,6 @@ const typography = new Typography({
       },
       'ul li': {
         marginBottom: '8px',
-      },
-      code: {
-        fontFamily: "'IBM Plex Mono', monospace",
       },
     };
   },
