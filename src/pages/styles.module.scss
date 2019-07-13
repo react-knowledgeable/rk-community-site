@@ -15,12 +15,12 @@
 .reachingOutList {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1.5rem;
   @media (min-width: 380px) {
     display: grid;
     grid-template-columns: max-content 1fr;
     padding-left: 0;
     margin-left: 0;
-    margin-bottom: 1.5rem;
     align-items: center;
     grid-row-gap: .5em;
   }
