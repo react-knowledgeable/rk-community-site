@@ -85,7 +85,6 @@ exports.createPages = ({ graphql, actions }) => {
       } = result.data;
 
       talks.forEach(talk => {
-        console.log(talk);
         createPage({
           path: `/talks/${talk.number}`,
           component: talkTemplate,
