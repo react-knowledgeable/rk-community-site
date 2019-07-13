@@ -44,7 +44,7 @@ export default ({
       )}
 
       <div className={s.card}>
-        <h3>Talk Lignup</h3>
+        <h3>Talk Line-up</h3>
       </div>
     </aside>
     <aside>
