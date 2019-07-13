@@ -53,7 +53,7 @@ export default ({
         <h3>
           <a href="https://github.com/react-knowledgeable/talks/issues/new?assignees=&labels=talk&template=talk.md&title=%E2%9A%A1%EF%B8%8F+how+not+to+get+caught+and+be+eaten">
             <svg
-              className={s.reachingOutLogo}
+              className={s.submitTalkLogo}
               viewBox="0 0 512 512"
               xmlns="http://www.w3.org/2000/svg"
             >

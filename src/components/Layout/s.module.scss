@@ -6,6 +6,7 @@
 
 header, main {
   max-width: 52rem;
+  min-width: 16rem;
   @media (min-width: 640px) and (max-width: 1599px) {
     grid-column: 1 / span 2;
   }
@@ -16,6 +17,7 @@ header, main {
 }
 
 aside {
+  min-width: 16rem;
   @media (min-width: 640px) and (max-width: 1599px) {
     grid-row: 2;
   }
