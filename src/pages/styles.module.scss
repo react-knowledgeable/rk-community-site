@@ -5,25 +5,44 @@
   margin: 0 auto 1em;
   box-shadow: #222 4px 4px 0 0;
 }
-.reachingOutList {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  padding-left: 0;
-  margin-left: 0;
-  margin-bottom: 1.5rem;
-  align-items: center;
-  grid-row-gap: .5em;
-}
-.reachingOutItem {
-  display: flex;
-  align-items: center;
-  grid-column: 2;
-  margin-left: .25em;
-}
-.reachingOutLogo {
+.submitTalkLogo {
   margin-left: auto;
   height: 1rem;
   margin-bottom: 0;
-  margin-right: 2px;
+  margin-right: 4px;
   grid-column: 1;
+}
+.reachingOutList {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  @media (min-width: 380px) {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    padding-left: 0;
+    margin-left: 0;
+    align-items: center;
+    grid-row-gap: .5em;
+  }
+}
+.reachingOutItem {
+  display: none;
+  @media (min-width: 380px) {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    margin-left: .25em;
+  }
+}
+.reachingOutLogo {
+  height: 4rem;
+  padding: .5em;
+  @media (min-width: 380px) {
+    margin-left: auto;
+    height: 1rem;
+    padding: 0;
+    margin-bottom: 0;
+    margin-right: 2px;
+    grid-column: 1;
+  }
 }

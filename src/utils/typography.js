@@ -18,15 +18,17 @@ const typography = new Typography({
         fontStyle: 'italic',
         marginTop: rhythm(1.2),
         marginBottom: rhythm(1.2),
+        lineHeight: rhythm(1.8),
       },
-
       h2: {
         marginTop: rhythm(1.1),
         marginBottom: rhythm(1.1),
+        lineHeight: rhythm(1.5),
       },
       h3: {
         marginTop: rhythm(1.03),
         marginBottom: rhythm(1.03),
+        lineHeight: rhythm(1.3),
       },
       h4: {
         marginTop: rhythm(1),
