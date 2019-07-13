@@ -146,6 +146,16 @@ export const pageQuery = graphql`
         excerpt
       }
     }
+    talks: github {
+      repository(owner: "react-knowledgeable", name: "talks") {
+        issues(first: 100) {
+          nodes {
+            title
+            body
+          }
+        }
+      }
+    }
     stories: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/stories/" } }
     ) {
