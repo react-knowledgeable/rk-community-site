@@ -1,15 +1,8 @@
 import * as React from 'react';
-import { graphql } from 'gatsby';
 import { Link } from 'gatsby';
 import s from './styles.module.scss';
 
-export default ({
-  data: {
-    site: {
-      siteMetadata: { title, description, url, image, twitter, titleTemplate },
-    },
-  },
-}) => (
+export default () => (
     <main className={s.uhOh}>
       <h1>Integer overflow!</h1>
       <svg 
@@ -24,18 +17,3 @@ export default ({
       <Link to="/">Press here to restart</Link>
     </main>
 );
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        image
-        description
-        url
-        twitter
-        titleTemplate
-      }
-    }
-  }
-`;
