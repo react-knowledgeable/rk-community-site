@@ -11,7 +11,7 @@ export default ({
   },
 }) => (
     <main className={s.uhOh}>
-      <h2>Integer overflow!</h2>
+      <h1>Integer overflow!</h1>
       <svg 
         viewBox="0 0 1261 1261"
         fill="none"
