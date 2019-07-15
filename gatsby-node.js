@@ -18,6 +18,7 @@ exports.createPages = ({ graphql, actions }) => {
   
   createRedirect({ fromPage: '/speak', toPage: 'https://github.com/react-knowledgeable/talks', isPermanent: true, redirectInBrowser: true });
   createRedirect({ fromPage: '/meetup', toPage: 'https://meetup.com/React-Knowledgeable', isPermanent: true, redirectInBrowser: true });
+  createRedirect({ fromPage: '/hello', toPage: 'https://hello-rk-lightning.netlify.com/', isPermanent: true, redirectInBrowser: true });
 
   // const talkTemplate = path.resolve(`./src/templates/Talk/index.jsx`);
   const storyTemplate = path.resolve(`./src/templates/Story/index.jsx`);
