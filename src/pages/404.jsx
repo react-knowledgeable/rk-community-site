@@ -2,7 +2,9 @@ import * as React from 'react';
 import { Link } from 'gatsby';
 import s from './styles.module.scss';
 
-export default () => (
+const browser = typeof window !== "undefined" && window;
+
+export default () => browser && (
     <main className={s.uhOh}>
       <h1>Integer overflow!</h1>
       <svg 
