@@ -25,6 +25,12 @@
     grid-row-gap: .5em;
   }
 }
+.reachingOutLink {
+  border-bottom: none;
+}
+.reachingOutLink:hover {
+  border-bottom: none;
+}
 .reachingOutItem {
   display: none;
   @media (min-width: 380px) {
