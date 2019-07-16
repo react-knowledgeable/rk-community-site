@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
+import Card from '../components/Card';
 import parseDate from '../utils/parseDate';
 import s from './styles.module.scss';
 
@@ -47,7 +48,7 @@ export default ({
           <React.Fragment>
             <h2>Upcoming Meetups</h2>
             {nextMeetup && (
-              <div className={s.card} key={date}>
+              <Card key={date}>
                 <h3>{meetupTitle}</h3>
                 <p>
                   {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
@@ -62,12 +63,12 @@ export default ({
                     )}
                   </b>
                 </p>
-              </div>
+              </Card>
             )}
           </React.Fragment>
         )}
 
-        <div className={s.card}>
+        <Card>
           <h3>Talk Line-up</h3>
           {nextMeetup &&
             nextMeetup.frontmatter.talks.map(talkNumber => {
@@ -93,11 +94,11 @@ export default ({
                 </React.Fragment>
               );
             })}
-        </div>
+        </Card>
       </aside>
       <aside>
         <h2>Getting Involved</h2>
-        <div className={s.card}>
+        <Card>
           <h3>
             <a href="https://github.com/react-knowledgeable/talks/issues/new?assignees=&labels=talk&template=talk.md&title=%E2%9A%A1%EF%B8%8F+how+not+to+get+caught+and+be+eaten">
               <svg
@@ -112,8 +113,8 @@ export default ({
               <span>Submit a talk</span>
             </a>
           </h3>
-        </div>
-        <div className={s.card}>
+        </Card>
+        <Card>
           <h3>Reaching out</h3>
           <div className={s.reachingOutList}>
             <a
@@ -157,7 +158,7 @@ export default ({
               </a>
             </div>
           </div>
-        </div>
+        </Card>
       </aside>
 
       <main>
@@ -165,12 +166,12 @@ export default ({
         {!!stories &&
           stories.map(
             ({ excerpt, frontmatter: { title }, fields: { slug } }) => (
-              <article className={s.card} key={slug}>
+              <Card key={slug}>
                 <h2>
                   <a href={`/story${slug}`}>{title}</a>
                 </h2>
                 <p>{excerpt}</p>
-              </article>
+              </Card>
             )
           )}
       </main>
@@ -229,6 +230,7 @@ export const pageQuery = graphql`
               avatarUrl
               login
             }
+            url
           }
         }
       }
