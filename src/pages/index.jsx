@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
+import Talk from '../components/Talk';
 import Card from '../components/Card';
 import parseDate from '../utils/parseDate';
 import s from './styles.module.scss';
@@ -75,24 +76,7 @@ export default ({
               const talkData = talks.find(
                 ({ number }) => number === talkNumber
               );
-              return (
-                <React.Fragment key={talkData.number}>
-                  <div>
-                    <div className={s.talkAuthor}>
-                      <img
-                        src={talkData.author.avatarUrl}
-                        alt={`${talkData.author.login}-avatar`}
-                      />
-                      <p>
-                        <strong>{talkData.author.login}</strong>
-                      </p>
-                    </div>
-                    {/* Not sure how to extract the important stuff */}
-                    {/* <p>{talkData.bodyText}</p> */}
-                    <p>Talk Intro?</p>
-                  </div>
-                </React.Fragment>
-              );
+              return <Talk {...talkData} key={talkData.number} />;
             })}
         </Card>
       </aside>
@@ -229,6 +213,7 @@ export const pageQuery = graphql`
             author {
               avatarUrl
               login
+              url
             }
             url
           }
