@@ -28,9 +28,10 @@ export default ({ footerLinks }) => {
       <p>Built with love.</p>
       <div className={s.friends}>
         <span className={s.friendLabel}>Friends of RK:</span>
-        {footerLinks.map(link => (
-          <Friend key={`friend-link-${link.name}`} {...link} />
-        ))}
+        {!!footerLinks &&
+          footerLinks.map(link => (
+            <Friend key={`friend-link-${link.name}`} {...link} />
+          ))}
       </div>
     </footer>
   );
