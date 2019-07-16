@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
+import Footer from '../Footer'
 import s from './s.module.scss';
 
 export default props => {
@@ -54,6 +55,7 @@ export default props => {
         </p>
       </header>
       {children}
+      <Footer />
     </div>
   );
 };
