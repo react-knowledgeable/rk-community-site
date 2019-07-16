@@ -51,8 +51,8 @@ export default props => {
           <Link to="/">React Knowledgeable</Link>
         </h1>
         <p>
-          React Knowledgeable, nicknamed <code>&lt;RK /&gt;</code>, is a fair
-          and friendly podium to share what we learn about React.
+          React Knowledgeable, nicknamed <code>&lt;RK /&gt;</code>, is a fun and
+          friendly podium to share what we learn about React.
         </p>
       </header>
       {children}
