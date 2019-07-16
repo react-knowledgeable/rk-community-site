@@ -20,43 +20,83 @@ exports.createPages = ({ graphql, actions }) => {
   createRedirect({ fromPath: '/meetup', toPath: 'https://meetup.com/React-Knowledgeable', isPermanent: true, redirectInBrowser: true });
   createRedirect({ fromPath: '/hello', toPath: 'https://hello-rk-lightning.netlify.com/', isPermanent: true, redirectInBrowser: true });
 
-  // const talkTemplate = path.resolve(`./src/templates/Talk/index.jsx`);
+  const talkTemplate = path.resolve(`./src/templates/Talk/index.jsx`);
   const storyTemplate = path.resolve(`./src/templates/Story/index.jsx`);
   // const speakerTemplate = path.resolve(`./src/templates/Speaker/index.jsx`);
   // const meetupTemplate = path.resolve(`./src/templates/Meetup/index.jsx`);
 
-  return graphql(
-    `
-      {
-        stories: allMarkdownRemark(
-          filter: { fileAbsolutePath: { regex: "/stories/" } }
-        ) {
-          nodes {
-            fields {
-              slug
+  return Promise.all([
+    graphql(
+      `
+        {
+          stories: allMarkdownRemark(
+            filter: { fileAbsolutePath: { regex: "/stories/" } }
+          ) {
+            nodes {
+              fields {
+                slug
+              }
             }
           }
         }
+      `
+    ).then(result => {
+      if (result.errors) {
+        throw result.errors;
       }
-    `
-  ).then(result => {
-    if (result.errors) {
-      throw result.errors;
-    }
 
-    // Create blog posts pages.
-    const {
-      stories: { nodes: stories },
-    } = result.data;
+      // Create blog posts pages.
+      const {
+        stories: { nodes: stories },
+      } = result.data;
 
-    stories.forEach(story => {
-      createPage({
-        path: `/story${story.fields.slug}`,
-        component: storyTemplate,
-        context: {
-          slug: story.fields.slug,
-        },
+      stories.forEach(story => {
+        createPage({
+          path: `/story${story.fields.slug}`,
+          component: storyTemplate,
+          context: {
+            slug: story.fields.slug,
+          },
+        });
       });
-    });
-  });
+    }),
+    graphql(
+      `
+        {
+          talks: github {
+            repository(owner: "react-knowledgeable", name: "talks") {
+              issues(first: 100, labels: ["talk"]) {
+                nodes {
+                  number
+                }
+              }
+            }
+          }
+        }
+      `
+    ).then(result => {
+      if (result.errors) {
+        throw result.errors;
+      }
+
+      // Create blog posts pages.
+      const {
+        talks: {
+          repository: {
+            issues: { nodes: talks },
+          },
+        },
+      } = result.data;
+
+      talks.forEach(talk => {
+        createPage({
+          path: `/talks/${talk.number}`,
+          component: talkTemplate,
+          context: {
+            number: talk.number,
+          },
+        });
+      });
+    }),
+  ]);
 };
