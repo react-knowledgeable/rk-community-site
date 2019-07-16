@@ -7,7 +7,15 @@ import s from './styles.module.scss';
 export default ({
   data: {
     site: {
-      siteMetadata: { title, description, url, image, twitter, titleTemplate },
+      siteMetadata: {
+        title,
+        description,
+        url,
+        image,
+        twitter,
+        titleTemplate,
+        footerLinks,
+      },
     },
     meetups: { nodes: meetups },
     stories: { nodes: stories },
@@ -23,7 +31,17 @@ export default ({
     frontmatter: { title: meetupTitle, venue, date, meetupLink },
   } = nextMeetup || { frontmatter: {} };
   return (
-    <Layout {...{ title, description, image, url, twitter, titleTemplate }}>
+    <Layout
+      {...{
+        title,
+        description,
+        image,
+        url,
+        twitter,
+        titleTemplate,
+        footerLinks,
+      }}
+    >
       <aside>
         {!!meetups && (
           <React.Fragment>
@@ -170,6 +188,10 @@ export const pageQuery = graphql`
         url
         twitter
         titleTemplate
+        footerLinks {
+          name
+          link
+        }
       }
     }
     meetups: allMarkdownRemark(

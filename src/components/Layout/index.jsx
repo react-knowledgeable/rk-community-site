@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
+import Footer from '../Footer';
 import s from './s.module.scss';
 
 export default props => {
@@ -12,6 +13,7 @@ export default props => {
     url,
     titleTemplate,
     twitter,
+    footerLinks,
   } = props;
   const fullImageUrl = `${url}${image}`;
   const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
@@ -49,11 +51,12 @@ export default props => {
           <Link to="/">React Knowledgeable</Link>
         </h1>
         <p>
-          React Knowledgeable, nicknamed <code>&lt;RK /&gt;</code>, is a fair
-          and friendly podium to share what we learn about React.
+          React Knowledgeable, nicknamed <code>&lt;RK /&gt;</code>, is a fun and
+          friendly podium to share what we learn about React.
         </p>
       </header>
       {children}
+      <Footer footerLinks={footerLinks} />
     </div>
   );
 };

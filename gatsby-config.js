@@ -3,12 +3,26 @@ module.exports = {
   siteMetadata: {
     title: 'React Knowledgeable',
     titleTemplate:
-      '%s · Fair and friendly podium to share what we learn about React.',
+      '%s · Fun and friendly podium to share what we learn about React.',
     description:
-      'React Knowledgeable is a fair and friendly podium to share what we learn about React.',
+      'React Knowledgeable is a fun and friendly podium to share what we learn about React.',
     url: 'https://reactknowledgeable.org', // No trailing slash allowed!
     image: '/logo.png', // Path to your image you placed in the 'static' folder
     twitter: 'reknowledgeable',
+    footerLinks: [
+      {
+        name: 'SingaporeCSS',
+        link: 'https://singaporecss.github.io',
+      },
+      {
+        name: 'ReactJS Singapore',
+        link: 'https://www.meetup.com/React-Singapore/',
+      },
+      {
+        name: 'JAMStack Singapore',
+        link: 'https://www.meetup.com/JAMstack-Singapore/',
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

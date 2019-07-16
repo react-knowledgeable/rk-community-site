@@ -5,13 +5,26 @@ import Layout from '../../components/Layout';
 
 export default ({
   data: {
+    site: {
+      siteMetadata: {
+        title: siteTitle,
+        description,
+        url,
+        image,
+        twitter,
+        titleTemplate,
+        footerLinks,
+      },
+    },
     markdownRemark: {
       frontmatter: { title, speaker, date },
       html,
     },
   },
 }) => (
-  <Layout>
+  <Layout
+    {...{ title, description, image, url, twitter, titleTemplate, footerLinks }}
+  >
     <main>
       <h2>{title}</h2>
       <p>
@@ -26,6 +39,20 @@ export default ({
 
 export const pageQuery = graphql`
   query StoryQuery($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        image
+        description
+        url
+        twitter
+        titleTemplate
+        footerLinks {
+          name
+          link
+        }
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
