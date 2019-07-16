@@ -51,27 +51,30 @@ export default ({
 
         <div className={s.card}>
           <h3>Talk Line-up</h3>
-          {meetups[0].frontmatter.talks.map(talkNumber => {
-            const talkData = talks.find(({ number }) => number === talkNumber);
-            return (
-              <React.Fragment key={talkData.number}>
-                <div>
-                  <div className={s.talkAuthor}>
-                    <img
-                      src={talkData.author.avatarUrl}
-                      alt={`${talkData.author.login}-avatar`}
-                    />
-                    <p>
-                      <strong>{talkData.author.login}</strong>
-                    </p>
+          {nextMeetup &&
+            nextMeetup.frontmatter.talks.map(talkNumber => {
+              const talkData = talks.find(
+                ({ number }) => number === talkNumber
+              );
+              return (
+                <React.Fragment key={talkData.number}>
+                  <div>
+                    <div className={s.talkAuthor}>
+                      <img
+                        src={talkData.author.avatarUrl}
+                        alt={`${talkData.author.login}-avatar`}
+                      />
+                      <p>
+                        <strong>{talkData.author.login}</strong>
+                      </p>
+                    </div>
+                    {/* Not sure how to extract the important stuff */}
+                    {/* <p>{talkData.bodyText}</p> */}
+                    <p>Talk Intro?</p>
                   </div>
-                  {/* Not sure how to extract the important stuff */}
-                  {/* <p>{talkData.bodyText}</p> */}
-                  <p>Talk Intro?</p>
-                </div>
-              </React.Fragment>
-            );
-          })}
+                </React.Fragment>
+              );
+            })}
         </div>
       </aside>
       <aside>
