@@ -1,0 +1,55 @@
+:local {
+  .footer {
+    min-width: 16em;
+    padding: 1em;
+    grid-column: 1 / span 2;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer p {
+    margin: 0;
+
+    @media screen and (max-width: 518px) {
+      writing-mode: vertical-lr;
+    }
+  }
+
+  .footer div {
+    margin-left: auto;
+  }
+
+  .friendLabel {
+    display: block;
+    font-weight: bold;
+  }
+
+  .friendLink {
+    display: block;
+    cursor: pointer;
+    border-bottom: none;
+
+    @media screen and (min-width: 900px) {
+      display: inline-block;
+      margin-right: 1em;
+    }
+  }
+
+  .friendLink:last-child {
+    margin-right: 0;
+  }
+
+  .friendLink:hover {
+    border-bottom: none;
+  }
+
+  .friendLink:hover .friendIcon {
+    transform: rotate(360deg);
+  }
+
+  .friendIcon {
+    height: 1em;
+    margin-right: 0.25em;
+    transition: transform 0.5s ease-in-out;
+  }
+}
