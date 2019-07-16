@@ -6,6 +6,7 @@
   "author": "Wei Gao <wgao19@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.6",
     "gatsby": "^2.13.3",
     "gatsby-plugin-favicon": "^3.1.6",
     "gatsby-plugin-offline": "^2.2.1",
