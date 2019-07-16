@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
-import Footer from '../Footer'
+import Footer from '../Footer';
 import s from './s.module.scss';
 
 export default props => {
@@ -13,6 +13,7 @@ export default props => {
     url,
     titleTemplate,
     twitter,
+    footerLinks,
   } = props;
   const fullImageUrl = `${url}${image}`;
   const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
@@ -55,7 +56,7 @@ export default props => {
         </p>
       </header>
       {children}
-      <Footer />
+      <Footer footerLinks={footerLinks} />
     </div>
   );
 };

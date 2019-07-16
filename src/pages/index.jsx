@@ -7,13 +7,23 @@ import s from './styles.module.scss';
 export default ({
   data: {
     site: {
-      siteMetadata: { title, description, url, image, twitter, titleTemplate },
+      siteMetadata: {
+        title,
+        description,
+        url,
+        image,
+        twitter,
+        titleTemplate,
+        footerLinks,
+      },
     },
     meetups: { nodes: meetups },
     stories: { nodes: stories },
   },
 }) => (
-  <Layout {...{ title, description, image, url, twitter, titleTemplate }}>
+  <Layout
+    {...{ title, description, image, url, twitter, titleTemplate, footerLinks }}
+  >
     <aside>
       {!!meetups && (
         <React.Fragment>
@@ -86,7 +96,7 @@ export default ({
           <div className={s.reachingOutItem}>
             <a href={`https://twitter.com/${twitter}`}>@{twitter}</a>
           </div>
-          
+
           <a
             className={s.reachingOutLink}
             href="https://meetup.com/React-Knowledgeable"
@@ -104,7 +114,9 @@ export default ({
             </svg>
           </a>
           <div className={s.reachingOutItem}>
-            <a href="https://meetup.com/React-Knowledgeable" >React Knowledgeable</a>
+            <a href="https://meetup.com/React-Knowledgeable">
+              React Knowledgeable
+            </a>
           </div>
         </div>
       </div>
@@ -135,6 +147,10 @@ export const pageQuery = graphql`
         url
         twitter
         titleTemplate
+        footerLinks {
+          name
+          link
+        }
       }
     }
     meetups: allMarkdownRemark(
