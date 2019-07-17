@@ -6,12 +6,15 @@
     display: grid;
     grid-template-columns: max-content 1fr;
     margin-top: 3.8326rem;
-    
     @media screen and (min-width: 518px) {
       align-items: center;
       margin-top: initial;
     }
-
+    @media (min-width: 1280px) and (max-width: 1599px) {
+      grid-column: 2;
+      grid-row: 3;
+      align-self: end;
+    }
     @media screen and (min-width: 1600px) {
       grid-column: 3;
       grid-row: 2;
@@ -21,12 +24,10 @@
   
   .footer p {
     margin: 0;
-    
     @media screen and (max-width: 517px) {
       writing-mode: vertical-lr;
     }
-
-    @media screen and (min-width: 1600px) {
+    @media screen and (min-width: 1280px) {
       writing-mode: vertical-lr;
     }
   }
