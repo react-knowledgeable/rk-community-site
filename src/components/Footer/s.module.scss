@@ -3,21 +3,29 @@
     min-width: 16em;
     padding: 1em;
     grid-column: 1 / span 2;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    margin-top: 3.8326rem;
+    
+    @media screen and (min-width: 518px) {
+      align-items: center;
+      margin-top: initial;
+    }
   }
   
   .footer p {
     margin: 0;
     
-    @media screen and (max-width: 518px) {
-      margin-top: 4rem;
+    @media screen and (max-width: 517px) {
       writing-mode: vertical-lr;
     }
   }
 
   .footer div {
-    margin-left: auto;
+    justify-self: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .friendLabel {
