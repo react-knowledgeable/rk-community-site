@@ -6,7 +6,6 @@ This repo is the community site for `<RK />`.
 
 ## 🖥 Developing locally
 
-```
-$ yarn
-$ yarn develop
-```
+1. Run `yarn` (or `npm install`)
+2. Set up [GitHub Personal Access Token](https://github.com/settings/tokens), refer to [Authenticating with GraphQL](https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql) for requisite scope
+3. Run `GITHUB_TOKEN=<WHATEVER_GITHUB_GENERATED_FOR_YOU> yarn develop` (or `GITHUB_TOKEN=<WHATEVER_GITHUB_GENERATED_FOR_YOU> npm start`)
