@@ -11,12 +11,22 @@
       align-items: center;
       margin-top: initial;
     }
+
+    @media screen and (min-width: 1600px) {
+      grid-column: 3;
+      grid-row: 2;
+      align-self: end;
+    }
   }
   
   .footer p {
     margin: 0;
     
     @media screen and (max-width: 517px) {
+      writing-mode: vertical-lr;
+    }
+
+    @media screen and (min-width: 1600px) {
       writing-mode: vertical-lr;
     }
   }
