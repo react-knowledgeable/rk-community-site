@@ -222,6 +222,7 @@ export const pageQuery = graphql`
     }
     stories: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/stories/" } }
+      sort: { fields: frontmatter___date, order: DESC }
     ) {
       nodes {
         frontmatter {
