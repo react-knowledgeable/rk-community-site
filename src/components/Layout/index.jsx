@@ -14,8 +14,9 @@ export default props => {
     titleTemplate,
     twitter,
     footerLinks,
+    coverImage,
   } = props;
-  const fullImageUrl = `${url}${image}`;
+  const fullImageUrl = coverImage ? `${url}${coverImage}` : `${url}${image}`;
   const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
   return (
     <div className={s.layout}>

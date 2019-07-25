@@ -17,13 +17,22 @@ export default ({
       },
     },
     markdownRemark: {
-      frontmatter: { title, speaker, date },
+      frontmatter: { title, speaker, date, cover },
       html,
     },
   },
 }) => (
   <Layout
-    {...{ title, description, image, url, twitter, titleTemplate, footerLinks }}
+    {...{
+      title,
+      description,
+      image,
+      coverImage: cover.childImageSharp ? cover.childImageSharp.sizes.src : '',
+      url,
+      twitter,
+      titleTemplate,
+      footerLinks,
+    }}
   >
     <main>
       <h2>{title}</h2>
@@ -42,7 +51,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        image
         description
         url
         twitter
@@ -58,6 +66,13 @@ export const pageQuery = graphql`
         title
         speaker
         date
+        cover {
+          childImageSharp {
+            sizes(maxWidth: 720) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
       html
       fields {

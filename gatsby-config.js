@@ -80,18 +80,24 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         excerpt_separator: `<!-- excerpt ends -->`,
-      },
-      plugins: [
-        {
-          resolve: `@raae/gatsby-remark-oembed`,
-          options: {
-            usePrefix: true,
-            providers: {
-              include: ['Twitter'],
+        plugins: [
+          {
+            resolve: `@raae/gatsby-remark-oembed`,
+            options: {
+              usePrefix: true,
+              providers: {
+                include: ['Twitter'],
+              },
             },
           },
-        },
-      ],
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-typography`,

@@ -6,6 +6,7 @@
   "author": "Wei Gao <wgao19@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@raae/gatsby-remark-oembed": "^0.1.1",
     "classnames": "^2.2.6",
     "gatsby": "^2.13.3",
     "gatsby-plugin-favicon": "^3.1.6",
@@ -13,8 +14,9 @@
     "gatsby-plugin-offline": "^2.2.1",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "gatsby-plugin-sass": "^2.1.0",
-    "gatsby-plugin-sharp": "^2.2.2",
+    "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-plugin-typography": "^2.3.0",
+    "gatsby-remark-images": "^3.1.7",
     "gatsby-source-filesystem": "^2.1.2",
     "gatsby-source-graphql": "^2.1.2",
     "gatsby-transformer-remark": "^2.6.0",
