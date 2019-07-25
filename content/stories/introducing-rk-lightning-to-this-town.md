@@ -1,6 +1,6 @@
 ---
 speaker: wei
-title: Introducing <RK⚡️ /> to this Town
+title: Introducing RK⚡️ to this Town
 date: 2019-07-25
 cover: './images/rk-speaker-slide.png'
 ---
