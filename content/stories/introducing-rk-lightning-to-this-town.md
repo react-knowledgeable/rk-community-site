@@ -17,7 +17,7 @@ As a side track, I took a break a couple of weeks ago where I visited Penang wit
 
 On the last day of our trip, I was telling her that I'd be introducing RK to this town and she agreed to hear my talk and to give feedback. But, as the theory goes – first time rehearsing a talk always goes disastrous – that ended up me wanting to bury my face in my flat white after babbling five minutes of nonsense.
 
-As a designer Xinling is constantly drawing. And as a not-a-very-visual person I even got affected by her dedication. She was drawing a postcard out of a photo she took in a street of Penang. I requested that I contribute to it so she allowed me to plaid one of the fillings. And it didn't go too bad (how bad can a plaiding go anyway). Before our flight she was drawing another card for her mom. Dedication is infectious, really. So I started drawing with my iPad as well.
+As a designer Xinling is constantly drawing. And as a not-very-visual person I got affected by her dedication. She was drawing a postcard out of a photo she took in a street of Penang. I requested that I contribute to it so she allowed me to plaid one of the fillings. And it didn't go too bad (how bad can a plaiding go anyway). Before our flight she was drawing another card for her mom. Dedication is infectious, really. So I started drawing with my iPad as well.
 
 I could not get RK out of my mind after running the talk for a first time with her. So I started doodling RK. How can a non-visual person "doodle" RK? Well, I guess just write it out...
 
@@ -31,7 +31,7 @@ We boarded our flight back to Singapore. For once in my lifetime I dedicated my 
 
 ![what is rk](./images/rk-what-is.png)
 
-I was thinking about what I wanted to say about RK. I have so much to say and doodles just came out one after another. This bug, for instance. I was intended to say that "bugs fit well into a lightning talk, you get technical quickly, _and they are great for storytelling_". But you all know now that I forgot the last pitch. Life `¯\_(ツ)_/¯`.
+I was thinking about what I wanted to say about RK. I have so much to say and doodles just came out one after another. This bug, for instance. I was intended to say that "bugs fit well into a lightning talk, you get technical quickly, _and they are great for storytelling_". But you all know now that I forgot the last pitch loudly. Life `¯\_(ツ)_/¯`.
 
 ![bug](./images/rk-bug.png)
 
