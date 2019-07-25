@@ -5,21 +5,19 @@ date: 2019-07-25
 cover: './images/rk-speaker-slide.png'
 ---
 
-Me and two more RK kids went to [ReactJS Singapore July Edition](https://www.meetup.com/React-Singapore/events/260564102) to introduce `<RK⚡️ />` to this town today.
+Me and [two](https://twitter.com/yishusee/) [more](https://twitter.com/kenleesm) RK kids went to [ReactJS Singapore July 2019 Edition](https://www.meetup.com/React-Singapore/events/260564102) to introduce `<RK⚡️ />` to this town today.
 
 <!-- excerpt ends -->
 
-So we're starting `<RK⚡️ />` in Singapore. Since we're a infantry meetup and people don't know about us, we figure we'd run around meetups to tell people about it. Normally how it goes is that most meetups here in Singapore has an announcement section at the end of each event. So that'll be what we aim at.
-
-Basically for the past few weeks I've been dreading about this thing. If I can't convince myself there's some fun in it I cannot commit myself to it. And so shouting out a line that goes like "We're RK and we're doing this..." I'm not sure how it'll go lol. But I also cannot imagine how a serious talk on this will look like. I mean... who does that just for announcing a new meetup?
+So we're starting `<RK⚡️ />` in Singapore. Since we're an infantry meetup and people don't know about us, we figure we'd run around meetups to tell people about it. Normally how it goes is that most meetups here in Singapore has an announcement section at the end of each event. So that'll be what we aim at.
 
 As a side track, I took a break a couple of weeks ago where I visited Penang with [Xinling](https://twitter.com/yosriady), a designer from our team. This girl has been my moral support all along. She's always very delightful and that matched the suns and the chills in Penang.
 
 ![my penang trip](./images/penang.jpg)
 
-On the last day of our trip, I was telling her that I'd be introducing RK to this town and she agreed to hear my talk and give advice. But, as first time rehearsing a talk will always go disastrous, that ended up me wanting to bury my face in the cafe we were sitting at after babbling five minutes of nonsense.
+On the last day of our trip, I was telling her that I'd be introducing RK to this town and she agreed to hear my talk and to give feedback. But, as the theory goes – first time rehearsing a talk always goes disastrous – that ended up me wanting to bury my face in my flat white after babbling five minutes of nonsense.
 
-As a designer Xinling is constantly drawing. As a not-a-very-visual person I even got affected by her dedication. She was drawing a postcard out of a photo she took in a street of Penang. I requested that I contribute to it so she allowed me to plaid one of the fillings. And it didn't go too bad (how bad can a plaiding go anyway). Before our flight she was drawing another card for her mom. Dedication is infectious, really. So I started drawing with my iPad as well.
+As a designer Xinling is constantly drawing. And as a not-a-very-visual person I even got affected by her dedication. She was drawing a postcard out of a photo she took in a street of Penang. I requested that I contribute to it so she allowed me to plaid one of the fillings. And it didn't go too bad (how bad can a plaiding go anyway). Before our flight she was drawing another card for her mom. Dedication is infectious, really. So I started drawing with my iPad as well.
 
 I could not get RK out of my mind after running the talk for a first time with her. So I started doodling RK. How can a non-visual person "doodle" RK? Well, I guess just write it out...
 
