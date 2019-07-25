@@ -4,6 +4,12 @@
 **Added**
 
 - Google analytics
+- SEO for story pages
+- Image sharp for post content
+
+**Fixed**
+
+- oembed twitter plugin
 
 ## July 17 2019
 
