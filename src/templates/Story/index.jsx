@@ -27,7 +27,8 @@ export default ({
       title,
       description,
       image,
-      coverImage: cover.childImageSharp ? cover.childImageSharp.sizes.src : '',
+      coverImage:
+        cover && cover.childImageSharp ? cover.childImageSharp.sizes.src : '',
       url,
       twitter,
       titleTemplate,
