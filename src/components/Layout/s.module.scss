@@ -69,6 +69,8 @@ aside:last-of-type {
   margin-right: .5rem;
 }
 
-.twitter-tweet-rendered {
-  margin: 1.666rem auto;
+:global {
+  .twitter-tweet-rendered {
+    margin: 1.666rem auto;
+  }
 }
