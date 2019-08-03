@@ -23,6 +23,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  white-space: nowrap;
   @media (min-width: 380px) {
     display: grid;
     grid-template-columns: max-content 1fr;

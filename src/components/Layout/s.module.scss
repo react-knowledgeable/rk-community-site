@@ -61,7 +61,7 @@ aside:last-of-type {
   }
   @media (min-width: 1600px) {
     grid-template-rows: min-content 1fr auto;
-    grid-template-columns: minmax(var(--main-width), 5fr) minmax(var(--aside-width), 3fr) minmax(var(--aside-width), 2fr);
+    grid-template-columns: minmax(var(--main-width), 5fr) minmax(var(--aside-width), 3fr) minmax(min-content, 2fr);
   }
 }
 
