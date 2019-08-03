@@ -15,15 +15,42 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
-  
-  createRedirect({ fromPath: '/speak', toPath: 'https://github.com/react-knowledgeable/talks', isPermanent: true, redirectInBrowser: true });
-  createRedirect({ fromPath: '/meetup', toPath: 'https://meetup.com/React-Knowledgeable', isPermanent: true, redirectInBrowser: true });
-  createRedirect({ fromPath: '/hello', toPath: 'https://hello-rk-lightning.netlify.com/', isPermanent: true, redirectInBrowser: true });
+
+  createRedirect({
+    fromPath: '/speak',
+    toPath: 'https://github.com/react-knowledgeable/talks',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/meetup',
+    toPath: 'https://meetup.com/React-Knowledgeable',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/hello',
+    toPath: 'https://hello-rk-lightning.netlify.com/',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/story/stories/introducing-rk-lightning-to-this-town/',
+    toPath: '/stories/introducing-rk-lightning-to-this-town/',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/story/stories/baby-react-knowledgeable-is-born/',
+    toPath: '/stories/baby-react-knowledgeable-is-born/',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
 
   const talkTemplate = path.resolve(`./src/templates/Talk/index.jsx`);
   const storyTemplate = path.resolve(`./src/templates/Story/index.jsx`);
+  const meetupTemplate = path.resolve(`./src/templates/Meetup/index.jsx`);
   // const speakerTemplate = path.resolve(`./src/templates/Speaker/index.jsx`);
-  // const meetupTemplate = path.resolve(`./src/templates/Meetup/index.jsx`);
 
   return Promise.all([
     graphql(
@@ -31,6 +58,15 @@ exports.createPages = ({ graphql, actions }) => {
         {
           stories: allMarkdownRemark(
             filter: { fileAbsolutePath: { regex: "/stories/" } }
+          ) {
+            nodes {
+              fields {
+                slug
+              }
+            }
+          }
+          meetups: allMarkdownRemark(
+            filter: { fileAbsolutePath: { regex: "/meetups/" } }
           ) {
             nodes {
               fields {
@@ -48,14 +84,24 @@ exports.createPages = ({ graphql, actions }) => {
       // Create blog posts pages.
       const {
         stories: { nodes: stories },
+        meetups: { nodes: meetups },
       } = result.data;
 
       stories.forEach(story => {
         createPage({
-          path: `/story${story.fields.slug}`,
+          path: `${story.fields.slug}`,
           component: storyTemplate,
           context: {
             slug: story.fields.slug,
+          },
+        });
+      });
+      meetups.forEach(meetup => {
+        createPage({
+          path: `${meetup.fields.slug}`,
+          component: meetupTemplate,
+          context: {
+            slug: meetup.fields.slug,
           },
         });
       });

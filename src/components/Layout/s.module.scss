@@ -34,6 +34,7 @@ aside {
 aside:first-of-type {
   @media (min-width: 1600px) {
     grid-column: 2;
+    grid-row: 1 / span 3;
   }
 }
 
@@ -59,7 +60,8 @@ aside:last-of-type {
     grid-template-columns: minmax(var(--main-width), 3fr) 1fr max-content;
   }
   @media (min-width: 1600px) {
-    grid-template-columns: minmax(var(--main-width), 3fr) minmax(var(--aside-width), 1fr) minmax(var(--aside-width), 1fr);
+    grid-template-rows: min-content 1fr auto;
+    grid-template-columns: minmax(var(--main-width), 5fr) minmax(var(--aside-width), 3fr) minmax(var(--aside-width), 2fr);
   }
 }
 
