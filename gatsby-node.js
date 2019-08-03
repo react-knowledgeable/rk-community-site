@@ -49,8 +49,8 @@ exports.createPages = ({ graphql, actions }) => {
 
   const talkTemplate = path.resolve(`./src/templates/Talk/index.jsx`);
   const storyTemplate = path.resolve(`./src/templates/Story/index.jsx`);
+  const meetupTemplate = path.resolve(`./src/templates/Meetup/index.jsx`);
   // const speakerTemplate = path.resolve(`./src/templates/Speaker/index.jsx`);
-  // const meetupTemplate = path.resolve(`./src/templates/Meetup/index.jsx`);
 
   return Promise.all([
     graphql(
@@ -58,6 +58,15 @@ exports.createPages = ({ graphql, actions }) => {
         {
           stories: allMarkdownRemark(
             filter: { fileAbsolutePath: { regex: "/stories/" } }
+          ) {
+            nodes {
+              fields {
+                slug
+              }
+            }
+          }
+          meetups: allMarkdownRemark(
+            filter: { fileAbsolutePath: { regex: "/meetups/" } }
           ) {
             nodes {
               fields {
@@ -75,6 +84,7 @@ exports.createPages = ({ graphql, actions }) => {
       // Create blog posts pages.
       const {
         stories: { nodes: stories },
+        meetups: { nodes: meetups },
       } = result.data;
 
       stories.forEach(story => {
@@ -83,6 +93,15 @@ exports.createPages = ({ graphql, actions }) => {
           component: storyTemplate,
           context: {
             slug: story.fields.slug,
+          },
+        });
+      });
+      meetups.forEach(meetup => {
+        createPage({
+          path: `${meetup.fields.slug}`,
+          component: meetupTemplate,
+          context: {
+            slug: meetup.fields.slug,
           },
         });
       });
