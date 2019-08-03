@@ -126,6 +126,17 @@ export default ({
             ))}
           </ul>
         </section>
+        {mode === modes.article && (
+          <section>
+            <h2>🎙 Talk Line-up 🎙</h2>
+            {talkIssueIds.map(talkIssueId => {
+              const talkData = talks.find(
+                ({ number }) => number === talkIssueId
+              );
+              return <Talk {...talkData} key={talkData.number} />;
+            })}
+          </section>
+        )}
       </aside>
       <main>
         {mode === modes.presentation ? (
@@ -133,14 +144,21 @@ export default ({
             {astToHtml({ type: 'root', children: sections })}
             <section>
               <h2>🎙 Talk Line-up 🎙</h2>
-            </section>
-            <section>
-              {talkIssueIds.map(talkIssueId => {
-                const talkData = talks.find(
-                  ({ number }) => number === talkIssueId
-                );
-                return <Talk {...talkData} key={talkData.number} />;
-              })}
+              <ul>
+                {talkIssueIds.map(talkIssueId => {
+                  const talkData = talks.find(
+                    ({ number }) => number === talkIssueId
+                  );
+                  const { title, url, author } = talkData;
+                  return (
+                    <li>
+                      <a href={url} key={title}>
+                        {title}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
             </section>
           </>
         ) : (

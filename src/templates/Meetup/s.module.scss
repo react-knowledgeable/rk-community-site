@@ -41,5 +41,5 @@
 }
 
 .article {
-  grid-template-columns: minmax(var(--main-width), 3fr) 1fr;
+  grid-template-columns: minmax(var(--main-width), 3fr) minmax(var(--aside-width), 1fr);
 }
