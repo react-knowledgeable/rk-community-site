@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Talk from '../components/Talk';
 import Card from '../components/Card';
@@ -30,6 +30,7 @@ export default ({
 }) => {
   const nextMeetup = getNextMeetup(meetups);
   const {
+    fields: { slug: nextMeetupSlug },
     frontmatter: { title: meetupTitle, venue, date, meetupLink },
   } = nextMeetup || { frontmatter: {} };
   return (
@@ -50,7 +51,9 @@ export default ({
             <h2>Upcoming Meetups</h2>
             {nextMeetup && (
               <Card key={date}>
-                <h3>{meetupTitle}</h3>
+                <h3>
+                  <Link to={nextMeetupSlug}>{meetupTitle}</Link>
+                </h3>
                 <p>
                   {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
                 </p>
@@ -152,7 +155,7 @@ export default ({
             ({ excerpt, frontmatter: { title }, fields: { slug } }) => (
               <Card key={slug}>
                 <h2>
-                  <a href={`${slug}`}>{title}</a>
+                  <Link to={slug}>{title}</Link>
                 </h2>
                 <p>{excerpt}</p>
               </Card>
