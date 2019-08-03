@@ -149,7 +149,7 @@ export default ({
                   const talkData = talks.find(
                     ({ number }) => number === talkIssueId
                   );
-                  const { title, url, author } = talkData;
+                  const { title, url } = talkData;
                   return (
                     <li>
                       <a href={url} key={title}>
