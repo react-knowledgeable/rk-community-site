@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'classnames';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
 import Footer from '../Footer';
@@ -15,11 +16,13 @@ export default props => {
     twitter,
     footerLinks,
     coverImage,
+    className,
+    onKeyPress,
   } = props;
   const fullImageUrl = coverImage ? `${url}${coverImage}` : `${url}${image}`;
   const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
   return (
-    <div className={s.layout}>
+    <div className={cx(s.layout, className)} onKeyPress={onKeyPress}>
       <Helmet>
         <meta charSet="utf-8" />
         <title>{usedTitle}</title>
