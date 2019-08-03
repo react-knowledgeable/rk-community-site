@@ -105,8 +105,11 @@ export default ({
         </section>
         <section>
           <h2>🎉 Venue sponsor 🎉</h2>
-          <h3>{venue}</h3>
-          <img src={venueLogo} style={{ alignSelf: 'center' }}></img>
+          {venueLogo ? (
+            <img src={venueLogo} style={{ alignSelf: 'center' }}></img>
+          ) : (
+            <h3>{venue}</h3>
+          )}
         </section>
         <section>
           <h2>👫 Friends of RK 👭</h2>
