@@ -15,10 +15,37 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
-  
-  createRedirect({ fromPath: '/speak', toPath: 'https://github.com/react-knowledgeable/talks', isPermanent: true, redirectInBrowser: true });
-  createRedirect({ fromPath: '/meetup', toPath: 'https://meetup.com/React-Knowledgeable', isPermanent: true, redirectInBrowser: true });
-  createRedirect({ fromPath: '/hello', toPath: 'https://hello-rk-lightning.netlify.com/', isPermanent: true, redirectInBrowser: true });
+
+  createRedirect({
+    fromPath: '/speak',
+    toPath: 'https://github.com/react-knowledgeable/talks',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/meetup',
+    toPath: 'https://meetup.com/React-Knowledgeable',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/hello',
+    toPath: 'https://hello-rk-lightning.netlify.com/',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/story/stories/introducing-rk-lightning-to-this-town/',
+    toPath: '/stories/introducing-rk-lightning-to-this-town/',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+  createRedirect({
+    fromPath: '/story/stories/baby-react-knowledgeable-is-born/',
+    toPath: '/stories/baby-react-knowledgeable-is-born/',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
 
   const talkTemplate = path.resolve(`./src/templates/Talk/index.jsx`);
   const storyTemplate = path.resolve(`./src/templates/Story/index.jsx`);
@@ -52,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       stories.forEach(story => {
         createPage({
-          path: `/story${story.fields.slug}`,
+          path: `${story.fields.slug}`,
           component: storyTemplate,
           context: {
             slug: story.fields.slug,

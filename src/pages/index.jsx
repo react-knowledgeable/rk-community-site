@@ -152,7 +152,7 @@ export default ({
             ({ excerpt, frontmatter: { title }, fields: { slug } }) => (
               <Card key={slug}>
                 <h2>
-                  <a href={`/story${slug}`}>{title}</a>
+                  <a href={`${slug}`}>{title}</a>
                 </h2>
                 <p>{excerpt}</p>
               </Card>
