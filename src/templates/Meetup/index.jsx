@@ -98,6 +98,11 @@ export default ({
         keyValue="s"
         onKeyHandle={() => toggleMode(modes.speaker)}
       />
+      <KeyHandler
+        keyEventName={KEYPRESS}
+        keyValue="a"
+        onKeyHandle={() => toggleMode(modes.article)}
+      />
       <aside>
         <section>
           <h1>{title}</h1>
