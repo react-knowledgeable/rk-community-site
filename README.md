@@ -14,4 +14,7 @@ This repo is the community site for `<RK />`.
 
 1. Go to one of the meetup pages, i.e. https://reactknowledgeable.org/meetups/1/
 2. Press `P` for presentation mode
-3. Press `space` to page (but this is cheating, apparently)
+3. Paging controls: 
+   - `space bar` or `j`: next page
+   - `k`: previous page
+   - digits `0` ~ `9`: respective pages
