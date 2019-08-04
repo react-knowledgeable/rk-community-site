@@ -69,7 +69,7 @@ export default ({
 }) => {
   const [mode, setMode] = React.useState(modes.article);
   React.useEffect(() => {
-    if ([modes.presentation, modes.speaker].includes(mode)) {
+    if ([modes.presentation].includes(mode)) {
       const pages = document.querySelectorAll('section');
       pages &&
         pages.length &&
@@ -98,11 +98,6 @@ export default ({
         keyEventName={KEYPRESS}
         keyValue="p"
         onKeyHandle={() => toggleMode(modes.presentation)}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="s"
-        onKeyHandle={() => toggleMode(modes.speaker)}
       />
       <KeyHandler
         keyEventName={KEYPRESS}

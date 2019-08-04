@@ -3,7 +3,6 @@ import { navigate } from '@reach/router';
 export const modes = {
   article: 'article',
   presentation: 'presentation',
-  speaker: 'speaker',
 };
 
 export const slideTo = (to, location) => {
