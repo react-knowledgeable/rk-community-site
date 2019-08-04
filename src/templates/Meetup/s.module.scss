@@ -13,6 +13,8 @@
 }
 
 .presentation {
+  max-height: 100vh;
+  overflow-y: hidden;
   section {
     padding: 1rem calc((100vw - 60%) / 2);
     margin-top: -1.51rem; // hack

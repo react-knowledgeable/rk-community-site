@@ -5,13 +5,8 @@ import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
 import Layout from '../../components/Layout';
 import Talk from '../../components/Talk';
+import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
-
-const modes = {
-  article: 'article',
-  presentation: 'presentation',
-  speaker: 'speaker',
-};
 
 const buildSections = elements => {
   const sectionTags = ['h2', 'h3'];
@@ -39,6 +34,7 @@ const astToHtml = new r2r({
 }).Compiler;
 
 export default ({
+  location,
   data: {
     site: {
       siteMetadata: {
@@ -72,6 +68,16 @@ export default ({
   },
 }) => {
   const [mode, setMode] = React.useState(modes.article);
+  React.useEffect(() => {
+    if ([modes.presentation, modes.speaker].includes(mode)) {
+      const pages = document.querySelectorAll('section');
+      pages &&
+        pages.length &&
+        pages[location.hash.slice(1) || 0].scrollIntoView({
+          behavior: 'smooth',
+        });
+    }
+  }, [mode, location]);
   const toggleMode = newMode =>
     newMode === mode ? setMode(modes.article) : setMode(newMode);
   const sections = buildSections(htmlAst.children);
@@ -103,6 +109,33 @@ export default ({
         keyValue="a"
         onKeyHandle={() => toggleMode(modes.article)}
       />
+      {[modes.presentation, modes.speaker].includes(mode) && (
+        <>
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+            <KeyHandler
+              key={`key-handler-${i}`}
+              keyEventName={KEYPRESS}
+              keyValue={`${i}`}
+              onKeyHandle={() => slideTo(i, location)}
+            />
+          ))}
+          <KeyHandler
+            keyEventName={KEYPRESS}
+            keyValue="k"
+            onKeyHandle={() => slideTo('prev', location)}
+          />
+          <KeyHandler
+            keyEventName={KEYPRESS}
+            keyValue="j"
+            onKeyHandle={() => slideTo('next', location)}
+          />
+          <KeyHandler
+            keyEventName={KEYPRESS}
+            keyValue=" "
+            onKeyHandle={() => slideTo('next', location)}
+          />
+        </>
+      )}
       <aside>
         <section>
           <h1>{title}</h1>
@@ -151,7 +184,7 @@ export default ({
                   );
                   const { title, url } = talkData;
                   return (
-                    <li>
+                    <li key={title}>
                       <a href={url} key={title}>
                         {title}
                       </a>

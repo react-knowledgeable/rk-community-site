@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@raae/gatsby-remark-oembed": "^0.1.1",
+    "@reach/router": "^1.2.1",
     "classnames": "^2.2.6",
     "gatsby": "^2.13.3",
     "gatsby-plugin-favicon": "^3.1.6",
