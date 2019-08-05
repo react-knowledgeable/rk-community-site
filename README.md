@@ -13,8 +13,8 @@ This repo is the community site for `<RK />`.
 ## 🎙 Talk slides
 
 1. Go to one of the meetup pages, i.e. https://reactknowledgeable.org/meetups/1/
-2. Press `P` for presentation mode
+2. Press <kbd>p</kbd> for presentation mode
 3. Paging controls: 
-   - `space bar` or `j`: next page
-   - `k`: previous page
-   - digits `0` ~ `9`: respective pages
+   - <kbd>space</kbd> or <kbd>j</kbd>: next page
+   - <kbd>k</kbd>: previous page
+   - digits <kbd>0</kbd> ~ <kbd>9</kbd>: respective pages
