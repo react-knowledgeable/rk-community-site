@@ -18,10 +18,6 @@ module.exports = {
         name: 'ReactJS Singapore',
         link: 'https://www.meetup.com/React-Singapore/',
       },
-      {
-        name: 'JAMStack Singapore',
-        link: 'https://www.meetup.com/JAMstack-Singapore/',
-      },
     ],
   },
   plugins: [
