@@ -4,6 +4,7 @@ import r2r from 'rehype-react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
 import Layout from '../../components/Layout';
+import SubmitTalkButton from '../../components/SubmitTalkButton';
 import Talk from '../../components/Talk';
 import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
@@ -56,6 +57,7 @@ export default ({
         venue,
         venueLogo,
         talks: talkIssueIds,
+        issueLink,
       },
       html,
       htmlAst,
@@ -153,6 +155,15 @@ export default ({
               </li>
             ))}
           </ul>
+        </section>
+        <section>
+          <h2>🌟 Lightnings open 🌟</h2>
+          <SubmitTalkButton className={s.submitTalkMeetup}>
+            {`Reference `}
+            <a href={issueLink}>
+              <code>#{issueLink.split('/issues/')[1]}</code>
+            </a>
+          </SubmitTalkButton>
         </section>
         {mode === modes.article && (
           <section>

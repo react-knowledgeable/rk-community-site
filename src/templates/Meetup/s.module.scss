@@ -41,3 +41,7 @@
 .article {
   grid-template-columns: minmax(var(--main-width), 3fr) minmax(var(--aside-width), 1fr);
 }
+
+.submitTalkMeetup {
+  padding-bottom: 2rem;
+}
