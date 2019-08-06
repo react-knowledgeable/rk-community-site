@@ -40,4 +40,33 @@
 
 .article {
   grid-template-columns: minmax(var(--main-width), 3fr) minmax(var(--aside-width), 1fr);
+
+  /** 
+   * TODO: move this to appropriate place 
+   * the current problem is that it assumes one side is shorter than the other
+   * same problem with home page
+   * so better reconsider this layout integratedly
+   */
+  > footer {
+    @media (min-width: 1600px) {
+        grid-column: 1;
+        grid-row: 3;
+        align-self: end;
+    }
+  > div {
+      @media (min-width: 1600px) {
+        display: block;
+      }
+    }
+  }
+  > p {
+    @media (min-width: 1600px) {
+      writing-mode: unset;
+    }
+  }
 }
+
+.submitTalkMeetup {
+  padding-bottom: 2rem;
+}
+
