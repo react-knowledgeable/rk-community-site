@@ -157,7 +157,7 @@ export default ({
           </ul>
         </section>
         <section>
-          <h2>🌟 Lightnings open 🌟</h2>
+          <h2>🌟 Stage opens 🌟</h2>
           <SubmitTalkButton className={s.submitTalkMeetup}>
             {`Reference `}
             <a href={issueLink}>
