@@ -171,7 +171,7 @@ export const pageQuery = graphql`
     }
     meetups: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/meetups/" } }
-      sort: { fields: frontmatter___date, order: ASC }
+      sort: { fields: frontmatter___date, order: DESC }
     ) {
       nodes {
         frontmatter {
