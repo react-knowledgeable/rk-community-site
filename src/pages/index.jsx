@@ -5,7 +5,6 @@ import Talk from '../components/Talk';
 import SubmitTalkButton from '../components/SubmitTalkButton';
 import Card from '../components/Card';
 import parseDate from '../utils/parseDate';
-import s from './styles.module.scss';
 
 export default ({
   data: {
@@ -90,13 +89,10 @@ export default ({
         <SubmitTalkButton />
         <Card>
           <h3>Reaching out</h3>
-          <div className={s.reachingOutList}>
-            <a
-              className={s.reachingOutLink}
-              href={`https://twitter.com/${twitter}`}
-            >
+          <div>
+            <a href={`https://twitter.com/${twitter}`}>
               <svg
-                className={s.reachingOutLogo}
+                width="32"
                 viewBox="0 0 612 612"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -106,16 +102,13 @@ export default ({
                 />
               </svg>
             </a>
-            <div className={s.reachingOutItem}>
+            <div>
               <a href={`https://twitter.com/${twitter}`}>@{twitter}</a>
             </div>
 
-            <a
-              className={s.reachingOutLink}
-              href="https://meetup.com/React-Knowledgeable"
-            >
+            <a href="https://meetup.com/React-Knowledgeable">
               <svg
-                className={s.reachingOutLogo}
+                width="32"
                 fill="none"
                 viewBox="0 0 256 212"
                 xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +119,7 @@ export default ({
                 />
               </svg>
             </a>
-            <div className={s.reachingOutItem}>
+            <div>
               <a href="https://meetup.com/React-Knowledgeable">
                 React Knowledgeable
               </a>

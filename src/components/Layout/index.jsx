@@ -1,9 +1,7 @@
 import * as React from 'react';
-import cx from 'classnames';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
 import Footer from '../Footer';
-import s from './s.module.scss';
 
 export default props => {
   const {
@@ -22,7 +20,7 @@ export default props => {
   const fullImageUrl = coverImage ? `${url}${coverImage}` : `${url}${image}`;
   const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
   return (
-    <div className={cx(s.layout, className)} onKeyPress={onKeyPress}>
+    <div className={className} onKeyPress={onKeyPress}>
       <Helmet>
         <meta charSet="utf-8" />
         <title>{usedTitle}</title>
@@ -38,8 +36,8 @@ export default props => {
       <header>
         <h1>
           <svg
-            className={s.logo}
             viewBox="0 0 483 494"
+            width="100"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >

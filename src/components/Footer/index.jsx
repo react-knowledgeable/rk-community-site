@@ -1,13 +1,12 @@
 import React from 'react';
-import s from './s.module.scss';
 
 const Friend = ({ name, link }) => (
-  <a className={s.friendLink} href={link}>
+  <a href={link}>
     <svg
-      className={s.friendIcon}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 165 218"
       fill="none"
+      width="16"
     >
       <path
         fill="#000"
@@ -18,16 +17,16 @@ const Friend = ({ name, link }) => (
         d="M128.423 101.078c0-10.088-4.085-18.261-9.129-18.261s-9.133 8.173-9.133 18.261c0 10.085 4.089 18.262 9.133 18.262 5.044 0 9.129-8.177 9.129-18.262zM55.377 101.078c0-10.088-4.089-18.261-9.133-18.261-5.04 0-9.129 8.173-9.129 18.261 0 10.085 4.089 18.262 9.129 18.262 5.044 0 9.133-8.177 9.133-18.262z"
       />
     </svg>
-    <span className={s.friendName}>{name}</span>
+    <span>{name}</span>
   </a>
 );
 
 export default ({ footerLinks }) => {
   return (
-    <footer className={s.footer}>
+    <footer>
       <p>Built with love.</p>
-      <div className={s.friends}>
-        <span className={s.friendLabel}>Friends of RK:</span>
+      <div>
+        <span>Friends of RK:</span>
         {!!footerLinks &&
           footerLinks.map(link => (
             <Friend key={`friend-link-${link.name}`} {...link} />
