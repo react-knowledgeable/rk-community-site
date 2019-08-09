@@ -56,6 +56,7 @@ export default ({
         cover,
         venue,
         venueLogo,
+        venueLink,
         talks: talkIssueIds,
         issueLink,
       },
@@ -141,9 +142,15 @@ export default ({
         <section>
           <h2>🎉 Venue sponsor 🎉</h2>
           {venueLogo ? (
-            <img src={venueLogo} style={{ alignSelf: 'center' }}></img>
+            <a href={venueLink} target="_blank" className={s.venueLink}>
+              <img src={venueLogo} style={{ alignSelf: 'center' }} />
+            </a>
           ) : (
-            <h3>{venue}</h3>
+            <h3>
+              <a href={venueLink} target="_blank">
+                {venue}
+              </a>
+            </h3>
           )}
         </section>
         <section>
@@ -228,6 +235,7 @@ export const pageQuery = graphql`
         title
         venue
         venueLogo
+        venueLink
         talks
         date
         meetupLink
