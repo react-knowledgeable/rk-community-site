@@ -17,24 +17,6 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
 
   createRedirect({
-    fromPath: '/speak',
-    toPath: 'https://github.com/react-knowledgeable/talks',
-    isPermanent: true,
-    redirectInBrowser: true,
-  });
-  createRedirect({
-    fromPath: '/meetup',
-    toPath: 'https://meetup.com/React-Knowledgeable',
-    isPermanent: true,
-    redirectInBrowser: true,
-  });
-  createRedirect({
-    fromPath: '/hello',
-    toPath: 'https://hello-rk-lightning.netlify.com/',
-    isPermanent: true,
-    redirectInBrowser: true,
-  });
-  createRedirect({
     fromPath: '/story/stories/introducing-rk-lightning-to-this-town/',
     toPath: '/stories/introducing-rk-lightning-to-this-town/',
     isPermanent: true,
