@@ -11,7 +11,7 @@ Me and [two](https://twitter.com/yishusee/) [more](https://twitter.com/kenleesm)
 
 So we're starting `<RK⚡️ />` in Singapore. Since we're an infantry meetup and people don't know about us, we figure we'd run around meetups to tell people about it. Normally how it goes is that most meetups here in Singapore has an announcement section at the end of each event. So that'll be what we aim at.
 
-As a side track, I took a break a couple of weeks ago where I visited Penang with [Xinling](https://twitter.com/yosriady), a designer from our team. This girl has been my moral support all along. She's always very delightful and that matched the suns and the chills in Penang.
+As a side track, I took a break a couple of weeks ago where I visited Penang with [Xinling](https://twitter.com/helloxinling), a designer from our team. This girl has been my moral support all along. She's always very delightful and that matched the suns and the chills in Penang.
 
 ![my penang trip](./images/penang.jpg)
 
