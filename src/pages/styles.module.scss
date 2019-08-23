@@ -16,7 +16,21 @@
   justify-content: space-between;
   margin-bottom: 1.5rem;
   white-space: nowrap;
-  @media (min-width: 380px) {
+  @media (min-width: 380px) and (max-width: 639px) {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    padding-left: 0;
+    margin-left: 0;
+    align-items: center;
+    grid-row-gap: .5em;
+  }
+  @media (min-width: 640px) and (max-width: 889px) {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+  }
+  @media (min-width: 890px) {
     display: grid;
     grid-template-columns: max-content 1fr;
     padding-left: 0;
@@ -36,7 +50,16 @@
 
 .reachingOutItem {
   display: none;
-  @media (min-width: 380px) {
+  @media (min-width: 380px) and (max-width: 640px) {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    margin-left: .25em;
+  }
+  @media (min-width: 640px) and (max-width: 889px) {
+    display: none;
+  }
+  @media (min-width: 890px) {
     display: flex;
     align-items: center;
     grid-column: 2;
@@ -47,7 +70,19 @@
 .reachingOutLogo {
   height: 4rem;
   padding: .5em;
-  @media (min-width: 380px) {
+  @media (min-width: 380px) and (max-width: 640px) {
+    margin-left: auto;
+    height: 1rem;
+    padding: 0;
+    margin-bottom: 0;
+    margin-right: 2px;
+    grid-column: 1;
+  }
+  @media (min-width: 640px) and (max-width: 889px) {
+    height: 4rem;
+    padding: .5em;
+  }
+  @media (min-width: 890px) {
     margin-left: auto;
     height: 1rem;
     padding: 0;

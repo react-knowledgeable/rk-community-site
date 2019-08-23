@@ -22,7 +22,6 @@ main {
 }
 
 aside {
-  min-width: 16rem;
   @media (min-width: 640px) and (max-width: 1599px) {
     grid-row: 2;
   }
