@@ -18,6 +18,10 @@ module.exports = {
         name: 'ReactJS Singapore',
         link: 'https://www.meetup.com/React-Singapore/',
       },
+      {
+        name: 'Engineers SG',
+        link: 'https://engineers.sg/',
+      },
     ],
   },
   plugins: [
