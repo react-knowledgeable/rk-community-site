@@ -84,7 +84,7 @@ module.exports = {
           {
             resolve: `@raae/gatsby-remark-oembed`,
             options: {
-              usePrefix: true,
+              usePrefix: [`oembed`, `twitter`],
               providers: {
                 include: ['Twitter'],
               },
