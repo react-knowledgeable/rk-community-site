@@ -2,6 +2,7 @@
 speaker: wei
 title: Recap RK Lightning 2
 date: 2019-09-10
+cover: ./rk-what-are-you-learning-this-week.png
 ---
 
 Last Thursday, we had our second ever RK Lightning event at [HackerspaceSG](https://hackerspace.sg/) 🎉. Here's Wei's recap 👩🏻‍🌾
