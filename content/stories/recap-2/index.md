@@ -42,12 +42,14 @@ We took a question break. I had a nice conversation with [Yangshun](https://twit
 
 `twitter: https://twitter.com/reknowledgeable/status/1169587281411207169?s=20` 
 
-### 👥 Are React and CSS Friends? [#14]
+### 👥 Are React and CSS Friends? [#14](https://github.com/react-knowledgeable/react-knowledgeable-talks/issues/14)
 
 Then, I shared about styling sites with React, how React changes the way we write styles, and a mind model that makes sense for me to style my projects, including [our site](https://reactknowledgeable.org/).
 
 - [slides](https://uuei.io/talks/cream-pencil-crayon/)
 - [video](https://engineers.sg/v/3640)
+
+### 🤕 Battle Stories: Portals [#16](https://github.com/react-knowledgeable/react-knowledgeable-talks/issues/16)
 
 Then finally, Thomas took up the last spot (15 mins before 9!) and shared about a problem he encountered at work – communicating styles between page and iframe embedded modal.
 
