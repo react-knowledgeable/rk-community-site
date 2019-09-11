@@ -15,6 +15,10 @@ module.exports = {
         link: 'https://singaporecss.github.io',
       },
       {
+        name: 'SingaporeJS',
+        link: 'https://www.singaporejs.org/talk.js/',
+      },
+      {
         name: 'ReactJS Singapore',
         link: 'https://www.meetup.com/React-Singapore/',
       },
