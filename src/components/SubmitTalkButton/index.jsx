@@ -18,6 +18,14 @@ export default ({ children, className }) => (
         <span>Submit a talk</span>
       </a>
     </h3>
+    <ul>
+      <li>
+        <a href="https://github.com/react-knowledgeable/react-knowledgeable-talks/issues">upcoming talks</a>
+      </li>
+      <li>
+        <a href="https://github.com/react-knowledgeable/react-knowledgeable-talks/issues?q=is%3Aissue+is%3Aclosed">past talks</a>
+      </li>
+    </ul>
     {children}
   </Card>
 );
