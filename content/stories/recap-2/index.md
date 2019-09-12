@@ -31,7 +31,7 @@ Next, we had our most magical [Van](https://mobile.twitter.com/bokukage) to talk
 - [slides](https://docs.google.com/presentation/d/1mrGSHBNYoUlMYrOWZ6BMiJ4rCvfJqIq1XgTuPkePkkM/edit?usp=sharing)
 - [video](https://engineers.sg/video/dancing-with-react-hooks-react-knowledgeable--3637)
 
-We took a question break. I had a nice conversation with [Yangshun](https://twitter.com/yangshunz), who has me for [Docusaurus](https://docusaurus.io/) but it was actually the first time we met in person! The question break also featured popcorns popped by Valentine from Hackerspace our host, and stickers exchange!
+We took a question break. I had a nice conversation with [Yangshun](https://twitter.com/yangshunz), who has me for [Docusaurus](https://docusaurus.io/) but it was actually the first time we met in person! The question break also featured popcorns popped by [Valentine](https://twitter.com/valentinechua) from Hackerspace our host, and stickers exchange!
 
 ### 🦖 How Modern Static Site Generators Work [#11](https://github.com/react-knowledgeable/react-knowledgeable-talks/issues/11)
 
