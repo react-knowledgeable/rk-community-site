@@ -14,7 +14,7 @@ Last Thursday, we had our second ever RK Lightning event at [HackerspaceSG](http
 
 ### 💄 Build a Gatsby Theme and publish [#13](https://github.com/react-knowledgeable/react-knowledgeable-talks/issues/13)
 
-[Raj](https://mobile.twitter.com/email2vimalraj) kicked off the lightning talks with his second live demo with Gatsby, this time building a [Gatsby Theme](https://www.gatsbyjs.org/docs/themes/what-are-gatsby-themes/) of a site with a like button. What is your one liner for Gatsby Themes? Secretly, I call them partials. After last Thursday's talk, I think of them as a way to communicate with common features via a version number now.
+[Raj](https://mobile.twitter.com/email2vimalraj) kicked off the lightning talks with his second live demo with Gatsby, this time building a [Gatsby Theme](https://www.gatsbyjs.org/docs/themes/what-are-gatsby-themes/) of a site with a like button. What is your one liner for Gatsby Themes? Secretly, I called them partials. After last Thursday's talk, I think of them as a way to communicate with common features via a version number now.
 
 `twitter: https://twitter.com/reknowledgeable/status/1169578211249815552?s=20`
 
@@ -24,14 +24,14 @@ Last Thursday, we had our second ever RK Lightning event at [HackerspaceSG](http
 
 ### 👞 Dancing with React Hooks [#2](https://github.com/react-knowledgeable/react-knowledgeable-talks/issues/2)
 
-Next, we had our most magical [Van](https://mobile.twitter.com/bokukage) to talk about what she learned about hooks by creating those little dancers with funny walk moves on the screen. Joyfully surprising everybody she demoed the moon walk 😂 The characters she created in her stage has exactly her style and that leads to her other talk at [SingaporeCSS](https://singaporecss.github.io/), [The Joy of Doing Things without the Need for Justification](https://smokinclove.github.io/the-joy-of-doing-things-without-the-need-for-justification/) - (oh look at her newest avatar, it has her MJ hat now!) For this day, she then dived into what she learned about hooks, how to make setInterval and useEffect have peace, her take on understanding hooks.
+Next, we had our most magical [Van](https://mobile.twitter.com/bokukage) to talk about what she learned about hooks by creating those little dancers with funny walk moves on the screen. Joyfully surprising everybody she demoed the moon walk 😂 The characters she created in her stage have exactly her style and that leads to her other talk at [SingaporeCSS](https://singaporecss.github.io/), [The Joy of Doing Things without the Need for Justification](https://smokinclove.github.io/the-joy-of-doing-things-without-the-need-for-justification/) - (oh look at her newest avatar, it has her MJ hat now!) For this talk, she then dived into what she learned about hooks, how to make setInterval and useEffect have peace, and her take on understanding hooks.
 
 `twitter: https://twitter.com/reknowledgeable/status/1169582223726501889`
 
 - [slides](https://docs.google.com/presentation/d/1mrGSHBNYoUlMYrOWZ6BMiJ4rCvfJqIq1XgTuPkePkkM/edit?usp=sharing)
 - [video](https://engineers.sg/video/dancing-with-react-hooks-react-knowledgeable--3637)
 
-We took a question break. I had a nice conversation with [Yangshun](https://twitter.com/yangshunz), who has me for [Docusaurus](https://docusaurus.io/) but it was actually the first time we met in person! The question break also features popcorns popped by Valentine from Hackerspace our host. And stickers exchange!
+We took a question break. I had a nice conversation with [Yangshun](https://twitter.com/yangshunz), who has me for [Docusaurus](https://docusaurus.io/) but it was actually the first time we met in person! The question break also featured popcorns popped by Valentine from Hackerspace our host, and stickers exchange!
 
 ### 🦖 How Modern Static Site Generators Work [#11](https://github.com/react-knowledgeable/react-knowledgeable-talks/issues/11)
 
@@ -51,11 +51,11 @@ Then, I shared about styling sites with React, how React changes the way we writ
 
 ### 🤕 Battle Stories: Portals [#16](https://github.com/react-knowledgeable/react-knowledgeable-talks/issues/16)
 
-Then finally, Thomas took up the last spot (15 mins before 9!) and shared about a problem he encountered at work – communicating styles between page and iframe embedded modal.
+Then finally, Thomas took up the last spot (15 mins before 9!) and shared a problem he encountered – communicating styles between page and iframe embedded modal.
 
 - [video](https://engineers.sg/v/3639)
 
-All videos are courtesy of the worldclassly [engineers.sg](https://engineers.sg/), [we will never stop getting amazed](https://twitter.com/swyx/status/1169640745604714496?s=20)
+All videos are courtesy of the worldclassly [engineers.sg](https://engineers.sg/), [we will never stop getting amazed](https://twitter.com/swyx/status/1169640745604714496?s=20).
 
 ### 🤞 Till next time
 
