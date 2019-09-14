@@ -57,6 +57,7 @@ export default ({
         venue,
         venueLogo,
         venueLink,
+        sponsors,
         talks: talkIssueIds,
         issueLink,
       },
@@ -140,7 +141,7 @@ export default ({
           <i>{parseDate(date)}</i>
         </section>
         <section>
-          <h2>🎉 Venue sponsor 🎉</h2>
+          <h2>🎉 Venue 🎉</h2>
           {venueLogo ? (
             <a href={venueLink} target="_blank" className={s.venueLink}>
               <img src={venueLogo} style={{ alignSelf: 'center' }} />
@@ -153,6 +154,24 @@ export default ({
             </h3>
           )}
         </section>
+        {sponsors &&
+          sponsors.length &&
+          sponsors.map(({ sponsor, sponsorLogo, sponsorLink }) => (
+            <section>
+              <h2>🎊 Sponsor 🎊</h2>
+              {sponsorLogo ? (
+                <a href={sponsorLink} target="_blank" className={s.venueLink}>
+                  <img src={sponsorLogo} style={{ alignSelf: 'center' }} />
+                </a>
+              ) : (
+                <h3>
+                  <a href={sponsorLink} target="_blank">
+                    {sponsor}
+                  </a>
+                </h3>
+              )}
+            </section>
+          ))}
         <section>
           <h2>👫 Friends of RK 👭</h2>
           <ul>
@@ -175,12 +194,14 @@ export default ({
         {mode === modes.article && (
           <section>
             <h2>🎙 Talk Line-up 🎙</h2>
-            {talkIssueIds.map(talkIssueId => {
-              const talkData = talks.find(
-                ({ number }) => number === talkIssueId
-              );
-              return <Talk {...talkData} key={talkData.number} />;
-            })}
+            {talkIssueIds &&
+              talkIssueIds.length &&
+              talkIssueIds.map(talkIssueId => {
+                const talkData = talks.find(
+                  ({ number }) => number === talkIssueId
+                );
+                return <Talk {...talkData} key={talkData.number} />;
+              })}
           </section>
         )}
       </aside>
@@ -191,19 +212,21 @@ export default ({
             <section>
               <h2>🎙 Talk Line-up 🎙</h2>
               <ul>
-                {talkIssueIds.map(talkIssueId => {
-                  const talkData = talks.find(
-                    ({ number }) => number === talkIssueId
-                  );
-                  const { title, url } = talkData;
-                  return (
-                    <li key={title}>
-                      <a href={url} key={title}>
-                        {title}
-                      </a>
-                    </li>
-                  );
-                })}
+                {talkIssueIds &&
+                  talkIssueIds.length &&
+                  talkIssueIds.map(talkIssueId => {
+                    const talkData = talks.find(
+                      ({ number }) => number === talkIssueId
+                    );
+                    const { title, url } = talkData;
+                    return (
+                      <li key={title}>
+                        <a href={url} key={title}>
+                          {title}
+                        </a>
+                      </li>
+                    );
+                  })}
               </ul>
             </section>
           </>
@@ -236,6 +259,11 @@ export const pageQuery = graphql`
         venue
         venueLogo
         venueLink
+        sponsors {
+          sponsor
+          sponsorLogo
+          sponsorLink
+        }
         talks
         date
         meetupLink
