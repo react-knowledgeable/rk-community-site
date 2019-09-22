@@ -5,7 +5,6 @@ import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
 import Layout from '../../components/Layout';
 import SubmitTalkButton from '../../components/SubmitTalkButton';
-import Talk from '../../components/Talk';
 import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
 
@@ -60,6 +59,7 @@ export default ({
         sponsors,
         talks: talkIssueIds,
         issueLink,
+        meetupLink,
       },
       html,
       htmlAst,
@@ -144,6 +144,23 @@ export default ({
           <h1>{title}</h1>
           <i>{parseDate(date)}</i>
         </section>
+        {mode === modes.article && (
+          <section>
+            <h2>🔗 links 🔗</h2>
+            <ul>
+              {meetupLink && (
+                <li>
+                  <a href={meetupLink}>meetup link</a>
+                </li>
+              )}
+              {issueLink && (
+                <li>
+                  <a href={issueLink}>issue link</a>
+                </li>
+              )}
+            </ul>
+          </section>
+        )}
         <section>
           <h2>🎉 Venue 🎉</h2>
           {venueLogo ? (
