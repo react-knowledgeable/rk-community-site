@@ -1,4 +1,15 @@
 
+## Sept 21 2019
+
+**Added**
+
+- Support for sponsors
+
+**Changed**
+
+- Meetup pages to have links to issue and meetup links
+- Moved "Talk Line-up" section to main area in meetup pages
+
 ## July 25 2019
 
 **Added**
