@@ -85,6 +85,10 @@ export default ({
   const toggleMode = newMode =>
     newMode === mode ? setMode(modes.article) : setMode(newMode);
   const sections = buildSections(htmlAst.children);
+  const reactUpdatesSectionsHTML = astToHtml({
+    type: 'root',
+    children: sections,
+  });
   return (
     <Layout
       {...{
@@ -191,48 +195,29 @@ export default ({
             </a>
           </SubmitTalkButton>
         </section>
-        {mode === modes.article && (
-          <section>
-            <h2>🎙 Talk Line-up 🎙</h2>
+      </aside>
+      <main>
+        {reactUpdatesSectionsHTML}
+        <section>
+          <h2>🎙 Talk Line-up 🎙</h2>
+          <ul>
             {talkIssueIds &&
               talkIssueIds.length &&
               talkIssueIds.map(talkIssueId => {
                 const talkData = talks.find(
                   ({ number }) => number === talkIssueId
                 );
-                return <Talk {...talkData} key={talkData.number} />;
+                const { title, url } = talkData;
+                return (
+                  <li key={title}>
+                    <a href={url} key={title}>
+                      {title}
+                    </a>
+                  </li>
+                );
               })}
-          </section>
-        )}
-      </aside>
-      <main>
-        {mode === modes.presentation ? (
-          <>
-            {astToHtml({ type: 'root', children: sections })}
-            <section>
-              <h2>🎙 Talk Line-up 🎙</h2>
-              <ul>
-                {talkIssueIds &&
-                  talkIssueIds.length &&
-                  talkIssueIds.map(talkIssueId => {
-                    const talkData = talks.find(
-                      ({ number }) => number === talkIssueId
-                    );
-                    const { title, url } = talkData;
-                    return (
-                      <li key={title}>
-                        <a href={url} key={title}>
-                          {title}
-                        </a>
-                      </li>
-                    );
-                  })}
-              </ul>
-            </section>
-          </>
-        ) : (
-          <article dangerouslySetInnerHTML={{ __html: html }}></article>
-        )}
+          </ul>
+        </section>
       </main>
     </Layout>
   );
