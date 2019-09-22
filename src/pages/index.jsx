@@ -77,6 +77,8 @@ export default ({
           <h3>Talk Line-up</h3>
           {nextMeetup &&
             nextMeetup.frontmatter &&
+            nextMeetup.frontmatter.talks &&
+            nextMeetup.frontmatter.talks.length &&
             nextMeetup.frontmatter.talks.map(talkNumber => {
               const talkData = talks.find(
                 ({ number }) => number === talkNumber
@@ -171,7 +173,7 @@ export const pageQuery = graphql`
     }
     meetups: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/meetups/" } }
-      sort: { fields: frontmatter___date, order: DESC }
+      sort: { fields: frontmatter___date, order: ASC }
     ) {
       nodes {
         frontmatter {
