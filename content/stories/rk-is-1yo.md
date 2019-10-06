@@ -4,6 +4,10 @@ title: RK Originals is 1 Year Old 🥳
 date: 2019-10-05
 ---
 
+The "Originals" chapter of React Knowledgeable is 1 year old!
+
+<!-- excertp ends -->
+
 This week, I got introduced to our new team members as "the girl behind RK". And I got people talk to me explicitly to comment on how awesome they think RK is. It's like a week of packed complements that I'm not sure I'm ready to take. It just so happened that this Saturday, Oct 5, is the 1-year anniversary for the original (Shopee) chapter of RK. So I'll shamelessly take all complements as birthday presents to this baby.
 
 Meanwhile, I need to make sure everyone who bugs me about RK will also bug [Ken](https://twitter.com/kenleesm). Because Ken is the true fine geek behind all the shiny parts of RK. There's no RK without Ken.
