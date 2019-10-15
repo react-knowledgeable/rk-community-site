@@ -114,7 +114,7 @@ export default ({
 
             <a
               className={s.reachingOutLink}
-              href="https://meetup.com/React-Knowledgeable"
+              href="https://www.eventbrite.com/o/react-knowledgeable-27644988733"
             >
               <svg
                 className={s.reachingOutLogo}
@@ -129,7 +129,7 @@ export default ({
               </svg>
             </a>
             <div className={s.reachingOutItem}>
-              <a href="https://meetup.com/React-Knowledgeable">
+              <a href="https://www.eventbrite.com/o/react-knowledgeable-27644988733">
                 React Knowledgeable
               </a>
             </div>
