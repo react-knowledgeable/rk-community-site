@@ -59,7 +59,7 @@ export default ({
         sponsors,
         talks: talkIssueIds,
         issueLink,
-        meetupLink,
+        eventLink,
       },
       html,
       htmlAst,
@@ -148,9 +148,9 @@ export default ({
           <section>
             <h2>🔗 links 🔗</h2>
             <ul>
-              {meetupLink && (
+              {eventLink && (
                 <li>
-                  <a href={meetupLink}>meetup link</a>
+                  <a href={eventLink}>rsvp link</a>
                 </li>
               )}
               {issueLink && (
@@ -268,7 +268,7 @@ export const pageQuery = graphql`
         }
         talks
         date
-        meetupLink
+        eventLink
         issueLink
       }
       html

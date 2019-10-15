@@ -32,7 +32,7 @@ export default ({
   const nextMeetup = getNextMeetup(meetups);
   const {
     fields: { slug: nextMeetupSlug } = {},
-    frontmatter: { title: meetupTitle, venue, date, meetupLink },
+    frontmatter: { title: meetupTitle, venue, date, eventLink },
   } = nextMeetup || { frontmatter: {} };
   return (
     <Layout
@@ -61,8 +61,8 @@ export default ({
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
                 <p>
                   <b>
-                    {meetupLink ? (
-                      <a href={meetupLink}>RSVP</a>
+                    {eventLink ? (
+                      <a href={eventLink}>RSVP</a>
                     ) : (
                       'RSVP open soon'
                     )}
@@ -111,28 +111,6 @@ export default ({
             <div className={s.reachingOutItem}>
               <a href={`https://twitter.com/${twitter}`}>@{twitter}</a>
             </div>
-
-            <a
-              className={s.reachingOutLink}
-              href="https://meetup.com/React-Knowledgeable"
-            >
-              <svg
-                className={s.reachingOutLogo}
-                fill="none"
-                viewBox="0 0 256 212"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M255.761 193.39c-3.223-20.576-41.33-4.709-43.682-27.254-3.33-31.989 44.249-100.932 40.494-127.697-3.372-24.095-19.613-29.144-33.743-29.392-13.728-.248-17.354 1.94-21.994 4.638-2.678 1.551-6.524 4.624-11.864-.453-3.549-3.377-5.893-5.742-9.647-8.737-1.912-1.53-4.959-3.455-10.059-4.206-5.106-.75-11.715 0-15.915 1.799-4.208 1.805-7.508 4.956-10.965 7.958-3.45 3.002-12.211 12.809-20.378 9.19-3.541-1.564-15.534-7.555-24.19-11.3C77.11.706 53.014 12.418 44.338 27.84 31.424 50.78 5.93 140.916 2.07 152.804c-8.655 26.694 10.972 48.453 37.441 47.2 11.192-.532 18.636-4.618 25.706-17.469 4.086-7.42 42.463-107.631 45.317-112.439 2.069-3.484 8.974-8.086 14.832-5.084 5.851 3.003 7.019 9.261 6.156 15.16-1.403 9.537-28.468 70.671-29.509 77.588-1.764 11.761 3.825 18.304 16.037 18.941 8.372.447 16.708-2.563 23.331-15.046 3.704-6.982 46.388-92.437 50.163-98.144 4.151-6.26 7.487-8.32 11.715-8.1 3.28.163 8.529 1.005 7.218 10.833-1.289 9.637-35.606 72.343-39.205 87.7-4.816 20.527 6.453 41.315 25.018 50.414 11.843 5.799 63.649 15.74 59.47-10.968"
-                  fill="#000"
-                />
-              </svg>
-            </a>
-            <div className={s.reachingOutItem}>
-              <a href="https://meetup.com/React-Knowledgeable">
-                React Knowledgeable
-              </a>
-            </div>
           </div>
         </Card>
       </aside>
@@ -180,7 +158,7 @@ export const pageQuery = graphql`
           venue
           date
           talks
-          meetupLink
+          eventLink
           issueLink
           title
         }

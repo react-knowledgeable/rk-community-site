@@ -24,4 +24,3 @@ Here's how you can reach us:
 
 - Twitter [@reknowledgeable](https://twitter.com/reknowledgeable)
 - GitHub repo for [talks](https://www.meetup.com/React-Singapore/), [community site](https://github.com/react-knowledgeable/rk-community-site/)
-- [Meetup page](https://meetup.com/React-Knowledgeable/)
