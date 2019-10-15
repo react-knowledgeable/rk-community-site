@@ -32,7 +32,7 @@ export default ({
   const nextMeetup = getNextMeetup(meetups);
   const {
     fields: { slug: nextMeetupSlug } = {},
-    frontmatter: { title: meetupTitle, venue, date, meetupLink },
+    frontmatter: { title: meetupTitle, venue, date, eventLink },
   } = nextMeetup || { frontmatter: {} };
   return (
     <Layout
@@ -61,8 +61,8 @@ export default ({
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
                 <p>
                   <b>
-                    {meetupLink ? (
-                      <a href={meetupLink}>RSVP</a>
+                    {eventLink ? (
+                      <a href={eventLink}>RSVP</a>
                     ) : (
                       'RSVP open soon'
                     )}
@@ -180,7 +180,7 @@ export const pageQuery = graphql`
           venue
           date
           talks
-          meetupLink
+          eventLink
           issueLink
           title
         }
