@@ -165,7 +165,10 @@ export default ({
           <h2>🎉 Venue 🎉</h2>
           {venueLogo ? (
             <a href={venueLink} target="_blank" className={s.venueLink}>
-              <img src={venueLogo} style={{ alignSelf: 'center' }} />
+              <img
+                src={venueLogo}
+                style={{ alignSelf: 'center', maxWidth: '10rem' }}
+              />
             </a>
           ) : (
             <h3>
