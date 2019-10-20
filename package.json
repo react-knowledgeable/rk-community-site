@@ -31,11 +31,12 @@
     "typography": "^0.16.19"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "prettier": "^1.18.2",
     "sass": "^1.22.3"
   },
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "node start develop",
     "start": "npm run develop"
   }
 }
