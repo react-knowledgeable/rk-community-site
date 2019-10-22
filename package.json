@@ -36,7 +36,7 @@
     "sass": "^1.22.3"
   },
   "scripts": {
-    "develop": "node start develop",
+    "develop": "gatsby develop",
     "start": "npm run develop"
   }
 }
