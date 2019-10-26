@@ -213,7 +213,7 @@ export const pageQuery = graphql`
     talks: github {
       repository(owner: "react-knowledgeable", name: "talks") {
         issues(
-          first: 100
+          last: 100
           labels: ["talk"]
           orderBy: { field: CREATED_AT, direction: ASC }
         ) {

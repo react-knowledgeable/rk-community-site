@@ -93,7 +93,7 @@ exports.createPages = ({ graphql, actions }) => {
         {
           talks: github {
             repository(owner: "react-knowledgeable", name: "talks") {
-              issues(first: 100, labels: ["talk"]) {
+              issues(last: 100, labels: ["talk"]) {
                 nodes {
                   number
                 }
