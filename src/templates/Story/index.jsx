@@ -13,7 +13,6 @@ export default ({
         image,
         twitter,
         titleTemplate,
-        footerLinks,
       },
     },
     markdownRemark: {
@@ -32,7 +31,6 @@ export default ({
       url,
       twitter,
       titleTemplate,
-      footerLinks,
     }}
   >
     <main>
@@ -56,10 +54,6 @@ export const pageQuery = graphql`
         url
         twitter
         titleTemplate
-        footerLinks {
-          name
-          link
-        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
