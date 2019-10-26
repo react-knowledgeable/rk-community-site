@@ -164,7 +164,7 @@ export default ({
         <section>
           <h2>🎉 Venue 🎉</h2>
           {venueLogo ? (
-            <a href={venueLink} target="_blank" className={s.venueLink}>
+            <a href={venueLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
               <img
                 src={venueLogo}
                 style={{ alignSelf: 'center', maxWidth: '10rem' }}
@@ -172,7 +172,7 @@ export default ({
             </a>
           ) : (
             <h3>
-              <a href={venueLink} target="_blank">
+              <a href={venueLink} target="_blank" rel="noopener noreferrer">
                 {venue}
               </a>
             </h3>
@@ -184,12 +184,12 @@ export default ({
             <section>
               <h2>🎊 Sponsor 🎊</h2>
               {sponsorLogo ? (
-                <a href={sponsorLink} target="_blank" className={s.venueLink}>
-                  <img src={sponsorLogo} style={{ alignSelf: 'center' }} />
+                <a href={sponsorLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
+                  <img src={sponsorLogo} style={{ alignSelf: 'center' }} alt={sponsor} />
                 </a>
               ) : (
                 <h3>
-                  <a href={sponsorLink} target="_blank">
+                  <a href={sponsorLink} target="_blank" rel="noopener noreferrer">
                     {sponsor}
                   </a>
                 </h3>
