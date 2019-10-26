@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql, StaticQuery } from 'gatsby';
 import s from './s.module.scss';
 
 const Friend = ({ name, link }) => (
@@ -22,17 +23,39 @@ const Friend = ({ name, link }) => (
   </a>
 );
 
-export default ({ footerLinks }) => {
-  return (
-    <footer className={s.footer}>
-      <p>Built with love.</p>
-      <div className={s.friends}>
-        <span className={s.friendLabel}>Friends of RK:</span>
-        {!!footerLinks &&
-          footerLinks.map(link => (
-            <Friend key={`friend-link-${link.name}`} {...link} />
-          ))}
-      </div>
-    </footer>
-  );
-};
+const Footer = () => (
+  <StaticQuery
+    query={graphql`
+      query FooterQuery {
+        site {
+          siteMetadata {
+            footerLinks {
+              link
+              name
+            }
+          }
+        }
+      }
+    `}
+    render={({
+      site: {
+        siteMetadata: { footerLinks },
+      },
+    }) => {
+      return (
+        <footer className={s.footer}>
+          <p>Built with love.</p>
+          <div className={s.friends}>
+            <span className={s.friendLabel}>Friends of RK:</span>
+            {!!footerLinks &&
+              footerLinks.map(link => (
+                <Friend key={`friend-link-${link.name}`} {...link} />
+              ))}
+          </div>
+        </footer>
+      );
+    }}
+  />
+);
+
+export default Footer;

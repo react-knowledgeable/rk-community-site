@@ -14,7 +14,6 @@ export default props => {
     url,
     titleTemplate,
     twitter,
-    footerLinks,
     coverImage,
     className,
     onKeyPress,
@@ -60,7 +59,7 @@ export default props => {
         </p>
       </header>
       {children}
-      <Footer footerLinks={footerLinks} />
+      <Footer />
     </div>
   );
 };
