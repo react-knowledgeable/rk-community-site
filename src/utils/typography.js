@@ -33,6 +33,7 @@ const typography = new Typography({
       h4: {
         marginTop: rhythm(1),
         marginBottom: rhythm(1),
+        lineHeight: rhythm(1),
       },
       h5: {
         marginTop: rhythm(0.9),
@@ -43,8 +44,9 @@ const typography = new Typography({
         marginBottom: rhythm(0.75),
       },
       code: {
-        fontSize: '1.2em',
+        fontSize: '1.1em',
         fontFamily: "'IBM Plex Mono', monospace",
+        whiteSpace: "nowrap",
       },
 
       'header, main, aside': {
