@@ -27,6 +27,11 @@ export default ({
         issues: { nodes: talks },
       },
     },
+    content: {
+      repository: {
+        labels: { nodes: labels },
+      },
+    },
   },
 }) => {
   const nextMeetup = getNextMeetup(meetups);
@@ -46,6 +51,27 @@ export default ({
         footerLinks,
       }}
     >
+      <main>
+        {!!labels &&
+          labels
+            .filter(
+              label =>
+                // GH doesn't have query filters on labels
+                !['talk', 'event', 'react updates'].includes(label.name) &&
+                label.issues.nodes.length
+            )
+            .map(({ name, issues: { nodes: issues } }) => (
+              <Card key={`label-${name}`}>
+                <h3>{name}</h3>
+                {!!issues &&
+                  issues.map(({ title, number }) => (
+                    <Link to={`/talks/${number}`}>
+                      <h4>{title}</h4>
+                    </Link>
+                  ))}
+              </Card>
+            ))}
+      </main>
       <aside>
         {!!meetups && (
           <React.Fragment>
@@ -114,8 +140,7 @@ export default ({
           </div>
         </Card>
       </aside>
-
-      <main>
+      <aside>
         <h2>Stories</h2>
         {!!stories &&
           stories.map(
@@ -128,7 +153,7 @@ export default ({
               </Card>
             )
           )}
-      </main>
+      </aside>
     </Layout>
   );
 };
@@ -166,6 +191,23 @@ export const pageQuery = graphql`
           slug
         }
         excerpt
+      }
+    }
+    content: github {
+      repository(owner: "react-knowledgeable", name: "talks") {
+        labels(first: 30) {
+          nodes {
+            name
+            description
+            issues(last: 100) {
+              totalCount
+              nodes {
+                title
+                number
+              }
+            }
+          }
+        }
       }
     }
     talks: github {
