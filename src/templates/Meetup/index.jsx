@@ -98,7 +98,6 @@ export default ({
         url,
         twitter,
         titleTemplate,
-        footerLinks,
       }}
       className={s[mode]}
     >

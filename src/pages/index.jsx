@@ -10,15 +10,7 @@ import s from './styles.module.scss';
 export default ({
   data: {
     site: {
-      siteMetadata: {
-        title,
-        description,
-        url,
-        image,
-        twitter,
-        titleTemplate,
-        footerLinks,
-      },
+      siteMetadata: { title, description, url, image, twitter, titleTemplate },
     },
     meetups: { nodes: meetups },
     stories: { nodes: stories },
@@ -48,7 +40,6 @@ export default ({
         url,
         twitter,
         titleTemplate,
-        footerLinks,
       }}
     >
       <main>
@@ -169,10 +160,6 @@ export const pageQuery = graphql`
         url
         twitter
         titleTemplate
-        footerLinks {
-          name
-          link
-        }
       }
     }
     meetups: allMarkdownRemark(
@@ -214,7 +201,7 @@ export const pageQuery = graphql`
     talks: github {
       repository(owner: "react-knowledgeable", name: "talks") {
         issues(
-          first: 100
+          last: 100
           labels: ["talk"]
           orderBy: { field: CREATED_AT, direction: ASC }
         ) {
