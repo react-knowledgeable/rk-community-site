@@ -34,7 +34,6 @@ main div {
   break-inside: avoid;
 }
 
-
 aside div {
   width: 100%;
 }
@@ -52,23 +51,11 @@ aside:first-of-type {
 }
 
 aside:nth-of-type(2) {
-  @media (min-width: 590px) {
-    display: grid;
-    grid-template-columns: minmax(max-content, 1fr) minmax(max-content, 1fr);
-    grid-template-rows: min-content 1fr;
-    grid-column-gap: 0.5em;
-  }
-  @media (min-width: 824px) and (max-width: 1034px) {
-    display: initial;
-  }
-  @media (min-width: 1824px) {
-    display: initial;
-  }
-} 
+  width: max-content;
+}
 
 main h2,
-aside:nth-of-type(1) h2,
-aside:nth-of-type(2) h2 {
+aside:nth-of-type(1) h2 {
   grid-column: 1 / -1;
 }
 

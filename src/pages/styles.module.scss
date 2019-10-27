@@ -1,7 +1,7 @@
 .asideLayout {
   display: grid;
   @media (min-width: 824px) {
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: max-content 1fr;
     grid-template-rows: min-content 1fr;
   }
   @media (min-width: 1600px) {
