@@ -22,13 +22,19 @@ header {
 
 main {
   @media (min-width: 824px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-    grid-column-gap: 0.5em;
+    column-width: 20em;
   }
 }
 
-main div,
+main h2 {
+  column-span: all;
+}
+
+main div {
+  break-inside: avoid;
+}
+
+
 aside div {
   width: 100%;
 }
