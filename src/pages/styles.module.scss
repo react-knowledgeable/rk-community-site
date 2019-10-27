@@ -1,11 +1,12 @@
 .asideLayout {
   display: grid;
   @media (min-width: 824px) {
-    grid-template-columns: max-content 1fr;
+    grid-template-columns: 1fr max-content;
     grid-template-rows: min-content 1fr;
   }
   @media (min-width: 1600px) {
-    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+    grid-template-rows: max-content min-content min-content;
   }
 }
 
