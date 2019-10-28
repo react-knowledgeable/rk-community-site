@@ -98,20 +98,24 @@ export default ({
                   label.issues.nodes.length
               )
               .map(({ name, issues: { nodes: issues } }) => (
-                <React.Fragment key={`label-${name}`}>
-                  <Card className={s.topicCard}>
-                    <h3>{name}</h3>
-                    {!!issues &&
-                      issues.map(({ title, body, url }) => (
+                <Card className={s.topicCard} key={`label-${name}`}>
+                  <h3>{name}</h3>
+                  {!!issues &&
+                    issues
+                      // sorts by created descending, later talk comes up
+                      .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+                      .map(({ title, body, url, closed, createdAt }) => (
                         <React.Fragment>
                           <h4>
                             <a href={url}>{title}</a>
+                            {!closed && (
+                              <span className={s.upcoming}>upcoming</span>
+                            )}
                           </h4>
                           <p className={s.topicIntro}>{parseBodyText(body)}</p>
                         </React.Fragment>
                       ))}
-                  </Card>
-                </React.Fragment>
+                </Card>
               ))}
         </div>
       </main>
@@ -178,6 +182,8 @@ export const pageQuery = graphql`
                 title
                 body
                 url
+                closed
+                createdAt
               }
             }
           }
