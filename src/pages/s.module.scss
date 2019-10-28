@@ -32,13 +32,12 @@
 }
 .topicCard {
   padding-bottom: 2rem;
+  break-inside: avoid;
 }
 .topicIntro {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  /* autoprefixer: off */
   -webkit-box-orient: vertical;
-  /* autoprefixer: on */
+  -webkit-line-clamp: 3;
   overflow: hidden;
 }
 
