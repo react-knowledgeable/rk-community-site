@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import Talk from '../components/Talk';
 import Card from '../components/Card';
 import parseDate from '../utils/parseDate';
-import s from './styles.module.scss';
+import s from './s.module.scss';
 
 const parseBodyText = body => {
   return body.match('<!-- intro starts -->')
