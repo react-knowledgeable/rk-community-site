@@ -46,7 +46,7 @@ const typography = new Typography({
       code: {
         fontSize: '1.1em',
         fontFamily: "'IBM Plex Mono', monospace",
-        whiteSpace: "nowrap",
+        whiteSpace: 'nowrap',
       },
 
       'header, main, aside': {
@@ -64,9 +64,6 @@ const typography = new Typography({
         borderBottom: '1.5px solid #222',
         paddingBottom: '2px',
         transition: 'all .1s ease',
-      },
-      'a:hover, a:active': {
-        borderBottom: '3px solid #222',
       },
       ul: {
         paddingInlineStart: '20px',

@@ -6,6 +6,12 @@ import Card from '../components/Card';
 import parseDate from '../utils/parseDate';
 import s from './styles.module.scss';
 
+const parseBodyText = body => {
+  return body.match('<!-- intro starts -->')
+    ? body.split('<!-- intro starts -->')[1].split('<!-- intro ends -->')[0]
+    : '';
+};
+
 export default ({
   data: {
     site: {
@@ -81,26 +87,33 @@ export default ({
         )}
       </aside>
       <main>
-        <h2>Past talks</h2>
-        {!!labels &&
-          labels
-            .filter(
-              label =>
-                // GH doesn't have query filters on labels
-                !['talk', 'event', 'react updates'].includes(label.name) &&
-                label.issues.nodes.length
-            )
-            .map(({ name, issues: { nodes: issues } }) => (
-              <Card key={`label-${name}`}>
-                <h3>{name}</h3>
-                {!!issues &&
-                  issues.map(({ title, number }) => (
-                    <Link to={`/talks/${number}`}>
-                      <h4>{title}</h4>
-                    </Link>
-                  ))}
-              </Card>
-            ))}
+        <h2>Topics</h2>
+        <div className={s.topicListing}>
+          {!!labels &&
+            labels
+              .filter(
+                label =>
+                  // GH doesn't have query filters on labels
+                  !['talk', 'event', 'react updates'].includes(label.name) &&
+                  label.issues.nodes.length
+              )
+              .map(({ name, issues: { nodes: issues } }) => (
+                <React.Fragment key={`label-${name}`}>
+                  <h3>{name}</h3>
+                  <Card className={s.topicCard}>
+                    {!!issues &&
+                      issues.map(({ title, body, url }) => (
+                        <React.Fragment>
+                          <h4>
+                            <a href={url}>{title}</a>
+                          </h4>
+                          <p className={s.topicIntro}>{parseBodyText(body)}</p>
+                        </React.Fragment>
+                      ))}
+                  </Card>
+                </React.Fragment>
+              ))}
+        </div>
       </main>
       <aside>
         <h2>Stories</h2>
@@ -163,7 +176,8 @@ export const pageQuery = graphql`
               totalCount
               nodes {
                 title
-                number
+                body
+                url
               }
             }
           }

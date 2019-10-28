@@ -20,12 +20,26 @@
     main {
       grid-column: 1;
       grid-row: 2 / span 2;
-      column-width: 20em;
     }
     aside {
       grid-column: 2;
     }
   }
+}
+
+.topicListing {
+  column-width: 20em;
+}
+.topicCard {
+  padding-bottom: 2rem;
+}
+.topicIntro {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+  overflow: hidden;
 }
 
 .talkAuthor {
