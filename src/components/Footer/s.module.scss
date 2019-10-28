@@ -10,24 +10,13 @@
       align-items: center;
       margin-top: initial;
     }
-    @media (min-width: 1280px) and (max-width: 1599px) {
-      grid-column: 2;
-      grid-row: 3;
-      align-self: end;
-    }
-    @media (min-width: 1600px) {
-      grid-column: 3;
-      grid-row: 3;
-      align-self: end;
-    }
   }
   
   .footer p {
     margin: 0;
+    display: flex;
+    align-items: center;
     @media (max-width: 517px) {
-      writing-mode: vertical-lr;
-    }
-    @media (min-width: 1280px) {
       writing-mode: vertical-lr;
     }
   }
@@ -37,9 +26,36 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    @media (min-width: 900px) and (max-width: 1279px) {
+    @media (min-width: 648px) and (max-width: 969px) {
+      display: grid;
+      grid-template-columns: max-content max-content;
+      grid-column-gap: 0.5em;
+      span {
+        grid-column: 1 / -1;
+      }
+    }
+    @media (min-width: 970px) {
       display: block;
     }
+  }
+
+  .icon {
+    height: 1.2em;
+    width: 1.5em;
+    border: none;
+    margin-left: 0.5em;
+  }
+
+  .icon:hover {
+    border: none;
+  }
+
+  .icon path {
+    transition: fill 0.3s ease;
+  }
+
+  .icon:hover path {
+    fill: white;
   }
 
   .friendLabel {
@@ -51,6 +67,7 @@
     display: block;
     cursor: pointer;
     border-bottom: none;
+    white-space: nowrap;
     @media (min-width: 900px) {
       display: inline-block;
       margin-right: 1em;

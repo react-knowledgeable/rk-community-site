@@ -1,0 +1,26 @@
+.uhOh {
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 52rem;
+  min-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.uhOh h1 {
+  margin: 0 0 0.5em;
+}
+
+.uhOh svg {
+  max-height: 70vh;
+  min-height: 10em;
+  margin-bottom: 1em;
+}
+
+.uhOh a {
+  font-weight: bold;
+  font-size: 150%;
+}
