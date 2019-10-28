@@ -2,6 +2,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import parseDate from '../../utils/parseDate';
 import Layout from '../../components/Layout';
+import s from './s.module.scss';
 
 export default ({
   data: {
@@ -32,8 +33,9 @@ export default ({
       twitter,
       titleTemplate,
     }}
+    className={s.storyLayout}
   >
-    <main>
+    <main className={s.story}>
       <h2>{title}</h2>
       <p>
         <i>{speaker}</i> on {parseDate(date)}
