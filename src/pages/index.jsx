@@ -14,14 +14,10 @@ export default ({
     },
     meetups: { nodes: meetups },
     stories: { nodes: stories },
-    talks: {
+    github: {
       repository: {
-        issues: { nodes: talks },
-      },
-    },
-    content: {
-      repository: {
-        labels: { nodes: labels },
+        content: { nodes: labels },
+        talks: { nodes: talks },
       },
     },
   },
@@ -68,7 +64,9 @@ export default ({
         <aside>
           {!!meetups && (
             <React.Fragment>
-              <h2>On the next <code>&lt;RK /&gt;</code></h2>
+              <h2>
+                On the next <code>&lt;RK /&gt;</code>
+              </h2>
               {nextMeetup && (
                 <Card key={date}>
                   <h3>
@@ -110,21 +108,21 @@ export default ({
           <SubmitTalkButton />
         </aside>
         <aside>
-        <h2>Stories</h2>
-        <Card>
-        {!!stories &&
-          stories.map(
-            ({ excerpt, frontmatter: { title }, fields: { slug } }) => (
-            <div>
-              <h4 key={slug}>
-                <Link to={slug}>{title}</Link>
-              </h4>
-              <p>{excerpt}</p>
-            </div>
-            )
-          )}
-        </Card>
-      </aside>
+          <h2>Stories</h2>
+          <Card>
+            {!!stories &&
+              stories.map(
+                ({ excerpt, frontmatter: { title }, fields: { slug } }) => (
+                  <div>
+                    <h4 key={slug}>
+                      <Link to={slug}>{title}</Link>
+                    </h4>
+                    <p>{excerpt}</p>
+                  </div>
+                )
+              )}
+          </Card>
+        </aside>
       </div>
     </Layout>
   );
@@ -161,9 +159,9 @@ export const pageQuery = graphql`
         excerpt
       }
     }
-    content: github {
+    github {
       repository(owner: "react-knowledgeable", name: "talks") {
-        labels(first: 30) {
+        content: labels(first: 30) {
           nodes {
             name
             description
@@ -176,11 +174,7 @@ export const pageQuery = graphql`
             }
           }
         }
-      }
-    }
-    talks: github {
-      repository(owner: "react-knowledgeable", name: "talks") {
-        issues(
+        talks: issues(
           last: 100
           labels: ["talk"]
           orderBy: { field: CREATED_AT, direction: ASC }
