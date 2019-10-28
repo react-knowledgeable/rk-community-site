@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Talk from '../components/Talk';
-import SubmitTalkButton from '../components/SubmitTalkButton';
 import Card from '../components/Card';
 import parseDate from '../utils/parseDate';
 import s from './styles.module.scss';
@@ -78,8 +77,6 @@ export default ({
                 </p>
               </Card>
             )}
-
-            <SubmitTalkButton />
           </React.Fragment>
         )}
       </aside>
