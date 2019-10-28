@@ -166,6 +166,7 @@ export default ({
             <a href={venueLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
               <img
                 src={venueLogo}
+                alt={venue}
                 style={{ alignSelf: 'center', maxWidth: '10rem' }}
               />
             </a>
