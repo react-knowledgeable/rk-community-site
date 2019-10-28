@@ -99,8 +99,8 @@ export default ({
               )
               .map(({ name, issues: { nodes: issues } }) => (
                 <React.Fragment key={`label-${name}`}>
-                  <h3>{name}</h3>
                   <Card className={s.topicCard}>
+                    <h3>{name}</h3>
                     {!!issues &&
                       issues.map(({ title, body, url }) => (
                         <React.Fragment>
