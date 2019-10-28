@@ -21,7 +21,7 @@ export default props => {
   const fullImageUrl = coverImage ? `${url}${coverImage}` : `${url}${image}`;
   const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
   return (
-    <div className={cx(s.layout, className)} onKeyPress={onKeyPress}>
+    <div className={cx(s.defaultLayout, className)} onKeyPress={onKeyPress}>
       <Helmet>
         <meta charSet="utf-8" />
         <title>{usedTitle}</title>
