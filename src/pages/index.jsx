@@ -37,7 +37,52 @@ export default ({
         twitter,
         titleTemplate,
       }}
+      className={s.homePageLayout}
     >
+      <aside className={s.upcomingMeetupInfo}>
+        {!!meetups && (
+          <React.Fragment>
+            <h2>
+              On the next <code>&lt;RK /&gt;</code>
+            </h2>
+            <Card>
+              <h3>Talk Line-up</h3>
+              {nextMeetup &&
+                nextMeetup.frontmatter &&
+                nextMeetup.frontmatter.talks &&
+                nextMeetup.frontmatter.talks.length &&
+                nextMeetup.frontmatter.talks.map(talkNumber => {
+                  const talkData = talks.find(
+                    ({ number }) => number === talkNumber
+                  );
+                  return <Talk {...talkData} key={talkData.number} />;
+                })}
+            </Card>
+            {nextMeetup && (
+              <Card key={date}>
+                <h3>
+                  <Link to={nextMeetupSlug}>{meetupTitle}</Link>
+                </h3>
+                <p>
+                  {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
+                </p>
+                <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
+                <p>
+                  <b>
+                    {eventLink ? (
+                      <a href={eventLink}>RSVP</a>
+                    ) : (
+                      'RSVP open soon'
+                    )}
+                  </b>
+                </p>
+              </Card>
+            )}
+
+            <SubmitTalkButton />
+          </React.Fragment>
+        )}
+      </aside>
       <main>
         <h2>Past talks</h2>
         {!!labels &&
@@ -60,70 +105,22 @@ export default ({
               </Card>
             ))}
       </main>
-      <div className={s.asideLayout}>
-        <aside>
-          {!!meetups && (
-            <React.Fragment>
-              <h2>
-                On the next <code>&lt;RK /&gt;</code>
-              </h2>
-              {nextMeetup && (
-                <Card key={date}>
-                  <h3>
-                    <Link to={nextMeetupSlug}>{meetupTitle}</Link>
-                  </h3>
-                  <p>
-                    {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
-                  </p>
-                  <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
-                  <p>
-                    <b>
-                      {eventLink ? (
-                        <a href={eventLink}>RSVP</a>
-                      ) : (
-                        'RSVP open soon'
-                      )}
-                    </b>
-                  </p>
-                </Card>
-              )}
-            </React.Fragment>
-          )}
-          <Card>
-            <h3>Talk Line-up</h3>
-            {nextMeetup &&
-              nextMeetup.frontmatter &&
-              nextMeetup.frontmatter.talks &&
-              nextMeetup.frontmatter.talks.length &&
-              nextMeetup.frontmatter.talks.map(talkNumber => {
-                const talkData = talks.find(
-                  ({ number }) => number === talkNumber
-                );
-                return <Talk {...talkData} key={talkData.number} />;
-              })}
-          </Card>
-        </aside>
-        <aside>
-          <h2>Getting involved</h2>
-          <SubmitTalkButton />
-        </aside>
-        <aside>
-          <h2>Stories</h2>
-          <Card>
-            {!!stories &&
-              stories.map(
-                ({ excerpt, frontmatter: { title }, fields: { slug } }) => (
-                  <div>
-                    <h4 key={slug}>
-                      <Link to={slug}>{title}</Link>
-                    </h4>
-                    <p>{excerpt}</p>
-                  </div>
-                )
-              )}
-          </Card>
-        </aside>
-      </div>
+      <aside>
+        <h2>Stories</h2>
+        <Card>
+          {!!stories &&
+            stories.map(
+              ({ excerpt, frontmatter: { title }, fields: { slug } }) => (
+                <div>
+                  <h4 key={slug}>
+                    <Link to={slug}>{title}</Link>
+                  </h4>
+                  <p>{excerpt}</p>
+                </div>
+              )
+            )}
+        </Card>
+      </aside>
     </Layout>
   );
 };
