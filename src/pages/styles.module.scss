@@ -14,12 +14,13 @@
       
     }
   }
-  @media (min-width: 1280px) and (max-width: 1599px) {
+  @media (min-width: 1280px) {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 70% 30%;
     main {
       grid-column: 1;
       grid-row: 2 / span 2;
+      column-width: 20em;
     }
     aside {
       grid-column: 2;
