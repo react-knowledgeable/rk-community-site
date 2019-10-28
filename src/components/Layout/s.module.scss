@@ -11,20 +11,25 @@
   --main-width: 900px;
   background: white;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: minmax(--main-width, 1fr) minmax(--aside-width, 1fr);
-  header, footer {
-    grid-column: 1 / -1;
+  aside div {
+    width: 100%;
   }
-  header {
-    grid-row: 1;
-  }
-  main {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  aside {
-    grid-column: 2;
+  @media (min-width: 1145px) {
+    display: grid;
+    grid-template-columns: minmax(--main-width, 1fr) minmax(--aside-width, 1fr);
+    header, footer {
+      grid-column: 1 / -1;
+    }
+    header {
+      grid-row: 1;
+    }
+    main {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    aside {
+      grid-column: 2;
+    }
   }
 }
 
