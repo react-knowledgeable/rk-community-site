@@ -61,3 +61,14 @@
   padding: 2px 4px;
   font-size: .75em;
 }
+
+.externalLink {
+  border-bottom: none;
+  &__Icon {
+    vertical-align: bottom;
+    height: 36px;
+    width: 26px;
+    border: none;
+    margin-left: 0.5em;
+  } 
+}
