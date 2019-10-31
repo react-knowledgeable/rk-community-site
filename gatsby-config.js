@@ -28,6 +28,10 @@ module.exports = {
         name: 'Engineers SG',
         link: 'https://engineers.sg/',
       },
+      {
+        name: 'JAMstackSG',
+        link: 'https://jamstacksingapore.com/',
+      }
     ],
   },
   plugins: [
