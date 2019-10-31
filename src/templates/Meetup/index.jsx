@@ -145,7 +145,7 @@ export default ({
         </section>
         {mode === modes.article && (
           <section>
-            <h2>🔗 links 🔗</h2>
+            <h2><span role="img" aria-label="link">🔗</span> links <span role="img" aria-label="link">🔗</span></h2>
             <ul>
               {eventLink && (
                 <li>
@@ -161,7 +161,7 @@ export default ({
           </section>
         )}
         <section>
-          <h2>🎉 Venue 🎉</h2>
+          <h2><span role="img" aria-label="celebration">🎉</span> Venue <span role="img" aria-label="celebration">🎉</span></h2>
           {venueLogo ? (
             <a href={venueLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
               <img
@@ -182,7 +182,7 @@ export default ({
           sponsors.length &&
           sponsors.map(({ sponsor, sponsorLogo, sponsorLink }) => (
             <section>
-              <h2>🎊 Sponsor 🎊</h2>
+              <h2><span role="img" aria-label="confetti">🎊</span> Sponsor <span role="img" aria-label="confetti">🎊</span></h2>
               {sponsorLogo ? (
                 <a href={sponsorLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
                   <img src={sponsorLogo} style={{ alignSelf: 'center' }} alt={sponsor} />
@@ -197,7 +197,7 @@ export default ({
             </section>
           ))}
         <section>
-          <h2>👫 Friends of RK 👭</h2>
+          <h2><span role="img" aria-label="holding hands">👫</span> Friends of RK <span role="img" aria-label="holding hands">👭</span></h2>
           <ul>
             {footerLinks.map(({ link, name }) => (
               <li key={link}>
@@ -207,7 +207,7 @@ export default ({
           </ul>
         </section>
         <section>
-          <h2>🌟 Stage opens 🌟</h2>
+          <h2><span role="img" aria-label="glowing star">🌟</span> Stage opens <span role="img" aria-label="glowing star">🌟</span></h2>
           <SubmitTalkButton className={s.submitTalkMeetup}>
             {`Reference `}
             <a href={issueLink}>
@@ -219,7 +219,7 @@ export default ({
       <main>
         {reactUpdatesSectionsHTML}
         <section>
-          <h2>🎙 Talk Line-up 🎙</h2>
+          <h2><span role="img" aria-label="studio microphone">🎙</span> Talk Line-up <span role="img" aria-label="studio microphone">🎙</span></h2>
           <ul>
             {talkIssueIds &&
               talkIssueIds.length &&

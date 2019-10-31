@@ -64,11 +64,10 @@
 
 .externalLink {
   border-bottom: none;
-  &__Icon {
-    vertical-align: bottom;
-    height: 36px;
-    width: 26px;
-    border: none;
-    margin-left: 0.5em;
-  } 
+}
+.externalLinkIcon {
+  vertical-align: top;
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: 0.5em;
 }
