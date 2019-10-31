@@ -119,7 +119,7 @@ export default ({
                                 rel="noopener noreferrer"
                               >
                                 <svg
-                                  className={s.externalLink__Icon}
+                                  className={s.externalLinkIcon}
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 -8 36 36"
                                 >
