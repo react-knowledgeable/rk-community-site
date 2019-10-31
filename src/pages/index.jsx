@@ -116,6 +116,7 @@ export default ({
                                 className={s.externalLink}
                                 href={url}
                                 target="_blank"
+                                rel="noopener noreferrer"
                               >
                                 <svg
                                   className={s.externalLink__Icon}
