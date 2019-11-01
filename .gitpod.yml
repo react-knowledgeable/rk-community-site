@@ -1,3 +1,9 @@
+tasks:
+  - init: yarn install
+    command: yarn start
+ports:
+  - port: 8000
+    onOpen: open-preview
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
