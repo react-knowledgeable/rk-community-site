@@ -79,10 +79,12 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
       meetups.forEach(meetup => {
+        const id = meetup.fields.slug.replace(/[^\d]+/g, "") // to remove everything except the numbers
         createPage({
           path: `${meetup.fields.slug}`,
           component: meetupTemplate,
           context: {
+            id,
             slug: meetup.fields.slug,
           },
         });

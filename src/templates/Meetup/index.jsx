@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import r2r from 'rehype-react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
+import Avatar from '../../components/Avatar';
 import Layout from '../../components/Layout';
 import SubmitTalkButton from '../../components/SubmitTalkButton';
 import { modes, slideTo } from '../../utils/remote';
@@ -28,6 +29,12 @@ const buildSections = elements => {
     }, sections);
 };
 
+const getAvatarProps = username => ({
+  avatarUrl: `https://github.com/${username}.png?size=80`,
+  url: username,
+  login: `https://github.com/${username}`
+});
+
 const astToHtml = new r2r({
   createElement: React.createElement,
   Fragment: React.Fragment,
@@ -36,9 +43,9 @@ const astToHtml = new r2r({
 export default ({
   location,
   data: {
+    allAirtable,
     site: {
       siteMetadata: {
-        title: siteTitle,
         description,
         url,
         image,
@@ -50,9 +57,7 @@ export default ({
     markdownRemark: {
       frontmatter: {
         title,
-        speaker,
         date,
-        cover,
         venue,
         venueLogo,
         venueLink,
@@ -61,7 +66,6 @@ export default ({
         issueLink,
         eventLink,
       },
-      html,
       htmlAst,
     },
     talks: {
@@ -215,6 +219,13 @@ export default ({
             </a>
           </SubmitTalkButton>
         </section>
+        <section>
+          <h2><span role="img" aria-label="busts in silhouette">👥</span> Attendees <span role="img" aria-label="busts in silhouetee">👥</span></h2>
+          <p>{allAirtable.totalCount} attendees</p>
+          {allAirtable.edges.map(({ node: { data: { Github_Username: username } } }) => (
+            <Avatar key={username} {...getAvatarProps(username)} />
+          ))}
+        </section>
       </aside>
       <main>
         {reactUpdatesSectionsHTML}
@@ -244,7 +255,17 @@ export default ({
 };
 
 export const pageQuery = graphql`
-  query MeetupQuery($slug: String!) {
+  query MeetupQuery($slug: String!, $id: String!) {
+    allAirtable(filter: { data: { Event_ID: { eq: $id } } }) {
+      totalCount
+      edges {
+        node {
+          data {
+            Github_Username
+          }
+        }
+      }
+    }
     site {
       siteMetadata {
         title
