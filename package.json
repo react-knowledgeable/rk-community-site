@@ -43,7 +43,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "build": "gatsby build",
+    "build": "yarn run build-functions && gatsby build",
     "build-functions": "rollup --config"
   }
 }
