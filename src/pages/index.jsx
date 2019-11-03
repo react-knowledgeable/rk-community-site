@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Talk from '../components/Talk';
 import Card from '../components/Card';
+import RSVP from '../components/RSVP'
 import parseDate from '../utils/parseDate';
 import s from './s.module.scss';
 
@@ -75,7 +76,8 @@ export default ({
                 <p>
                   <b>
                     {eventLink ? (
-                      <a href={eventLink}>RSVP</a>
+                      // <a href={eventLink}>RSVP</a>
+                      <RSVP />
                     ) : (
                       'RSVP open soon'
                     )}
