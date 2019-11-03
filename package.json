@@ -34,11 +34,16 @@
   "devDependencies": {
     "dotenv": "^8.2.0",
     "prettier": "^1.18.2",
+    "rollup": "^1.26.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "sass": "^1.23.1"
   },
   "scripts": {
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "build-functions": "rollup --config"
   }
 }
