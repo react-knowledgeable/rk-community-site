@@ -1,12 +1,13 @@
 import Airtable from 'airtable';
 
-export const handler = async (event, context, callback) => {
+export const handler = async (event, _, callback) => {
   try {
     let attendees = [];
+    const {eventId} = JSON.parse(event.body)
     const atClient = _configureAirtable();
     await atClient('Attendees')
       .select({
-        filterByFormula: 'SEARCH("4",{Event ID})',
+        filterByFormula: `SEARCH("${eventId}",{Event ID})`,
       })
       .eachPage((records, fetchNextPage) => {
         records.forEach(function(record) {

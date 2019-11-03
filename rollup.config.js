@@ -2,7 +2,7 @@
 
 const commonjs = require('rollup-plugin-commonjs');
 const fs = require('fs');
-const json = require('rollup-plugin-json')
+const json = require('rollup-plugin-json');
 const path = require('path');
 const promisify = require('util').promisify;
 const readdir = promisify(fs.readdir);
@@ -18,20 +18,16 @@ export default () => {
             file: path.resolve(__dirname, 'functions', func.filePath),
             format: 'cjs',
           },
-          plugins: [
-            resolve(),
-            commonjs(),
-            json()
-          ]
+          plugins: [resolve(), commonjs(), json()],
         }))
       );
-    })
+    });
   });
 };
 
 async function _getFunctionPaths() {
   const functionSrc = path.resolve(__dirname, 'src/functions');
-  const functionPaths = await readdir(functionSrc)
+  const functionPaths = await readdir(functionSrc);
   return functionPaths.map(filePath => ({
     input: path.resolve(functionSrc, filePath),
     filePath,
