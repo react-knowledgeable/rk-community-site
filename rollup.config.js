@@ -17,8 +17,8 @@ export default () => {
           output: {
             file: path.resolve(__dirname, 'functions', func.filePath),
             format: 'cjs',
-          },
-          plugins: [resolve(), commonjs(), json()],
+          }
+          // plugins: [resolve(), commonjs(), json()],
         }))
       );
     });
@@ -28,7 +28,9 @@ export default () => {
 async function _getFunctionPaths() {
   const functionSrc = path.resolve(__dirname, 'src/functions');
   const functionPaths = await readdir(functionSrc);
-  return functionPaths.map(filePath => ({
+  return functionPaths.filter(filePath => {
+    return !['node_modules', 'package.json', 'package-lock.json'].includes(filePath)
+  }).map(filePath => ({
     input: path.resolve(functionSrc, filePath),
     filePath,
   }));

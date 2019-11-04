@@ -43,7 +43,10 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "build": "yarn run build-functions && gatsby build",
-    "build-functions": "rollup --config"
+    "build": "yarn run functions && gatsby build",
+    "functions": "yarn run prepare-functions && yarn run build-functions && yarn run copy-functions-deps",
+    "prepare-functions": "cd src/functions && npm i",
+    "build-functions": "rollup --config",
+    "copy-functions-deps": "cp -r src/functions/node_modules/ functions/node_modules"
   }
 }
