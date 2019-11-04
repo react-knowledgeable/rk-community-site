@@ -1,4 +1,4 @@
-// This is for building the Netlify functions (lambdas) only!
+/* This is for building the Netlify functions (lambdas) only! */
 
 const commonjs = require('rollup-plugin-commonjs');
 const fs = require('fs');
