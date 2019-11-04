@@ -17,7 +17,7 @@ export const handler = async (event, _, callback) => {
       });
     callback(null, {
       status: 200,
-      body: attendees,
+      body: JSON.stringify(attendees),
     });
   } catch (e) {
     callback(null, {
