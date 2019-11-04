@@ -28,5 +28,6 @@ export const handler = async (event, _, callback) => {
 };
 
 function _configureAirtable() {
-  return Airtable.base(process.env.AIRTABLE_BASE_ID);
+  Airtable.configure({ apiKey: '__AIRTABLE_API_KEY__' })
+  return Airtable.base('__AIRTABLE_BASE_ID__');
 }

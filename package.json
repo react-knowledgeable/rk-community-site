@@ -8,6 +8,7 @@
   "dependencies": {
     "@raae/gatsby-remark-oembed": "^0.1.1",
     "@reach/router": "^1.2.1",
+    "@rollup/plugin-replace": "^2.2.0",
     "classnames": "^2.2.6",
     "gatsby": "^2.17.4",
     "gatsby-plugin-favicon": "^3.1.6",
@@ -35,9 +36,6 @@
     "dotenv": "^8.2.0",
     "prettier": "^1.18.2",
     "rollup": "^1.26.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "sass": "^1.23.1"
   },
   "scripts": {

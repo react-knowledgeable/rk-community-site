@@ -1,12 +1,10 @@
 /* This is for building the Netlify functions (lambdas) only! */
 
-const commonjs = require('rollup-plugin-commonjs');
 const fs = require('fs');
-const json = require('rollup-plugin-json');
 const path = require('path');
 const promisify = require('util').promisify;
 const readdir = promisify(fs.readdir);
-const resolve = require('rollup-plugin-node-resolve');
+const replace = require('@rollup/plugin-replace');
 
 export default () => {
   return new Promise(res => {
@@ -17,8 +15,13 @@ export default () => {
           output: {
             file: path.resolve(__dirname, 'functions', func.filePath),
             format: 'cjs',
-          }
-          // plugins: [resolve(), commonjs(), json()],
+          },
+          plugins: [
+            replace({
+              __AIRTABLE_API_KEY__: process.env.AIRTABLE_API_KEY,
+              __AIRTABLE_BASE_ID__: process.env.AIRTABLE_BASE_ID,
+            }),
+          ],
         }))
       );
     });
@@ -28,10 +31,14 @@ export default () => {
 async function _getFunctionPaths() {
   const functionSrc = path.resolve(__dirname, 'src/functions');
   const functionPaths = await readdir(functionSrc);
-  return functionPaths.filter(filePath => {
-    return !['node_modules', 'package.json', 'package-lock.json'].includes(filePath)
-  }).map(filePath => ({
-    input: path.resolve(functionSrc, filePath),
-    filePath,
-  }));
+  return functionPaths
+    .filter(filePath => {
+      return !['node_modules', 'package.json', 'package-lock.json'].includes(
+        filePath
+      );
+    })
+    .map(filePath => ({
+      input: path.resolve(functionSrc, filePath),
+      filePath,
+    }));
 }
