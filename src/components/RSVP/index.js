@@ -114,7 +114,7 @@ export default ({ eventId }) => {
 
 function insertAttendee({ eventId, username, name }) {
   return axios.post(
-    `${process.env.DEPLOY_PRIME_URL}/.netlify/functions/airtable`,
+    `${process.env.DEPLOY_URL}/.netlify/functions/airtable`,
     {
       name,
       username,
