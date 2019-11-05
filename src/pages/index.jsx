@@ -73,16 +73,11 @@ export default ({
                   {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
                 </p>
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
-                <p>
-                  <b>
-                    {eventLink ? (
-                      // <a href={eventLink}>RSVP</a>
-                      <RSVP />
-                    ) : (
-                      'RSVP open soon'
-                    )}
-                  </b>
-                </p>
+                {eventLink ? (
+                  <RSVP
+                    eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, "")}
+                  />
+                ) : 'RSVP open soon'}
               </Card>
             )}
           </React.Fragment>

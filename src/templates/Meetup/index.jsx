@@ -6,6 +6,7 @@ import parseDate from '../../utils/parseDate';
 import Avatar from '../../components/Avatar';
 import Layout from '../../components/Layout';
 import SubmitTalkButton from '../../components/SubmitTalkButton';
+import RSVP from '../../components/RSVP';
 import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
 
@@ -42,6 +43,7 @@ const astToHtml = new r2r({
 
 export default ({
   location,
+  pageContext: { id },
   data: {
     allAirtable,
     site: {
@@ -64,7 +66,6 @@ export default ({
         sponsors,
         talks: talkIssueIds,
         issueLink,
-        eventLink,
       },
       htmlAst,
     },
@@ -145,17 +146,15 @@ export default ({
       <aside>
         <section>
           <h1>{title}</h1>
-          <i>{parseDate(date)}</i>
+          <p><i>{parseDate(date)}</i></p>
+        </section>
+        <section>
+          <RSVP eventId={id} />
         </section>
         {mode === modes.article && (
           <section>
             <h2><span role="img" aria-label="link">🔗</span> links <span role="img" aria-label="link">🔗</span></h2>
             <ul>
-              {eventLink && (
-                <li>
-                  <a href={eventLink}>rsvp link</a>
-                </li>
-              )}
               {issueLink && (
                 <li>
                   <a href={issueLink}>issue link</a>
@@ -292,7 +291,6 @@ export const pageQuery = graphql`
         }
         talks
         date
-        eventLink
         issueLink
       }
       html

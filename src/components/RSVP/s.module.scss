@@ -12,6 +12,9 @@
   border-radius: var(--round-corner);
   padding: 0.25em 0.5em;
   box-shadow: #222 2px 2px 0 0;
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 .formField {

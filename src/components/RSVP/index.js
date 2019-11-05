@@ -1,45 +1,124 @@
 import React from 'react';
+import axios from 'axios';
 import s from './s.module.scss';
 
-export default () => {
+const initialState = {
+  name: '',
+  username: '',
+  validationError: '',
+  submissionError: '',
+  submitting: false,
+  submissionSuccess: false,
+};
+function reducer(state = initialState, action = { type: '' }) {
+  switch (action.type) {
+    case 'input':
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+        submission_error: '',
+        submissionSuccess: false,
+      };
+    case 'submit':
+      return {
+        ...state,
+        submissionError: "",
+        submissionSuccess: false,
+        submitting: true
+      }
+    case 'submission_error':
+      return {
+        ...state,
+        submissionError: action.payload.error,
+        submissionSuccess: false,
+        submitting: false
+      };
+    case 'submission_success':
+      return {
+        ...state,
+        name: '',
+        username: '',
+        submissionSuccess: true,
+        submissionError: '',
+        submitting: false
+      };
+    default:
+      return state;
+  }
+}
+
+export default ({ eventId }) => {
   const [formVisible, setFormVisible] = React.useState(false);
-  const [name, setName] = React.useState('');
   const [nameError, setNameError] = React.useState('');
-  const [username, setUsername] = React.useState('');
+  const [state, dispatch] = React.useReducer(reducer, initialState);
   const handleSubmit = e => {
     e.preventDefault();
-    if (!name) {
+    if (!state.name) {
       return setNameError('Required');
     } else {
-      // handle submit
+      dispatch({type: 'submit'})
+      insertAttendee({ name: state.name, username: state.username, eventId })
+        .then(() => {
+          dispatch({ type: 'submission_success' });
+          setFormVisible(false);
+        })
+        .catch(() => {
+          dispatch({
+            type: 'submission_error',
+            payload: {
+              error: "Oops, we couldn't register you, please try again",
+            },
+          });
+        });
     }
   };
   return (
     <React.Fragment>
-      <button className={s.btn} onClick={() => setFormVisible(!formVisible)}>
-        RSVP
-      </button>
-      <form className={!formVisible && s.hidden} onSubmit={handleSubmit}>
+      {!state.submissionSuccess && (
+        <button className={s.btn} onClick={() => setFormVisible(!formVisible)}>
+          <b>RSVP</b>
+        </button>
+      )}
+      <form
+        className={formVisible ? undefined : s.hidden}
+        onSubmit={handleSubmit}
+      >
         <label className={s.formField}>
           <span className={s.fieldLabel}>Name *</span>
           <input
             name="name"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            value={state.name}
+            onChange={({ target: { name, value } }) => {
+              dispatch({ type: 'input', payload: { name, value } });
+            }}
           />
           {nameError && <span className={s.fieldError}>{nameError}</span>}
         </label>
         <label className={s.formField}>
           <span className={s.fieldLabel}>Github Username (optional)</span>
           <input
-            name="github_username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            name="username"
+            value={state.username}
+            onChange={({ target: { name, value } }) => {
+              dispatch({ type: 'input', payload: { name, value } });
+            }}
           />
         </label>
         {/* Ask if they want their name to be shown? */}
-        <button className={s.btn}>Sign Me Up</button>
+        <button className={s.btn} disabled={state.submitting}><b>Sign Me Up</b></button>
       </form>
+      {state.submissionSuccess && <p>See you there :)</p>}
     </React.Fragment>
   );
 };
+
+function insertAttendee({ eventId, username, name }) {
+  return axios.post(
+    `${process.env.DEPLOY_PRIME_URL}/.netlify/functions/airtable`,
+    {
+      name,
+      username,
+      eventId,
+    }
+  );
+}
