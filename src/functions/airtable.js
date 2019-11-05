@@ -11,7 +11,7 @@ export const handler = async (event, _, callback) => {
       })
       .eachPage((records, fetchNextPage) => {
         records.forEach(function(record) {
-          attendees.push(record);
+          attendees.push(record._rawJson.fields);
         });
         fetchNextPage();
       });

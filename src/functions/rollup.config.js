@@ -13,7 +13,7 @@ export default () => {
         paths.map(func => ({
           input: func.input,
           output: {
-            file: path.resolve(__dirname, 'functions', func.filePath),
+            file: path.resolve(__dirname, '../../functions', func.filePath),
             format: 'cjs',
           },
           plugins: [
@@ -22,6 +22,7 @@ export default () => {
               __AIRTABLE_BASE_ID__: process.env.AIRTABLE_BASE_ID,
             }),
           ],
+          external: ['airtable']
         }))
       );
     });
@@ -29,11 +30,16 @@ export default () => {
 };
 
 async function _getFunctionPaths() {
-  const functionSrc = path.resolve(__dirname, 'src/functions');
+  const functionSrc = path.resolve(__dirname);
   const functionPaths = await readdir(functionSrc);
   return functionPaths
     .filter(filePath => {
-      return !['node_modules', 'package.json', 'package-lock.json'].includes(
+      return ![
+        'node_modules',
+        'package.json',
+        'yarn.lock',
+        'rollup.config.js'
+      ].includes(
         filePath
       );
     })
