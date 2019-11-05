@@ -17,15 +17,6 @@ export const handler = async (event, _, callback) => {
           },
         },
       ])
-      .select({
-        filterByFormula: `SEARCH("${eventId}",{Event ID})`,
-      })
-      .eachPage((records, fetchNextPage) => {
-        records.forEach(function(record) {
-          attendees.push(record._rawJson.fields);
-        });
-        fetchNextPage();
-      });
     callback(null, {
       status: 200,
       body: JSON.stringify(attendees),
