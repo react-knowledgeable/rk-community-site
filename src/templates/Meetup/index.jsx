@@ -218,7 +218,7 @@ export default ({
             </a>
           </SubmitTalkButton>
         </section>
-        {allAirtable.count > 0 ? (
+        {allAirtable.totalCount > 0 ? (
           <section>
             <h2><span role="img" aria-label="busts in silhouette">👥</span> Attendees <span role="img" aria-label="busts in silhouetee">👥</span></h2>
             <p>{allAirtable.totalCount} attendees</p>
