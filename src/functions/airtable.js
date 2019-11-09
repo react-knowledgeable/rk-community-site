@@ -2,7 +2,6 @@ import Airtable from 'airtable';
 
 export const handler = async (event, _, callback) => {
   try {
-    let attendees = [];
     const { eventId, name, username } = JSON.parse(event.body);
     const atClient = _configureAirtable();
     await atClient('Attendees')
@@ -19,7 +18,7 @@ export const handler = async (event, _, callback) => {
       ])
     callback(null, {
       status: 200,
-      body: JSON.stringify(attendees),
+      body: JSON.stringify({ name, eventId }),
     });
   } catch (e) {
     callback(Error(e), {

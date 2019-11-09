@@ -5,7 +5,6 @@ import s from './s.module.scss';
 const initialState = {
   name: '',
   username: '',
-  validationError: '',
   submissionError: '',
   submitting: false,
   submissionSuccess: false,
