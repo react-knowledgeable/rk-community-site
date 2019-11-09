@@ -8,6 +8,8 @@ export const handler = async (event, _, callback) => {
         insertAttendee(atClient, event, callback)
         break
       case "GET":
+        retrieveAttendees(atClient, event, callback)
+        break
       default:
         callback(Error({ message: errMessage }), {
           status: 405,
@@ -21,6 +23,25 @@ export const handler = async (event, _, callback) => {
     });
   }
 };
+
+function retrieveAttendees(Client, event, callback) {
+  let attendees = [];
+    const {eventId} = JSON.parse(event.body)
+    await Client('Attendees')
+      .select({
+        filterByFormula: `SEARCH("${eventId}",{Event ID})`,
+      })
+      .eachPage((records, fetchNextPage) => {
+        records.forEach(function(record) {
+          attendees.push(record.fields);
+        });
+        fetchNextPage();
+      });
+    callback(null, {
+      status: 200,
+      body: JSON.stringify(attendees),
+    });
+}
 
 function insertAttendee(Client, event, callback) {
   if (event.httpMethod !== "POST") {
