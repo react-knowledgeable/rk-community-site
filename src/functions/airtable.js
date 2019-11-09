@@ -26,11 +26,13 @@ export const handler = async (event, _, callback) => {
 
 async function retrieveAttendees(Client, event, callback) {
   let attendees = [];
+  let selectOpts = {}
     const {eventId} = event.queryStringParameters
+    if (eventId) {
+      selectOpts = {filterByFormula: `SEARCH("${eventId}",{Event ID})`}
+    }
     await Client('Attendees')
-      .select({
-        filterByFormula: `SEARCH("${eventId}",{Event ID})`,
-      })
+      .select(selectOpts)
       .eachPage((records, fetchNextPage) => {
         records.forEach(function(record) {
           attendees.push(record.fields);

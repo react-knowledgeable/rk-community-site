@@ -258,15 +258,8 @@ export default ({
 
 export const pageQuery = graphql`
   query MeetupQuery($slug: String!, $id: String!) {
-    allAirtable(filter: { data: { Event_ID: { eq: $id } } }) {
+    allRkAttendee(filter: { Event_ID: { eq: $id } }) {
       totalCount
-      edges {
-        node {
-          data {
-            Github_Username
-          }
-        }
-      }
     }
     site {
       siteMetadata {
