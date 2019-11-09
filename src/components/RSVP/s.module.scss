@@ -1,0 +1,42 @@
+.hidden {
+  visibility: hidden;
+  height: 0;
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  padding: 0.25em;
+  border: 1px solid black;
+  border-radius: var(--round-corner);
+  padding: 0.25em 0.5em;
+  box-shadow: #222 2px 2px 0 0;
+  &:disabled {
+    opacity: 0.4;
+  }
+}
+
+.formField {
+  display: block;
+  margin: 0.5em 0em;
+}
+
+.formField:last-of-type {
+  margin-bottom: 2em;
+}
+
+.fieldLabel {
+  display: block;
+  margin: 0em;
+}
+
+.fieldError {
+  @extend .fieldLabel;
+  color: red;
+  margin-top: 0.25em;
+}
+
+.submissionError {
+  font-size: 0.875rem;
+}

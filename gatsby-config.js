@@ -31,7 +31,7 @@ module.exports = {
       {
         name: 'JAMstackSG',
         link: 'https://jamstacksingapore.com/',
-      }
+      },
     ],
   },
   plugins: [
@@ -127,6 +127,18 @@ module.exports = {
           Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
         },
         fetchOptions: {},
+      },
+    },
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: 'Attendees',
+          },
+        ],
       },
     },
   ],

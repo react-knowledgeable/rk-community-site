@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Talk from '../components/Talk';
 import Card from '../components/Card';
+import RSVP from '../components/RSVP'
 import parseDate from '../utils/parseDate';
 import s from './s.module.scss';
 
@@ -30,7 +31,7 @@ export default ({
   const nextMeetup = getNextMeetup(meetups);
   const {
     fields: { slug: nextMeetupSlug } = {},
-    frontmatter: { title: meetupTitle, venue, date, eventLink },
+    frontmatter: { title: meetupTitle, venue, date },
   } = nextMeetup || { frontmatter: {} };
   return (
     <Layout
@@ -72,15 +73,9 @@ export default ({
                   {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
                 </p>
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
-                <p>
-                  <b>
-                    {eventLink ? (
-                      <a href={eventLink}>RSVP</a>
-                    ) : (
-                      'RSVP open soon'
-                    )}
-                  </b>
-                </p>
+                <RSVP
+                  eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, "")}
+                />
               </Card>
             )}
           </React.Fragment>
@@ -178,7 +173,6 @@ export const pageQuery = graphql`
           venue
           date
           talks
-          eventLink
           issueLink
           title
         }

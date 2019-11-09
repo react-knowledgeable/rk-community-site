@@ -3,8 +3,10 @@ import { graphql } from 'gatsby';
 import r2r from 'rehype-react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
+import Avatar from '../../components/Avatar';
 import Layout from '../../components/Layout';
 import SubmitTalkButton from '../../components/SubmitTalkButton';
+import RSVP from '../../components/RSVP';
 import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
 
@@ -28,6 +30,12 @@ const buildSections = elements => {
     }, sections);
 };
 
+const getAvatarProps = username => ({
+  avatarUrl: `https://github.com/${username}.png?size=80`,
+  url: username,
+  login: `https://github.com/${username}`
+});
+
 const astToHtml = new r2r({
   createElement: React.createElement,
   Fragment: React.Fragment,
@@ -35,10 +43,11 @@ const astToHtml = new r2r({
 
 export default ({
   location,
+  pageContext: { id },
   data: {
+    allAirtable,
     site: {
       siteMetadata: {
-        title: siteTitle,
         description,
         url,
         image,
@@ -50,18 +59,14 @@ export default ({
     markdownRemark: {
       frontmatter: {
         title,
-        speaker,
         date,
-        cover,
         venue,
         venueLogo,
         venueLink,
         sponsors,
         talks: talkIssueIds,
         issueLink,
-        eventLink,
       },
-      html,
       htmlAst,
     },
     talks: {
@@ -141,17 +146,15 @@ export default ({
       <aside>
         <section>
           <h1>{title}</h1>
-          <i>{parseDate(date)}</i>
+          <p><i>{parseDate(date)}</i></p>
+        </section>
+        <section>
+          <RSVP eventId={id} />
         </section>
         {mode === modes.article && (
           <section>
             <h2><span role="img" aria-label="link">🔗</span> links <span role="img" aria-label="link">🔗</span></h2>
             <ul>
-              {eventLink && (
-                <li>
-                  <a href={eventLink}>rsvp link</a>
-                </li>
-              )}
               {issueLink && (
                 <li>
                   <a href={issueLink}>issue link</a>
@@ -215,6 +218,16 @@ export default ({
             </a>
           </SubmitTalkButton>
         </section>
+        {allAirtable.totalCount > 0 ? (
+          <section>
+            <h2><span role="img" aria-label="busts in silhouette">👥</span> Attendees <span role="img" aria-label="busts in silhouetee">👥</span></h2>
+            <p>{allAirtable.totalCount} attendees</p>
+            {/* @TODO: Put this back when we have added the ability for people to hide their profile */}
+            {/*allAirtable.edges.map(({ node: { data: { Github_Username: username } } }) => (
+              <Avatar key={username} {...getAvatarProps(username)} />
+            ))*/}
+          </section>
+          ) : null}
       </aside>
       <main>
         {reactUpdatesSectionsHTML}
@@ -244,7 +257,20 @@ export default ({
 };
 
 export const pageQuery = graphql`
-  query MeetupQuery($slug: String!) {
+  query MeetupQuery($slug: String!, $id: String!) {
+    # allRkAttendee(filter: { Event_ID: { eq: $id } }) {
+    #   totalCount
+    # }
+    allAirtable(filter: { data: { Event_ID: { eq: $id } } }) {
+      totalCount
+      edges {
+        node {
+          data {
+            Github_Username
+          }
+        }
+      }
+    }
     site {
       siteMetadata {
         title
@@ -271,7 +297,6 @@ export const pageQuery = graphql`
         }
         talks
         date
-        eventLink
         issueLink
       }
       html
