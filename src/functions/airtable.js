@@ -5,10 +5,10 @@ export const handler = async (event, _, callback) => {
     const atClient = _configureAirtable();
     switch(event.httpMethod) {
       case "POST":
-        insertAttendee(atClient, event, callback)
+        await insertAttendee(atClient, event, callback)
         break
       case "GET":
-        retrieveAttendees(atClient, event, callback)
+        await retrieveAttendees(atClient, event, callback)
         break
       default:
         callback(Error({ message: errMessage }), {
@@ -24,7 +24,7 @@ export const handler = async (event, _, callback) => {
   }
 };
 
-function retrieveAttendees(Client, event, callback) {
+async function retrieveAttendees(Client, event, callback) {
   let attendees = [];
     const {eventId} = JSON.parse(event.body)
     await Client('Attendees')
@@ -43,7 +43,7 @@ function retrieveAttendees(Client, event, callback) {
     });
 }
 
-function insertAttendee(Client, event, callback) {
+async function insertAttendee(Client, event, callback) {
   if (event.httpMethod !== "POST") {
     const errMessage = "Unsupported method"
     return callback(Error({ message: errMessage }), {
