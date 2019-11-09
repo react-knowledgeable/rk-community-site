@@ -26,7 +26,7 @@ export const handler = async (event, _, callback) => {
 
 async function retrieveAttendees(Client, event, callback) {
   let attendees = [];
-    const {eventId} = JSON.parse(event.body)
+    const {eventId} = event.queryStringParameters
     await Client('Attendees')
       .select({
         filterByFormula: `SEARCH("${eventId}",{Event ID})`,
