@@ -22,7 +22,7 @@ export const handler = async (event, _, callback) => {
       body: JSON.stringify(attendees),
     });
   } catch (e) {
-    callback(null, {
+    callback(Error(e), {
       status: 500,
       body: e,
     });

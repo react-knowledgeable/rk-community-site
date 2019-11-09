@@ -31,7 +31,7 @@ export default ({
   const nextMeetup = getNextMeetup(meetups);
   const {
     fields: { slug: nextMeetupSlug } = {},
-    frontmatter: { title: meetupTitle, venue, date, eventLink },
+    frontmatter: { title: meetupTitle, venue, date },
   } = nextMeetup || { frontmatter: {} };
   return (
     <Layout
@@ -73,11 +73,9 @@ export default ({
                   {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
                 </p>
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
-                {eventLink ? (
-                  <RSVP
-                    eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, "")}
-                  />
-                ) : 'RSVP open soon'}
+                <RSVP
+                  eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, "")}
+                />
               </Card>
             )}
           </React.Fragment>
@@ -175,7 +173,6 @@ export const pageQuery = graphql`
           venue
           date
           talks
-          eventLink
           issueLink
           title
         }

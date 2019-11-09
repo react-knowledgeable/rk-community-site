@@ -218,13 +218,16 @@ export default ({
             </a>
           </SubmitTalkButton>
         </section>
-        <section>
-          <h2><span role="img" aria-label="busts in silhouette">👥</span> Attendees <span role="img" aria-label="busts in silhouetee">👥</span></h2>
-          <p>{allAirtable.totalCount} attendees</p>
-          {allAirtable.edges.map(({ node: { data: { Github_Username: username } } }) => (
-            <Avatar key={username} {...getAvatarProps(username)} />
-          ))}
-        </section>
+        {allAirtable.count > 0 ? (
+          <section>
+            <h2><span role="img" aria-label="busts in silhouette">👥</span> Attendees <span role="img" aria-label="busts in silhouetee">👥</span></h2>
+            <p>{allAirtable.totalCount} attendees</p>
+            {/* @TODO: Put this back when we have added the ability for people to hide their profile */}
+            {/*allAirtable.edges.map(({ node: { data: { Github_Username: username } } }) => (
+              <Avatar key={username} {...getAvatarProps(username)} />
+            ))*/}
+          </section>
+        ) : null}
       </aside>
       <main>
         {reactUpdatesSectionsHTML}

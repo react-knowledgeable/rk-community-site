@@ -66,7 +66,7 @@ export default ({ eventId }) => {
           dispatch({
             type: 'submission_error',
             payload: {
-              error: "Oops, we couldn't register you, please try again",
+              error: "Oops, we couldn't register you, please try again.",
             },
           });
         });
@@ -104,6 +104,7 @@ export default ({ eventId }) => {
             }}
           />
         </label>
+        {state.submissionError && <p className={s.submissionError}>{state.submissionError}</p>}
         {/* Ask if they want their name to be shown? */}
         <button className={s.btn} disabled={state.submitting}><b>Sign Me Up</b></button>
       </form>
