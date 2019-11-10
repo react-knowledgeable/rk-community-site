@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import qs from 'query-string';
+import { navigate } from '@reach/router';
 import s from './s.module.scss';
 
 const initialState = {
@@ -21,16 +23,16 @@ function reducer(state = initialState, action = { type: '' }) {
     case 'submit':
       return {
         ...state,
-        submissionError: "",
+        submissionError: '',
         submissionSuccess: false,
-        submitting: true
-      }
+        submitting: true,
+      };
     case 'submission_error':
       return {
         ...state,
         submissionError: action.payload.error,
         submissionSuccess: false,
-        submitting: false
+        submitting: false,
       };
     case 'submission_success':
       return {
@@ -39,7 +41,7 @@ function reducer(state = initialState, action = { type: '' }) {
         username: '',
         submissionSuccess: true,
         submissionError: '',
-        submitting: false
+        submitting: false,
       };
     default:
       return state;
@@ -50,12 +52,21 @@ export default ({ eventId }) => {
   const [formVisible, setFormVisible] = React.useState(false);
   const [nameError, setNameError] = React.useState('');
   const [state, dispatch] = React.useReducer(reducer, initialState);
+  const requestGitHubOAuth = React.useCallback(() => {
+    navigate(
+      'https://github.com/login/oauth/authorize?' +
+        qs.stringify({
+          // TODO: move to fns
+          state: 'home',
+        })
+    );
+  }, []);
   const handleSubmit = e => {
     e.preventDefault();
     if (!state.name) {
       return setNameError('Required');
     } else {
-      dispatch({type: 'submit'})
+      dispatch({ type: 'submit' });
       insertAttendee({ name: state.name, username: state.username, eventId })
         .then(() => {
           dispatch({ type: 'submission_success' });
@@ -74,7 +85,7 @@ export default ({ eventId }) => {
   return (
     <React.Fragment>
       {!state.submissionSuccess && (
-        <button className={s.btn} onClick={() => setFormVisible(!formVisible)}>
+        <button className={s.btn} onClick={requestGitHubOAuth}>
           <b>RSVP</b>
         </button>
       )}
@@ -103,9 +114,13 @@ export default ({ eventId }) => {
             }}
           />
         </label>
-        {state.submissionError && <p className={s.submissionError}>{state.submissionError}</p>}
+        {state.submissionError && (
+          <p className={s.submissionError}>{state.submissionError}</p>
+        )}
         {/* Ask if they want their name to be shown? */}
-        <button className={s.btn} disabled={state.submitting}><b>Sign Me Up</b></button>
+        <button className={s.btn} disabled={state.submitting}>
+          <b>Sign Me Up</b>
+        </button>
       </form>
       {state.submissionSuccess && <p>See you there :)</p>}
     </React.Fragment>
@@ -113,12 +128,9 @@ export default ({ eventId }) => {
 };
 
 function insertAttendee({ eventId, username, name }) {
-  return axios.post(
-    `/.netlify/functions/airtable`,
-    {
-      name,
-      username,
-      eventId,
-    }
-  );
+  return axios.post(`/.netlify/functions/airtable`, {
+    name,
+    username,
+    eventId,
+  });
 }
