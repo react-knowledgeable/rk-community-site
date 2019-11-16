@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Talk from '../components/Talk';
 import Card from '../components/Card';
-import RSVP from '../components/RSVP'
+import RSVP from '../components/RSVP';
 import parseDate from '../utils/parseDate';
 import s from './s.module.scss';
 
@@ -74,7 +74,8 @@ export default ({
                 </p>
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
                 <RSVP
-                  eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, "")}
+                  eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, '')}
+                  calendarLink={nextMeetup.frontmatter.calendarLink}
                 />
               </Card>
             )}
@@ -173,8 +174,8 @@ export const pageQuery = graphql`
           venue
           date
           talks
-          issueLink
           title
+          calendarLink
         }
         fields {
           slug

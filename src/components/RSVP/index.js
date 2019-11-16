@@ -46,7 +46,7 @@ function reducer(state = initialState, action = { type: '' }) {
   }
 }
 
-export default ({ eventId }) => {
+export default ({ eventId, calendarLink }) => {
   const [formVisible, setFormVisible] = React.useState(false);
   const [nameError, setNameError] = React.useState('');
   const [state, dispatch] = React.useReducer(reducer, initialState);
@@ -115,7 +115,15 @@ export default ({ eventId }) => {
           <b>Sign Me Up</b>
         </button>
       </form>
-      {state.submissionSuccess && <p>See you there :)</p>}
+      {state.submissionSuccess && (
+        <p>
+          See you there :) Would you like to{' '}
+          <a href={calendarLink} target="_blank">
+            add this to your calendar
+          </a>
+          ?
+        </p>
+      )}
     </React.Fragment>
   );
 };

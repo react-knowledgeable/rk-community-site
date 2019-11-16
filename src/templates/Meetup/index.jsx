@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { graphql } from 'gatsby';
 import r2r from 'rehype-react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
@@ -66,6 +67,7 @@ export default ({
         sponsors,
         talks: talkIssueIds,
         issueLink,
+        calendarLink,
       },
       htmlAst,
     },
@@ -150,9 +152,33 @@ export default ({
             <i>{parseDate(date)}</i>
           </p>
         </section>
-        <section>
-          <RSVP eventId={id} />
-        </section>
+        {allAirtable.totalCount > 0 ? (
+          <div className={cx(s.doNotPresent, s.attendees)}>
+            <h2>
+              <span role="img" aria-label="busts in silhouette">
+                👥
+              </span>{' '}
+              Attendees{' '}
+              <span role="img" aria-label="busts in silhouetee">
+                👥
+              </span>
+            </h2>
+            <p>{allAirtable.totalCount} amazing RK kids are going</p>
+            {/* @TODO: Put this back when we have added the ability for people to hide their profile */
+            allAirtable.edges.map(
+              ({
+                node: {
+                  data: { Github_Username: username },
+                },
+              }) => (
+                <Avatar key={username} {...getAvatarProps(username)} />
+              )
+            )}
+          </div>
+        ) : null}
+        <div className={s.doNotPresent}>
+          <RSVP eventId={id} calendarLink={calendarLink} />
+        </div>
         {mode === modes.article && (
           <section>
             <h2>
@@ -278,30 +304,6 @@ export default ({
             </a>
           </SubmitTalkButton>
         </section>
-        {allAirtable.totalCount > 0 ? (
-          <section>
-            <h2>
-              <span role="img" aria-label="busts in silhouette">
-                👥
-              </span>{' '}
-              Attendees{' '}
-              <span role="img" aria-label="busts in silhouetee">
-                👥
-              </span>
-            </h2>
-            <p>{allAirtable.totalCount} attendees</p>
-            {/* @TODO: Put this back when we have added the ability for people to hide their profile */
-            allAirtable.edges.map(
-              ({
-                node: {
-                  data: { Github_Username: username },
-                },
-              }) => (
-                <Avatar key={username} {...getAvatarProps(username)} />
-              )
-            )}
-          </section>
-        ) : null}
       </aside>
       <main>
         {reactUpdatesSectionsHTML}
@@ -380,6 +382,7 @@ export const pageQuery = graphql`
         talks
         date
         issueLink
+        calendarLink
       }
       html
       htmlAst
