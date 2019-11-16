@@ -145,13 +145,8 @@ export default ({
           <p>
             <i>{parseDate(date)}</i>
           </p>
-        </section>
-        <div className={cx(s.doNotPresent, s.attendees)}>
-          <Participants rawParticipants={rawParticipants} />
-        </div>
-        <div className={s.doNotPresent}>
           <RSVP eventId={id} calendarLink={calendarLink} />
-        </div>
+        </section>
         {mode === modes.article && (
           <section>
             <h2>
@@ -279,6 +274,10 @@ export default ({
         </section>
       </aside>
       <main>
+        <div className={cx(s.doNotPresent, s.attendees)}>
+          <Participants rawParticipants={rawParticipants} />
+        </div>
+
         {reactUpdatesSectionsHTML}
         <section>
           <h2>

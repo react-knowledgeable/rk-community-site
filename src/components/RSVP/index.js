@@ -78,10 +78,7 @@ export default ({ eventId, calendarLink }) => {
           <b>RSVP</b>
         </button>
       )}
-      <form
-        className={formVisible ? undefined : s.hidden}
-        onSubmit={handleSubmit}
-      >
+      <form className={formVisible ? s.form : s.hidden} onSubmit={handleSubmit}>
         <label className={s.formField}>
           <span className={s.fieldLabel}>Name *</span>
           <input
