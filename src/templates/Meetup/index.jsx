@@ -4,10 +4,10 @@ import { graphql } from 'gatsby';
 import r2r from 'rehype-react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
-import Avatar from '../../components/Avatar';
 import Layout from '../../components/Layout';
 import SubmitTalkButton from '../../components/SubmitTalkButton';
 import RSVP from '../../components/RSVP';
+import Participants from '../../components/Participants';
 import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
 
@@ -31,12 +31,6 @@ const buildSections = elements => {
     }, sections);
 };
 
-const getAvatarProps = username => ({
-  avatarUrl: `https://github.com/${username}.png?size=80`,
-  url: username,
-  login: `https://github.com/${username}`,
-});
-
 const astToHtml = new r2r({
   createElement: React.createElement,
   Fragment: React.Fragment,
@@ -46,7 +40,7 @@ export default ({
   location,
   pageContext: { id },
   data: {
-    allAirtable,
+    allAirtable: { edges: rawParticipants },
     site: {
       siteMetadata: {
         description,
@@ -152,30 +146,9 @@ export default ({
             <i>{parseDate(date)}</i>
           </p>
         </section>
-        {allAirtable.totalCount > 0 ? (
-          <div className={cx(s.doNotPresent, s.attendees)}>
-            <h2>
-              <span role="img" aria-label="busts in silhouette">
-                👥
-              </span>{' '}
-              Attendees{' '}
-              <span role="img" aria-label="busts in silhouetee">
-                👥
-              </span>
-            </h2>
-            <p>{allAirtable.totalCount} amazing RK kids are going</p>
-            {/* @TODO: Put this back when we have added the ability for people to hide their profile */
-            allAirtable.edges.map(
-              ({
-                node: {
-                  data: { Github_Username: username },
-                },
-              }) => (
-                <Avatar key={username} {...getAvatarProps(username)} />
-              )
-            )}
-          </div>
-        ) : null}
+        <div className={cx(s.doNotPresent, s.attendees)}>
+          <Participants rawParticipants={rawParticipants} />
+        </div>
         <div className={s.doNotPresent}>
           <RSVP eventId={id} calendarLink={calendarLink} />
         </div>
