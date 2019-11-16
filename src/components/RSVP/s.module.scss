@@ -31,6 +31,12 @@
   margin: 0em;
 }
 
+.fieldCaption {
+  color: #777;
+  font-size: .75em;
+  margin-bottom: .5em;
+}
+
 .fieldError {
   @extend .fieldLabel;
   color: red;

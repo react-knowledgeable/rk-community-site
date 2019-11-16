@@ -21,16 +21,16 @@ function reducer(state = initialState, action = { type: '' }) {
     case 'submit':
       return {
         ...state,
-        submissionError: "",
+        submissionError: '',
         submissionSuccess: false,
-        submitting: true
-      }
+        submitting: true,
+      };
     case 'submission_error':
       return {
         ...state,
         submissionError: action.payload.error,
         submissionSuccess: false,
-        submitting: false
+        submitting: false,
       };
     case 'submission_success':
       return {
@@ -39,7 +39,7 @@ function reducer(state = initialState, action = { type: '' }) {
         username: '',
         submissionSuccess: true,
         submissionError: '',
-        submitting: false
+        submitting: false,
       };
     default:
       return state;
@@ -55,7 +55,7 @@ export default ({ eventId }) => {
     if (!state.name) {
       return setNameError('Required');
     } else {
-      dispatch({type: 'submit'})
+      dispatch({ type: 'submit' });
       insertAttendee({ name: state.name, username: state.username, eventId })
         .then(() => {
           dispatch({ type: 'submission_success' });
@@ -94,7 +94,11 @@ export default ({ eventId }) => {
           {nameError && <span className={s.fieldError}>{nameError}</span>}
         </label>
         <label className={s.formField}>
-          <span className={s.fieldLabel}>Github Username (optional)</span>
+          <span className={s.fieldLabel}>GitHub Username * </span>
+          <p className={s.fieldCaption}>
+            if you prefer to hide your attendance, please put our GitHub
+            username "react-knowledgeable"
+          </p>
           <input
             name="username"
             value={state.username}
@@ -103,9 +107,13 @@ export default ({ eventId }) => {
             }}
           />
         </label>
-        {state.submissionError && <p className={s.submissionError}>{state.submissionError}</p>}
+        {state.submissionError && (
+          <p className={s.submissionError}>{state.submissionError}</p>
+        )}
         {/* Ask if they want their name to be shown? */}
-        <button className={s.btn} disabled={state.submitting}><b>Sign Me Up</b></button>
+        <button className={s.btn} disabled={state.submitting}>
+          <b>Sign Me Up</b>
+        </button>
       </form>
       {state.submissionSuccess && <p>See you there :)</p>}
     </React.Fragment>
@@ -113,12 +121,9 @@ export default ({ eventId }) => {
 };
 
 function insertAttendee({ eventId, username, name }) {
-  return axios.post(
-    `/.netlify/functions/airtable`,
-    {
-      name,
-      username,
-      eventId,
-    }
-  );
+  return axios.post(`/.netlify/functions/airtable`, {
+    name,
+    username,
+    eventId,
+  });
 }
