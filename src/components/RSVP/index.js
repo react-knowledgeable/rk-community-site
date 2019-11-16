@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import qs from 'query-string';
-import { navigate } from '@reach/router';
+import { requestGitHubOAuth } from '../../functions/github';
 import s from './s.module.scss';
 
 const initialState = {
@@ -52,15 +52,6 @@ export default ({ eventId }) => {
   const [formVisible, setFormVisible] = React.useState(false);
   const [nameError, setNameError] = React.useState('');
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const requestGitHubOAuth = React.useCallback(() => {
-    navigate(
-      'https://github.com/login/oauth/authorize?' +
-        qs.stringify({
-          // TODO: move to fns
-          state: 'home',
-        })
-    );
-  }, []);
   const handleSubmit = e => {
     e.preventDefault();
     if (!state.name) {

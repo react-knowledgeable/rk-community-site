@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Talk from '../components/Talk';
 import Card from '../components/Card';
-import RSVP from '../components/RSVP'
+import RSVP from '../components/RSVP';
 import parseDate from '../utils/parseDate';
 import s from './s.module.scss';
 
@@ -73,9 +73,7 @@ export default ({
                   {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
                 </p>
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
-                <RSVP
-                  eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, "")}
-                />
+                <RSVP eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, '')} />
               </Card>
             )}
           </React.Fragment>
