@@ -33,7 +33,7 @@ const buildSections = elements => {
 const getAvatarProps = username => ({
   avatarUrl: `https://github.com/${username}.png?size=80`,
   url: username,
-  login: `https://github.com/${username}`
+  login: `https://github.com/${username}`,
 });
 
 const astToHtml = new r2r({
@@ -146,14 +146,24 @@ export default ({
       <aside>
         <section>
           <h1>{title}</h1>
-          <p><i>{parseDate(date)}</i></p>
+          <p>
+            <i>{parseDate(date)}</i>
+          </p>
         </section>
         <section>
           <RSVP eventId={id} />
         </section>
         {mode === modes.article && (
           <section>
-            <h2><span role="img" aria-label="link">🔗</span> links <span role="img" aria-label="link">🔗</span></h2>
+            <h2>
+              <span role="img" aria-label="link">
+                🔗
+              </span>{' '}
+              links{' '}
+              <span role="img" aria-label="link">
+                🔗
+              </span>
+            </h2>
             <ul>
               {issueLink && (
                 <li>
@@ -164,9 +174,22 @@ export default ({
           </section>
         )}
         <section>
-          <h2><span role="img" aria-label="celebration">🎉</span> Venue <span role="img" aria-label="celebration">🎉</span></h2>
+          <h2>
+            <span role="img" aria-label="celebration">
+              🎉
+            </span>{' '}
+            Venue{' '}
+            <span role="img" aria-label="celebration">
+              🎉
+            </span>
+          </h2>
           {venueLogo ? (
-            <a href={venueLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
+            <a
+              href={venueLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={s.venueLink}
+            >
               <img
                 src={venueLogo}
                 alt={venue}
@@ -185,14 +208,35 @@ export default ({
           sponsors.length &&
           sponsors.map(({ sponsor, sponsorLogo, sponsorLink }) => (
             <section>
-              <h2><span role="img" aria-label="confetti">🎊</span> Sponsor <span role="img" aria-label="confetti">🎊</span></h2>
+              <h2>
+                <span role="img" aria-label="confetti">
+                  🎊
+                </span>{' '}
+                Sponsor{' '}
+                <span role="img" aria-label="confetti">
+                  🎊
+                </span>
+              </h2>
               {sponsorLogo ? (
-                <a href={sponsorLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
-                  <img src={sponsorLogo} style={{ alignSelf: 'center' }} alt={sponsor} />
+                <a
+                  href={sponsorLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={s.venueLink}
+                >
+                  <img
+                    src={sponsorLogo}
+                    style={{ alignSelf: 'center' }}
+                    alt={sponsor}
+                  />
                 </a>
               ) : (
                 <h3>
-                  <a href={sponsorLink} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={sponsorLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {sponsor}
                   </a>
                 </h3>
@@ -200,7 +244,15 @@ export default ({
             </section>
           ))}
         <section>
-          <h2><span role="img" aria-label="holding hands">👫</span> Friends of RK <span role="img" aria-label="holding hands">👭</span></h2>
+          <h2>
+            <span role="img" aria-label="holding hands">
+              👫
+            </span>{' '}
+            Friends of RK{' '}
+            <span role="img" aria-label="holding hands">
+              👭
+            </span>
+          </h2>
           <ul>
             {footerLinks.map(({ link, name }) => (
               <li key={link}>
@@ -210,7 +262,15 @@ export default ({
           </ul>
         </section>
         <section>
-          <h2><span role="img" aria-label="glowing star">🌟</span> Stage opens <span role="img" aria-label="glowing star">🌟</span></h2>
+          <h2>
+            <span role="img" aria-label="glowing star">
+              🌟
+            </span>{' '}
+            Stage opens{' '}
+            <span role="img" aria-label="glowing star">
+              🌟
+            </span>
+          </h2>
           <SubmitTalkButton className={s.submitTalkMeetup}>
             {`Reference `}
             <a href={issueLink}>
@@ -220,19 +280,41 @@ export default ({
         </section>
         {allAirtable.totalCount > 0 ? (
           <section>
-            <h2><span role="img" aria-label="busts in silhouette">👥</span> Attendees <span role="img" aria-label="busts in silhouetee">👥</span></h2>
+            <h2>
+              <span role="img" aria-label="busts in silhouette">
+                👥
+              </span>{' '}
+              Attendees{' '}
+              <span role="img" aria-label="busts in silhouetee">
+                👥
+              </span>
+            </h2>
             <p>{allAirtable.totalCount} attendees</p>
-            {/* @TODO: Put this back when we have added the ability for people to hide their profile */}
-            {/*allAirtable.edges.map(({ node: { data: { Github_Username: username } } }) => (
-              <Avatar key={username} {...getAvatarProps(username)} />
-            ))*/}
+            {/* @TODO: Put this back when we have added the ability for people to hide their profile */
+            allAirtable.edges.map(
+              ({
+                node: {
+                  data: { Github_Username: username },
+                },
+              }) => (
+                <Avatar key={username} {...getAvatarProps(username)} />
+              )
+            )}
           </section>
-          ) : null}
+        ) : null}
       </aside>
       <main>
         {reactUpdatesSectionsHTML}
         <section>
-          <h2><span role="img" aria-label="studio microphone">🎙</span> Talk Line-up <span role="img" aria-label="studio microphone">🎙</span></h2>
+          <h2>
+            <span role="img" aria-label="studio microphone">
+              🎙
+            </span>{' '}
+            Talk Line-up{' '}
+            <span role="img" aria-label="studio microphone">
+              🎙
+            </span>
+          </h2>
           <ul>
             {talkIssueIds &&
               talkIssueIds.length &&
