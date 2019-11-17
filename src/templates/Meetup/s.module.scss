@@ -3,6 +3,8 @@
   display: block;
   margin: 0;
   padding: 0;
+  max-height: 100vh;
+  overflow-y: hidden;
 
   header, footer {
     display: none;
@@ -10,11 +12,11 @@
   main, article, aside {
     display: contents;
   }
-}
 
-.presentation {
-  max-height: 100vh;
-  overflow-y: hidden;
+  div.doNotPresent {
+    display: none;
+  }
+
   section {
     padding: 1rem calc((100vw - 60%) / 2);
     margin-top: -1.51rem; // hack
@@ -27,6 +29,7 @@
       width: 100%;
     }
   }
+  
   h1, h2, h3 {
     margin-top: 0;
     padding-top: 2rem;
@@ -76,4 +79,8 @@
 }
 .venueLink:hover, .venueLink:active {
   border-bottom: 0;
+}
+
+.attendees {
+  margin-bottom: 2rem;
 }

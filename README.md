@@ -6,10 +6,26 @@ This repo is the community site for `<RK />`.
 
 ## 🖥 Developing locally
 
+> You will need an Airtable API key to develop locally
+
 1. Run `yarn` (or `npm install`)
 2. Set up [GitHub Personal Access Token](https://github.com/settings/tokens), refer to [Authenticating with GraphQL](https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql) for requisite scope
-3. Run `GITHUB_TOKEN=<WHATEVER_GITHUB_GENERATED_FOR_YOU> yarn develop` (or `GITHUB_TOKEN=<WHATEVER_GITHUB_GENERATED_FOR_YOU> npm start`)
-4. Alternatively, you may create an `.env` file in your project root, and put `GITHUB_TOKEN=<WHATEVER_GITHUB_GENERATED_FOR_YOU>` inside. Then, you may run `npm start` directly. The `.env` file will be `.gitignore`d so you won't commit your `GITHUB_TOKEN`.
+3. Acquire Airtable API Key and set it into your environment.
+4. Run `yarn start` or `npm start` (see below for variable configuration).
+
+### API Keys
+
+You can either create a `.env` file, or specify these keys when running the `start` command:
+
+`GITHUB_TOKEN=XXX AIRTABLE_API_KEY=YYY ... yarn start`
+
+```
+// .env file
+
+GITHUB_TOKEN=XXX
+AIRTABLE_API_KEY=YYY
+AIRTABLE_BASE_ID=ZZZ
+```
 
 ## 🎙 Talk slides
 
