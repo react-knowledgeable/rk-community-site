@@ -26,10 +26,10 @@ function _retrieveToken(event, callback) {
     },
     data: {
       code,
-      redirect_uri,
+      client_id: __RK_RSVP_CLIENT_ID__,
+      client_secret: __RK_RSVP_CLIENT_SECRET__,
       state,
-      clientId: __RK_RSVP_CLIENT_ID__,
-      clientSecret: __RK_RSVP_CLIENT_SECRET__,
+      redirect_uri,
     },
   })
     .then(res => res.json())
