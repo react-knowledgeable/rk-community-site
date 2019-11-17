@@ -36,7 +36,7 @@ function _retrieveToken(event, callback) {
     .then(res => {
       callback(null, {
         status: 200,
-        body: res,
+        body: JSON.stringify(res),
       })
     })
 }
