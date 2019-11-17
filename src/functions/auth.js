@@ -12,7 +12,7 @@ export const handler = async (event, _, callback) => {
 }
 
 function _retrieveToken(event, callback) {
-  const { code, state, redirect_uri } = event.queryStringParameteres
+  const { code, state, redirect_uri } = event.queryStringParameters
   if (!code || !state || !redirect_uri) {
     throw new Error('Missing parameters')
   }
