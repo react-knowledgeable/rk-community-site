@@ -26,8 +26,8 @@ function _retrieveToken(event, callback) {
     },
     data: {
       code,
-      client_id: __RK_RSVP_CLIENT_ID__,
-      client_secret: __RK_RSVP_CLIENT_SECRET__,
+      client_id: '__RK_RSVP_CLIENT_ID__',
+      client_secret: '__RK_RSVP_CLIENT_SECRET__',
       state,
       redirect_uri,
     },
