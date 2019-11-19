@@ -86,6 +86,12 @@
     transform: rotate(360deg);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .friendLink:hover .friendIcon {
+      transform: scale(1.2);
+    }
+  }
+
   .friendIcon {
     height: 1em;
     margin-right: 0.25em;
