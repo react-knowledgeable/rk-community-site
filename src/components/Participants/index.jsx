@@ -11,7 +11,7 @@ const Participants = ({ rawParticipants }) => {
   const participants = new Set();
   rawParticipants.map(({ node: { data: { Github_Username: username } } }) => {
     // dedupe
-    participants.add(username.toLowerCase());
+    participants.add(username ? username.toLowerCase() : 'react-knowledgeable');
   });
 
   return participants.size > 0 ? (
