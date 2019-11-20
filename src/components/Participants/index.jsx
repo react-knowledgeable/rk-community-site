@@ -3,8 +3,8 @@ import Avatar from '../../components/Avatar';
 
 const getAvatarProps = username => ({
   avatarUrl: `https://github.com/${username}.png?size=80`,
-  url: username,
-  login: `https://github.com/${username}`,
+  url: `https://github.com/${username}`,
+  login: username,
 });
 
 const Participants = ({ rawParticipants }) => {
