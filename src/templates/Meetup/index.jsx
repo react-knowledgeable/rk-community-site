@@ -7,6 +7,7 @@ import parseDate from '../../utils/parseDate';
 import Layout from '../../components/Layout';
 import RSVP from '../../components/RSVP';
 import Participants from '../../components/Participants';
+import ExternalLinkIcon from '../../components/ExternalLinkIcon';
 import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
 
@@ -58,6 +59,7 @@ export default ({
         venueLogo,
         venueLink,
         venueAddress,
+        venueAddressLink,
         sponsors,
         talks: talkIssueIds,
         issueLink,
@@ -170,7 +172,20 @@ export default ({
               </a>
             </h3>
           )}
-          {venueAddress && <p>{venueAddress}</p>}
+          {venueAddress && (
+            <p>
+              {venueAddress}
+              {venueAddressLink && (
+                <>
+                  ,{' '}
+                  <a href={venueAddressLink} target="_blank">
+                    Google Map
+                  </a>
+                  <ExternalLinkIcon />
+                </>
+              )}
+            </p>
+          )}
         </section>
         {sponsors &&
           sponsors.length &&
@@ -309,6 +324,7 @@ export const pageQuery = graphql`
         venue
         venueLogo
         venueAddress
+        venueAddressLink
         venueLink
         sponsors {
           sponsor
