@@ -58,6 +58,7 @@ export default ({
         venue,
         venueLogo,
         venueLink,
+        venueAddress,
         sponsors,
         talks: talkIssueIds,
         issueLink,
@@ -197,6 +198,7 @@ export default ({
               </a>
             </h3>
           )}
+          {venueAddress && <p>{venueAddress}</p>}
         </section>
         {sponsors &&
           sponsors.length &&
@@ -345,6 +347,7 @@ export const pageQuery = graphql`
         title
         venue
         venueLogo
+        venueAddress
         venueLink
         sponsors {
           sponsor
