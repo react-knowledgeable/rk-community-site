@@ -5,7 +5,6 @@ import r2r from 'rehype-react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
 import Layout from '../../components/Layout';
-import SubmitTalkButton from '../../components/SubmitTalkButton';
 import RSVP from '../../components/RSVP';
 import Participants from '../../components/Participants';
 import { modes, slideTo } from '../../utils/remote';
@@ -87,7 +86,7 @@ export default ({
   const toggleMode = newMode =>
     newMode === mode ? setMode(modes.article) : setMode(newMode);
   const sections = buildSections(htmlAst.children);
-  const reactUpdatesSectionsHTML = astToHtml({
+  const content = astToHtml({
     type: 'root',
     children: sections,
   });
@@ -141,33 +140,6 @@ export default ({
         </>
       )}
       <aside>
-        <section>
-          <h1>{title}</h1>
-          <p>
-            <i>{parseDate(date)}</i>
-          </p>
-          <RSVP eventId={id} calendarLink={calendarLink} />
-        </section>
-        {mode === modes.article && (
-          <section>
-            <h2>
-              <span role="img" aria-label="link">
-                🔗
-              </span>{' '}
-              links{' '}
-              <span role="img" aria-label="link">
-                🔗
-              </span>
-            </h2>
-            <ul>
-              {issueLink && (
-                <li>
-                  <a href={issueLink}>issue link</a>
-                </li>
-              )}
-            </ul>
-          </section>
-        )}
         <section>
           <h2>
             <span role="img" aria-label="celebration">
@@ -257,30 +229,19 @@ export default ({
             ))}
           </ul>
         </section>
-        <section>
-          <h2>
-            <span role="img" aria-label="glowing star">
-              🌟
-            </span>{' '}
-            Stage opens{' '}
-            <span role="img" aria-label="glowing star">
-              🌟
-            </span>
-          </h2>
-          <SubmitTalkButton className={s.submitTalkMeetup}>
-            {`Reference `}
-            <a href={issueLink}>
-              <code>#{issueLink.split('/issues/')[1]}</code>
-            </a>
-          </SubmitTalkButton>
-        </section>
       </aside>
       <main>
+        <section>
+          <h1>{title}</h1>
+          <p>
+            <i>{parseDate(date)}</i>
+          </p>
+        </section>
         <div className={cx(s.doNotPresent, s.attendees)}>
+          <RSVP eventId={id} calendarLink={calendarLink} />
           <Participants rawParticipants={rawParticipants} />
         </div>
-
-        {reactUpdatesSectionsHTML}
+        {content && content}
         <section>
           <h2>
             <span role="img" aria-label="studio microphone">
