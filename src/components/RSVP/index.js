@@ -84,10 +84,12 @@ export default ({ eventId, calendarLink }) => {
   };
   return (
     <React.Fragment>
-      <a href={getGithubURL()} className={s.link}>
-        <img src={githubLogo} alt="github-logo" width={20} />
-        <b>RSVP with GitHub</b>
-      </a>
+      {!isAuthed && (
+        <a href={getGithubURL()} className={s.link}>
+          <img src={githubLogo} alt="github-logo" width={20} />
+          <b>RSVP with GitHub</b>
+        </a>
+      )}
       {!state.submissionSuccess && (
         <>
           <p className={s.fieldLabel}>- Or -</p>
@@ -176,7 +178,6 @@ function getRSVPStatus(eventId, token) {
       });
     })
     .then(({ data }) => {
-      if (data) return true;
-      return false;
+      return !!data;
     });
 }
