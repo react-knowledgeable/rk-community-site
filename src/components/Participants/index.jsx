@@ -3,15 +3,15 @@ import Avatar from '../../components/Avatar';
 
 const getAvatarProps = username => ({
   avatarUrl: `https://github.com/${username}.png?size=80`,
-  url: username,
-  login: `https://github.com/${username}`,
+  url: `https://github.com/${username}`,
+  login: username,
 });
 
 const Participants = ({ rawParticipants }) => {
   const participants = new Set();
   rawParticipants.map(({ node: { data: { Github_Username: username } } }) => {
     // dedupe
-    participants.add(username.toLowerCase());
+    participants.add(username ? username.toLowerCase() : 'react-knowledgeable');
   });
 
   return participants.size > 0 ? (
