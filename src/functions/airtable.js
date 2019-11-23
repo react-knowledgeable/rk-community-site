@@ -136,7 +136,7 @@ function AirtableService(client) {
         })
         .eachPage((records, fetchNextPage) => {
           records.forEach(function(record) {
-            attendees.push(record.fields);
+            attendees.push({ ...record.fields, id: record.id });
           });
           fetchNextPage();
         });
