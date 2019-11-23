@@ -153,7 +153,7 @@ function getGithubURL() {
 function getRSVPStatus(eventId) {
   const token = localStorage.getItem('RK_auth_token');
   if (!token) {
-    return false;
+    return Promise.resolve(false);
   }
   return axios({
     method: 'GET',
