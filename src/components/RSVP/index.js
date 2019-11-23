@@ -49,9 +49,15 @@ function reducer(state = initialState, action = { type: '' }) {
 }
 
 export default ({ eventId, calendarLink }) => {
+  const [isAuthed, setIsAuthed] = React.useState(false);
+  const [isGoing, setIsGoing] = React.useState(false);
   React.useEffect(() => {
-    getRSVPStatus(eventId).then(isGoing => console.log(isGoing));
+    const token = getToken();
+    if (!token) return setIsAuthed(false);
+    setIsAuthed(true);
+    getRSVPStatus(eventId, token).then(setIsGoing);
   }, []);
+
   const [formVisible, setFormVisible] = React.useState(false);
   const [nameError, setNameError] = React.useState('');
   const [state, dispatch] = React.useReducer(reducer, initialState);
@@ -116,7 +122,7 @@ export default ({ eventId, calendarLink }) => {
           <b>Sign Me Up</b>
         </button>
       </form>
-      {state.submissionSuccess && (
+      {(state.submissionSuccess || isGoing) && (
         <p>
           See you there :) Would you like to{' '}
           <a href={calendarLink} target="_blank">
@@ -150,11 +156,11 @@ function getGithubURL() {
   );
 }
 
-function getRSVPStatus(eventId) {
-  const token = localStorage.getItem('RK_auth_token');
-  if (!token) {
-    return Promise.resolve(false);
-  }
+function getToken() {
+  return localStorage.getItem('RK_auth_token');
+}
+
+function getRSVPStatus(eventId, token) {
   return axios({
     method: 'GET',
     url: 'https://api.github.com/user',
