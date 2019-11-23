@@ -33,6 +33,6 @@ async function _retrieveToken(event, callback) {
   });
   callback(null, {
     statusCode: 200,
-    body: res.access_token,
+    body: JSON.stringify(res.data),
   });
 }

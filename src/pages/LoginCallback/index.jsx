@@ -13,7 +13,7 @@ const LoginCallback = () => {
         Accept: 'application/json',
       },
     }).then(res => {
-      localStorage.setItem('RK_auth_token', res.access_token);
+      localStorage.setItem('RK_auth_token', res.data.access_token);
       navigate('/');
     });
   }, []);
