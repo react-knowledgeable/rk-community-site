@@ -176,7 +176,7 @@ function getRSVPStatus(eventId, token) {
       });
     })
     .then(({ data }) => {
-      if (data.length > 0) return true;
+      if (data) return true;
       return false;
     });
 }
