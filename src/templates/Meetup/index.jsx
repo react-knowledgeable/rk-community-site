@@ -1,12 +1,13 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { graphql } from 'gatsby';
 import r2r from 'rehype-react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import parseDate from '../../utils/parseDate';
-import Avatar from '../../components/Avatar';
 import Layout from '../../components/Layout';
 import SubmitTalkButton from '../../components/SubmitTalkButton';
 import RSVP from '../../components/RSVP';
+import Participants from '../../components/Participants';
 import { modes, slideTo } from '../../utils/remote';
 import s from './s.module.scss';
 
@@ -30,12 +31,6 @@ const buildSections = elements => {
     }, sections);
 };
 
-const getAvatarProps = username => ({
-  avatarUrl: `https://github.com/${username}.png?size=80`,
-  url: username,
-  login: `https://github.com/${username}`
-});
-
 const astToHtml = new r2r({
   createElement: React.createElement,
   Fragment: React.Fragment,
@@ -45,7 +40,7 @@ export default ({
   location,
   pageContext: { id },
   data: {
-    allAirtable,
+    allAirtable: { edges: rawParticipants },
     site: {
       siteMetadata: {
         description,
@@ -66,6 +61,7 @@ export default ({
         sponsors,
         talks: talkIssueIds,
         issueLink,
+        calendarLink,
       },
       htmlAst,
     },
@@ -146,14 +142,22 @@ export default ({
       <aside>
         <section>
           <h1>{title}</h1>
-          <p><i>{parseDate(date)}</i></p>
-        </section>
-        <section>
-          <RSVP eventId={id} />
+          <p>
+            <i>{parseDate(date)}</i>
+          </p>
+          <RSVP eventId={id} calendarLink={calendarLink} />
         </section>
         {mode === modes.article && (
           <section>
-            <h2><span role="img" aria-label="link">🔗</span> links <span role="img" aria-label="link">🔗</span></h2>
+            <h2>
+              <span role="img" aria-label="link">
+                🔗
+              </span>{' '}
+              links{' '}
+              <span role="img" aria-label="link">
+                🔗
+              </span>
+            </h2>
             <ul>
               {issueLink && (
                 <li>
@@ -164,9 +168,22 @@ export default ({
           </section>
         )}
         <section>
-          <h2><span role="img" aria-label="celebration">🎉</span> Venue <span role="img" aria-label="celebration">🎉</span></h2>
+          <h2>
+            <span role="img" aria-label="celebration">
+              🎉
+            </span>{' '}
+            Venue{' '}
+            <span role="img" aria-label="celebration">
+              🎉
+            </span>
+          </h2>
           {venueLogo ? (
-            <a href={venueLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
+            <a
+              href={venueLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={s.venueLink}
+            >
               <img
                 src={venueLogo}
                 alt={venue}
@@ -185,14 +202,35 @@ export default ({
           sponsors.length &&
           sponsors.map(({ sponsor, sponsorLogo, sponsorLink }) => (
             <section>
-              <h2><span role="img" aria-label="confetti">🎊</span> Sponsor <span role="img" aria-label="confetti">🎊</span></h2>
+              <h2>
+                <span role="img" aria-label="confetti">
+                  🎊
+                </span>{' '}
+                Sponsor{' '}
+                <span role="img" aria-label="confetti">
+                  🎊
+                </span>
+              </h2>
               {sponsorLogo ? (
-                <a href={sponsorLink} target="_blank" rel="noopener noreferrer" className={s.venueLink}>
-                  <img src={sponsorLogo} style={{ alignSelf: 'center' }} alt={sponsor} />
+                <a
+                  href={sponsorLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={s.venueLink}
+                >
+                  <img
+                    src={sponsorLogo}
+                    style={{ alignSelf: 'center' }}
+                    alt={sponsor}
+                  />
                 </a>
               ) : (
                 <h3>
-                  <a href={sponsorLink} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={sponsorLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {sponsor}
                   </a>
                 </h3>
@@ -200,7 +238,15 @@ export default ({
             </section>
           ))}
         <section>
-          <h2><span role="img" aria-label="holding hands">👫</span> Friends of RK <span role="img" aria-label="holding hands">👭</span></h2>
+          <h2>
+            <span role="img" aria-label="holding hands">
+              👫
+            </span>{' '}
+            Friends of RK{' '}
+            <span role="img" aria-label="holding hands">
+              👭
+            </span>
+          </h2>
           <ul>
             {footerLinks.map(({ link, name }) => (
               <li key={link}>
@@ -210,7 +256,15 @@ export default ({
           </ul>
         </section>
         <section>
-          <h2><span role="img" aria-label="glowing star">🌟</span> Stage opens <span role="img" aria-label="glowing star">🌟</span></h2>
+          <h2>
+            <span role="img" aria-label="glowing star">
+              🌟
+            </span>{' '}
+            Stage opens{' '}
+            <span role="img" aria-label="glowing star">
+              🌟
+            </span>
+          </h2>
           <SubmitTalkButton className={s.submitTalkMeetup}>
             {`Reference `}
             <a href={issueLink}>
@@ -218,21 +272,23 @@ export default ({
             </a>
           </SubmitTalkButton>
         </section>
-        {allAirtable.totalCount > 0 ? (
-          <section>
-            <h2><span role="img" aria-label="busts in silhouette">👥</span> Attendees <span role="img" aria-label="busts in silhouetee">👥</span></h2>
-            <p>{allAirtable.totalCount} attendees</p>
-            {/* @TODO: Put this back when we have added the ability for people to hide their profile */}
-            {/*allAirtable.edges.map(({ node: { data: { Github_Username: username } } }) => (
-              <Avatar key={username} {...getAvatarProps(username)} />
-            ))*/}
-          </section>
-          ) : null}
       </aside>
       <main>
+        <div className={cx(s.doNotPresent, s.attendees)}>
+          <Participants rawParticipants={rawParticipants} />
+        </div>
+
         {reactUpdatesSectionsHTML}
         <section>
-          <h2><span role="img" aria-label="studio microphone">🎙</span> Talk Line-up <span role="img" aria-label="studio microphone">🎙</span></h2>
+          <h2>
+            <span role="img" aria-label="studio microphone">
+              🎙
+            </span>{' '}
+            Talk Line-up{' '}
+            <span role="img" aria-label="studio microphone">
+              🎙
+            </span>
+          </h2>
           <ul>
             {talkIssueIds &&
               talkIssueIds.length &&
@@ -298,6 +354,7 @@ export const pageQuery = graphql`
         talks
         date
         issueLink
+        calendarLink
       }
       html
       htmlAst

@@ -2,6 +2,7 @@
   @media (min-width: 1145px) {
     display: grid;
     grid-template-columns: auto minmax(20em, 30%);
+    grid-template-rows: min-content min-content 1fr auto;
     main {
       grid-column: 1;
       grid-row: 2 / span 2;

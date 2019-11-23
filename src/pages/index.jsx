@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { Link, graphql } from 'gatsby';
-import Layout from '../components/Layout';
-import Talk from '../components/Talk';
-import Card from '../components/Card';
-import RSVP from '../components/RSVP';
-import parseDate from '../utils/parseDate';
-import s from './s.module.scss';
+import * as React from 'react'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import Talk from '../components/Talk'
+import Card from '../components/Card'
+import RSVP from '../components/RSVP'
+import parseDate from '../utils/parseDate'
+import s from './s.module.scss'
 
 const parseBodyText = body => {
   return body.match('<!-- intro starts -->')
     ? body.split('<!-- intro starts -->')[1].split('<!-- intro ends -->')[0]
-    : '';
-};
+    : ''
+}
 
 export default ({
   data: {
@@ -28,11 +28,11 @@ export default ({
     },
   },
 }) => {
-  const nextMeetup = getNextMeetup(meetups);
+  const nextMeetup = getNextMeetup(meetups)
   const {
     fields: { slug: nextMeetupSlug } = {},
     frontmatter: { title: meetupTitle, venue, date },
-  } = nextMeetup || { frontmatter: {} };
+  } = nextMeetup || { frontmatter: {} }
   return (
     <Layout
       {...{
@@ -60,8 +60,8 @@ export default ({
                 nextMeetup.frontmatter.talks.map(talkNumber => {
                   const talkData = talks.find(
                     ({ number }) => number === talkNumber
-                  );
-                  return <Talk {...talkData} key={talkData.number} />;
+                  )
+                  return <Talk {...talkData} key={talkData.number} />
                 })}
             </Card>
             {nextMeetup && (
@@ -73,7 +73,10 @@ export default ({
                   {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
                 </p>
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
-                <RSVP eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, '')} />
+                <RSVP
+                  eventId={nextMeetup.fields.slug.replace(/[^\d]+/g, '')}
+                  calendarLink={nextMeetup.frontmatter.calendarLink}
+                />
               </Card>
             )}
           </React.Fragment>
@@ -147,8 +150,8 @@ export default ({
         </Card>
       </aside>
     </Layout>
-  );
-};
+  )
+}
 
 export const pageQuery = graphql`
   query HomePageQuery {
@@ -171,8 +174,8 @@ export const pageQuery = graphql`
           venue
           date
           talks
-          issueLink
           title
+          calendarLink
         }
         fields {
           slug
@@ -234,13 +237,13 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
 
 // meetups must be sorted by date
 function getNextMeetup(meetups) {
-  const now = new Date();
+  const now = new Date()
   return meetups.find(({ frontmatter: { date } }) => {
-    const eventDate = new Date(date);
-    return eventDate.setDate(eventDate.getDate() + 1) >= now;
-  });
+    const eventDate = new Date(date)
+    return eventDate.setDate(eventDate.getDate() + 1) >= now
+  })
 }

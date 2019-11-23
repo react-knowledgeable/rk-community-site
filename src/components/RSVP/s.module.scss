@@ -2,6 +2,9 @@
   visibility: hidden;
   height: 0;
 }
+.form {
+  margin-top: 1em;
+}
 
 .btn {
   background: rgba(255, 255, 255, 0.75);
@@ -12,6 +15,7 @@
   border-radius: var(--round-corner);
   padding: 0.25em 0.5em;
   box-shadow: #222 2px 2px 0 0;
+  cursor: pointer;
   &:disabled {
     opacity: 0.4;
   }
@@ -29,6 +33,12 @@
 .fieldLabel {
   display: block;
   margin: 0em;
+}
+
+.fieldCaption {
+  color: #777;
+  font-size: .75em;
+  margin-bottom: .5em;
 }
 
 .fieldError {

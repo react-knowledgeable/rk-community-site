@@ -48,7 +48,7 @@ function reducer(state = initialState, action = { type: '' }) {
   }
 }
 
-export default ({ eventId }) => {
+export default ({ eventId, calendarLink }) => {
   const [formVisible, setFormVisible] = React.useState(false);
   const [nameError, setNameError] = React.useState('');
   const [state, dispatch] = React.useReducer(reducer, initialState);
@@ -80,10 +80,7 @@ export default ({ eventId }) => {
           <b>RSVP</b>
         </button>
       )}
-      <form
-        className={formVisible ? undefined : s.hidden}
-        onSubmit={handleSubmit}
-      >
+      <form className={formVisible ? s.form : s.hidden} onSubmit={handleSubmit}>
         <label className={s.formField}>
           <span className={s.fieldLabel}>Name *</span>
           <input
@@ -96,7 +93,11 @@ export default ({ eventId }) => {
           {nameError && <span className={s.fieldError}>{nameError}</span>}
         </label>
         <label className={s.formField}>
-          <span className={s.fieldLabel}>Github Username (optional)</span>
+          <span className={s.fieldLabel}>GitHub Username * </span>
+          <p className={s.fieldCaption}>
+            if you prefer to hide your attendance, please put our GitHub
+            username "react-knowledgeable"
+          </p>
           <input
             name="username"
             value={state.username}
@@ -113,7 +114,15 @@ export default ({ eventId }) => {
           <b>Sign Me Up</b>
         </button>
       </form>
-      {state.submissionSuccess && <p>See you there :)</p>}
+      {state.submissionSuccess && (
+        <p>
+          See you there :) Would you like to{' '}
+          <a href={calendarLink} target="_blank">
+            add this to your calendar
+          </a>
+          ?
+        </p>
+      )}
     </React.Fragment>
   );
 };
