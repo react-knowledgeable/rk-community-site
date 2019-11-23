@@ -1,20 +1,20 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const handler = async (event, _, callback) => {
   try {
-    _retrieveToken(event, callback)
+    _retrieveToken(event, callback);
   } catch (e) {
     callback(Error(e), {
       status: 500,
       body: 'Server Error',
-    })
+    });
   }
-}
+};
 
 function _retrieveToken(event, callback) {
-  const { code, state } = event.queryStringParameters
+  const { code, state } = event.queryStringParameters;
   if (!code || !state) {
-    throw new Error('Missing parameters')
+    throw new Error('Missing parameters');
   }
   axios({
     method: 'post',
@@ -36,6 +36,6 @@ function _retrieveToken(event, callback) {
       callback(null, {
         status: 200,
         body: JSON.stringify(res),
-      })
-    })
+      });
+    });
 }

@@ -1,8 +1,8 @@
-import React from 'react'
-import axios from 'axios'
-import qs from 'query-string'
-import s from './s.module.scss'
-import githubLogo from './GitHub-Mark-Light-64px.png'
+import React from 'react';
+import axios from 'axios';
+import qs from 'query-string';
+import s from './s.module.scss';
+import githubLogo from './GitHub-Mark-Light-64px.png';
 
 const initialState = {
   name: '',
@@ -10,7 +10,7 @@ const initialState = {
   submissionError: '',
   submitting: false,
   submissionSuccess: false,
-}
+};
 function reducer(state = initialState, action = { type: '' }) {
   switch (action.type) {
     case 'input':
@@ -19,21 +19,21 @@ function reducer(state = initialState, action = { type: '' }) {
         [action.payload.name]: action.payload.value,
         submission_error: '',
         submissionSuccess: false,
-      }
+      };
     case 'submit':
       return {
         ...state,
         submissionError: '',
         submissionSuccess: false,
         submitting: true,
-      }
+      };
     case 'submission_error':
       return {
         ...state,
         submissionError: action.payload.error,
         submissionSuccess: false,
         submitting: false,
-      }
+      };
     case 'submission_success':
       return {
         ...state,
@@ -42,29 +42,29 @@ function reducer(state = initialState, action = { type: '' }) {
         submissionSuccess: true,
         submissionError: '',
         submitting: false,
-      }
+      };
     default:
-      return state
+      return state;
   }
 }
 
 export default ({ eventId, calendarLink }) => {
   React.useEffect(() => {
-    getRSVPStatus(eventId).then(isGoing => console.log(isGoing))
-  }, [])
-  const [formVisible, setFormVisible] = React.useState(false)
-  const [nameError, setNameError] = React.useState('')
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+    getRSVPStatus(eventId).then(isGoing => console.log(isGoing));
+  }, []);
+  const [formVisible, setFormVisible] = React.useState(false);
+  const [nameError, setNameError] = React.useState('');
+  const [state, dispatch] = React.useReducer(reducer, initialState);
   const handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     if (!state.name) {
-      return setNameError('Required')
+      return setNameError('Required');
     } else {
-      dispatch({ type: 'submit' })
+      dispatch({ type: 'submit' });
       insertAttendee({ name: state.name, username: state.username, eventId })
         .then(() => {
-          dispatch({ type: 'submission_success' })
-          setFormVisible(false)
+          dispatch({ type: 'submission_success' });
+          setFormVisible(false);
         })
         .catch(() => {
           dispatch({
@@ -72,10 +72,10 @@ export default ({ eventId, calendarLink }) => {
             payload: {
               error: "Oops, we couldn't register you, please try again.",
             },
-          })
-        })
+          });
+        });
     }
-  }
+  };
   return (
     <React.Fragment>
       <a href={getGithubURL()} className={s.link}>
@@ -103,7 +103,7 @@ export default ({ eventId, calendarLink }) => {
             name="name"
             value={state.name}
             onChange={({ target: { name, value } }) => {
-              dispatch({ type: 'input', payload: { name, value } })
+              dispatch({ type: 'input', payload: { name, value } });
             }}
           />
           {nameError && <span className={s.fieldError}>{nameError}</span>}
@@ -126,19 +126,19 @@ export default ({ eventId, calendarLink }) => {
         </p>
       )}
     </React.Fragment>
-  )
-}
+  );
+};
 
 function insertAttendee({ eventId, username, name }) {
   return axios.post(`/.netlify/functions/airtable`, {
     name,
     username,
     eventId,
-  })
+  });
 }
 
 function getGithubURL() {
-  const base = process.env.DEPLOY_PRIME_URL || 'http://localhost:8000'
+  const base = process.env.DEPLOY_PRIME_URL || 'http://localhost:8000';
   return (
     'https://github.com/login/oauth/authorize?' +
     qs.stringify({
@@ -147,13 +147,13 @@ function getGithubURL() {
       redirect_uri: `${base}/LoginCallback`,
       scope: 'read:user',
     })
-  )
+  );
 }
 
 function getRSVPStatus(eventId) {
-  const token = localStorage.getItem('RK_auth_token')
+  const token = localStorage.getItem('RK_auth_token');
   if (!token) {
-    return false
+    return false;
   }
   return axios({
     method: 'GET',
@@ -167,10 +167,10 @@ function getRSVPStatus(eventId) {
       return axios({
         method: 'get',
         url: `/.netlify/functions/airtable?eventId=${eventId}&username=${login}`,
-      })
+      });
     })
     .then(res => {
-      if (res.length > 0) return true
-      return false
-    })
+      if (res.length > 0) return true;
+      return false;
+    });
 }
