@@ -30,12 +30,10 @@ function _retrieveToken(event, callback) {
       client_secret: '__RK_RSVP_CLIENT_SECRET__',
       state,
     },
-  })
-    .then(res => res.json())
-    .then(res => {
-      callback(null, {
-        status: 200,
-        body: JSON.stringify(res),
-      });
+  }).then(res => {
+    callback(null, {
+      status: 200,
+      body: JSON.stringify(res),
     });
+  });
 }
