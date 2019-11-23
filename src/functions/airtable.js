@@ -32,9 +32,16 @@ export const handler = async (event, _, callback) => {
 async function retrieveAttendees(Client, event, callback) {
   let attendees = []
   let selectOpts = {}
-  const { eventId } = event.queryStringParameters
+  let filterConfig = []
+  const { eventId, username } = event.queryStringParameters
   if (eventId) {
-    selectOpts = { filterByFormula: `SEARCH("${eventId}",{Event ID})` }
+    filterConfig.push(`SEARCH("${eventId}",{Event ID})`)
+  }
+  if (username) {
+    filterConfig.push(`SEARCH("${username}",{Github Username})`)
+  }
+  if (filterConfig.length > 0) {
+    selectOpts = `AND(${filterConfig.join(',')})`
   }
   await Client('Attendees')
     .select(selectOpts)

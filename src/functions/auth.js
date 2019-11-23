@@ -12,8 +12,8 @@ export const handler = async (event, _, callback) => {
 }
 
 function _retrieveToken(event, callback) {
-  const { code, state, redirect_uri } = event.queryStringParameters
-  if (!code || !state || !redirect_uri) {
+  const { code, state } = event.queryStringParameters
+  if (!code || !state) {
     throw new Error('Missing parameters')
   }
   axios({
@@ -29,7 +29,6 @@ function _retrieveToken(event, callback) {
       client_id: '__RK_RSVP_CLIENT_ID__',
       client_secret: '__RK_RSVP_CLIENT_SECRET__',
       state,
-      redirect_uri,
     },
   })
     .then(res => res.json())
