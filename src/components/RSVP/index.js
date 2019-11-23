@@ -163,7 +163,7 @@ function getRSVPStatus(eventId) {
       Authorization: `token ${token}`,
     },
   })
-    .then(({ login }) => {
+    .then(({ data: { login } }) => {
       return axios({
         method: 'get',
         url: `/.netlify/functions/airtable?eventId=${eventId}&username=${login}`,
