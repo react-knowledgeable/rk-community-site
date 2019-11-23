@@ -1,8 +1,9 @@
 import axios from 'axios';
+import qs from 'query-string';
 
 export const handler = async (event, _, callback) => {
   try {
-    _retrieveToken(event, callback);
+    await _retrieveToken(event, callback);
   } catch (e) {
     callback(Error(e), {
       status: 500,
@@ -11,24 +12,23 @@ export const handler = async (event, _, callback) => {
   }
 };
 
-function _retrieveToken(event, callback) {
+async function _retrieveToken(event, callback) {
   const { code, state } = event.queryStringParameters;
   if (!code || !state) {
     throw new Error('Missing parameters');
   }
-  axios({
+  const parameters = qs.stringify({
+    code,
+    client_id: '__RK_RSVP_CLIENT_ID__',
+    client_secret: '__RK_RSVP_CLIENT_SECRET__',
+    state,
+  });
+  return axios({
     method: 'post',
-    url: 'https://github.com/login/oauth/access_token',
+    url: `https://github.com/login/oauth/access_token?${parameters}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-    data: {
-      code,
-      client_id: '__RK_RSVP_CLIENT_ID__',
-      client_secret: '__RK_RSVP_CLIENT_SECRET__',
-      state,
     },
   }).then(res => {
     callback(null, {
