@@ -6,7 +6,7 @@ export const handler = async (event, _, callback) => {
     await _retrieveToken(event, callback);
   } catch (e) {
     callback(e, {
-      status: 500,
+      statusCode: 500,
       body: 'Server Error',
     });
   }
@@ -31,11 +31,10 @@ async function _retrieveToken(event, callback) {
       Accept: 'application/json',
     },
   });
-  const body = JSON.stringify({
-    access_token: res.access_token,
-  });
   callback(null, {
-    status: 200,
-    body,
+    statusCode: 200,
+    body: JSON.stringify({
+      access_token: res.access_token,
+    }),
   });
 }
