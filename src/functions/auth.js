@@ -33,7 +33,7 @@ async function _retrieveToken(event, callback) {
   }).then(res => {
     callback(null, {
       status: 200,
-      body: JSON.stringify(res),
+      body: res,
     });
   });
 }
