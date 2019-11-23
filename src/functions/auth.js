@@ -23,20 +23,19 @@ async function _retrieveToken(event, callback) {
     client_secret: '__RK_RSVP_CLIENT_SECRET__',
     state,
   });
-  return axios({
+  const res = await axios({
     method: 'post',
     url: `https://github.com/login/oauth/access_token?${parameters}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-  }).then(res => {
-    const body = JSON.stringify({
-      access_token: res.access_token,
-    });
-    callback(null, {
-      status: 200,
-      body,
-    });
+  });
+  const body = JSON.stringify({
+    access_token: res.access_token,
+  });
+  callback(null, {
+    status: 200,
+    body,
   });
 }
