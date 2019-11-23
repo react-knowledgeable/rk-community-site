@@ -139,6 +139,7 @@ function insertAttendee({ eventId, username, name }) {
 
 function getGithubURL() {
   const base = process.env.DEPLOY_PRIME_URL || 'http://localhost:8000';
+  console.log(base);
   return (
     'https://github.com/login/oauth/authorize?' +
     qs.stringify({

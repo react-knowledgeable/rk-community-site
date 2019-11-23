@@ -7,7 +7,6 @@ const LoginCallback = () => {
   React.useEffect(() => {
     const { code, state } = qs.parse(window.location.search);
     axios(`/.netlify/functions/auth?code=${code}&state=${state}`).then(res => {
-      console.log(res);
       localStorage.setItem('RK_auth_token', res.access_token);
       navigate('/');
     });
