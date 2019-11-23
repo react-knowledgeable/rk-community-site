@@ -138,12 +138,13 @@ function insertAttendee({ eventId, username, name }) {
 }
 
 function getGithubURL() {
+  const base = process.env.DEPLOY_PRIME_URL || 'http://localhost:8000'
   return (
     'https://github.com/login/oauth/authorize?' +
     qs.stringify({
       client_id: 'e3a62ea68aca5801ec9b',
       state: 'home',
-      redirect_uri: 'http://localhost:8000/LoginCallback',
+      redirect_uri: `${base}/LoginCallback`,
       scope: 'read:user',
     })
   )
