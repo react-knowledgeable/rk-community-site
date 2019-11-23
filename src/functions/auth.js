@@ -31,9 +31,9 @@ async function _retrieveToken(event, callback) {
       Accept: 'application/json',
     },
   }).then(res => {
-    const body = {
+    const body = JSON.stringify({
       access_token: res.access_token,
-    };
+    });
     callback(null, {
       status: 200,
       body,
