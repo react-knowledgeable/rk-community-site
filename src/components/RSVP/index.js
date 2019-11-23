@@ -169,8 +169,8 @@ function getRSVPStatus(eventId) {
         url: `/.netlify/functions/airtable?eventId=${eventId}&username=${login}`,
       });
     })
-    .then(res => {
-      if (res.length > 0) return true;
+    .then(({ data }) => {
+      if (data.length > 0) return true;
       return false;
     });
 }
