@@ -5,7 +5,7 @@ export const handler = async (event, _, callback) => {
   try {
     await _retrieveToken(event, callback);
   } catch (e) {
-    callback(Error(e), {
+    callback(e, {
       status: 500,
       body: 'Server Error',
     });
@@ -33,7 +33,7 @@ async function _retrieveToken(event, callback) {
   }).then(res => {
     callback(null, {
       status: 200,
-      body: res,
+      body: res.toString(),
     });
   });
 }
