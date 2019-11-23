@@ -38,9 +38,9 @@ async function retrieveAttendees(Client, event, callback) {
   let attendees;
   const { eventId, username } = event.queryStringParameters;
   if (eventId && username) {
-    attendees = Client.getSingleAttendee({ eventId, username });
+    attendees = await Client.getSingleAttendee({ eventId, username });
   } else if (eventId) {
-    attendees = Client.listAttendees({ eventId });
+    attendees = await Client.listAttendees({ eventId });
   } else {
     throw new Error('Missing parameters');
   }
