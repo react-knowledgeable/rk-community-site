@@ -139,7 +139,6 @@ function insertAttendee({ eventId, username, name }) {
 
 function getGithubURL() {
   const base = process.env.GATSBY_URL || 'http://localhost:8000';
-  console.log(base);
   return (
     'https://github.com/login/oauth/authorize?' +
     qs.stringify({
