@@ -62,7 +62,7 @@ async function insertAttendee(Client, event, callback) {
     url: 'https://api.github.com/user',
     headers: {
       Accept: 'application/vnd.github.v3+json',
-      Authorization: event.headers.Authorization,
+      Authorization: event.headers.authorization,
     },
   });
   const {
@@ -93,7 +93,7 @@ async function removeAttendee(Client, event, callback) {
     url: 'https://api.github.com/user',
     headers: {
       Accept: 'application/vnd.github.v3+json',
-      Authorization: event.headers.Authorization,
+      Authorization: event.headers.authorization,
     },
   });
   const {
