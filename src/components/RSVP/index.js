@@ -11,7 +11,7 @@ export default ({ eventId, calendarLink }) => {
     const token = getToken();
     if (!token) {
       dispatch({
-        type: 'AUTH_STATUS',
+        type: 'RECEIVE_AUTH',
         payload: {
           authStatus: false,
         },
@@ -19,7 +19,7 @@ export default ({ eventId, calendarLink }) => {
       return;
     }
     dispatch({
-      type: 'AUTH_STATUS',
+      type: 'RECEIVE_AUTH',
       payload: {
         authStatus: true,
       },
