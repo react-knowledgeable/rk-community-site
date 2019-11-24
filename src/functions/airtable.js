@@ -73,7 +73,7 @@ async function insertAttendee(Client, event, callback) {
   if (userExists) {
     return callback(null, {
       statusCode: 409,
-      body: 'User already exists',
+      body: JSON.stringify(userExists),
     });
   }
   await Client.insertAttendee({ eventId, name, login });
