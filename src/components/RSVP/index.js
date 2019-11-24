@@ -89,7 +89,7 @@ function insertAttendee({ eventId }) {
       eventId,
     },
     headers: {
-      Authorization: getToken(),
+      Authorization: `token ${getToken()}`,
     },
   });
 }
@@ -102,7 +102,7 @@ function removeAttendee({ eventId }) {
       eventId,
     },
     headers: {
-      Authorization: getToken(),
+      Authorization: `token ${getToken()}`,
     },
   });
 }
