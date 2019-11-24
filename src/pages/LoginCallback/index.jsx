@@ -5,7 +5,7 @@ import { navigate } from '@reach/router';
 
 const LoginCallback = () => {
   React.useEffect(() => {
-    const { code, state } = qs.parse(window.location.search);
+    const { code, state, from } = qs.parse(window.location.search);
     axios({
       method: 'get',
       url: `/.netlify/functions/auth?code=${code}&state=${state}`,
@@ -14,7 +14,7 @@ const LoginCallback = () => {
       },
     }).then(res => {
       localStorage.setItem('RK_auth_token', res.data.access_token);
-      navigate('/');
+      navigate(from || '/');
     });
   }, []);
   return <div>logging in...</div>;

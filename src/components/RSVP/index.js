@@ -109,12 +109,13 @@ function removeAttendee({ eventId }) {
 
 function getGithubURL() {
   const base = process.env.GATSBY_URL || 'http://localhost:8000';
+  const from = typeof window !== 'undefined' ? window.location.pathname : '/';
   return (
     'https://github.com/login/oauth/authorize?' +
     qs.stringify({
       client_id: 'e3a62ea68aca5801ec9b',
       state: 'home',
-      redirect_uri: `${base}/LoginCallback`,
+      redirect_uri: `${base}/LoginCallback?from=${from}`,
       scope: 'read:user',
     })
   );
