@@ -4,144 +4,106 @@ import qs from 'query-string';
 import s from './s.module.scss';
 import githubLogo from './GitHub-Mark-Light-64px.png';
 
-const initialState = {
-  name: '',
-  username: '',
-  submissionError: '',
-  submitting: false,
-  submissionSuccess: false,
-};
-function reducer(state = initialState, action = { type: '' }) {
-  switch (action.type) {
-    case 'input':
-      return {
-        ...state,
-        [action.payload.name]: action.payload.value,
-        submission_error: '',
-        submissionSuccess: false,
-      };
-    case 'submit':
-      return {
-        ...state,
-        submissionError: '',
-        submissionSuccess: false,
-        submitting: true,
-      };
-    case 'submission_error':
-      return {
-        ...state,
-        submissionError: action.payload.error,
-        submissionSuccess: false,
-        submitting: false,
-      };
-    case 'submission_success':
-      return {
-        ...state,
-        name: '',
-        username: '',
-        submissionSuccess: true,
-        submissionError: '',
-        submitting: false,
-      };
-    default:
-      return state;
-  }
-}
-
 export default ({ eventId, calendarLink }) => {
-  const [isAuthed, setIsAuthed] = React.useState(false);
-  const [isGoing, setIsGoing] = React.useState(false);
+  const [state, dispatch] = React.useReducer(reducer, initialState);
   React.useEffect(() => {
+    dispatch({ type: 'REQUEST_STATUS' });
     const token = getToken();
-    if (!token) return setIsAuthed(false);
-    setIsAuthed(true);
-    getRSVPStatus(eventId, token).then(setIsGoing);
+    if (!token) {
+      dispatch({
+        type: 'AUTH_STATUS',
+        payload: {
+          authStatus: false,
+        },
+      });
+      return;
+    }
+    dispatch({
+      type: 'AUTH_STATUS',
+      payload: {
+        authStatus: true,
+      },
+    });
+    getRSVPStatus(eventId, token).then(isGoing => {
+      dispatch({ type: 'RECEIVE_RSVP', payload: { rsvpStatus: isGoing } });
+    });
   }, []);
 
-  const [formVisible, setFormVisible] = React.useState(false);
-  const [nameError, setNameError] = React.useState('');
-  const [state, dispatch] = React.useReducer(reducer, initialState);
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!state.name) {
-      return setNameError('Required');
-    } else {
-      dispatch({ type: 'submit' });
-      insertAttendee({ name: state.name, username: state.username, eventId })
-        .then(() => {
-          dispatch({ type: 'submission_success' });
-          setFormVisible(false);
-        })
-        .catch(() => {
-          dispatch({
-            type: 'submission_error',
-            payload: {
-              error: "Oops, we couldn't register you, please try again.",
-            },
-          });
-        });
+  async function sendRSVP(isGoing) {
+    try {
+      dispatch({ type: 'SEND_RSVP', payload: { rsvpStatus: isGoing } });
+      if (isGoing) {
+        await insertAttendee({ eventId });
+      } else {
+        await removeAttendee({ eventId });
+      }
+      dispatch({ type: 'RECEIVE_RSVP', payload: { rsvpStatus: isGoing } });
+    } catch (e) {
+      // ??
     }
-  };
-  return (
-    <React.Fragment>
-      {!isAuthed && (
-        <a href={getGithubURL()} className={s.link}>
-          <img src={githubLogo} alt="github-logo" width={20} />
-          <b>RSVP with GitHub</b>
-        </a>
-      )}
-      {!state.submissionSuccess && (
-        <>
-          <p className={s.fieldLabel}>- Or -</p>
-          <button
-            className={s.btn}
-            onClick={() => setFormVisible(!formVisible)}
-          >
-            <b>RSVP</b>
+  }
+
+  return taggedSum(
+    state,
+    {
+      isWorking: () => <p>Hard at work...</p>,
+      isGoing: () => (
+        <React.Fragment>
+          <p>
+            See you there :) Would you like to{' '}
+            <a href={calendarLink} target="_blank">
+              add this to your calendar
+            </a>
+            ?
+          </p>
+          <button onClick={() => sendRSVP(false)} className={s.link}>
+            Cannot go anymore :(
+          </button>
+        </React.Fragment>
+      ),
+      isAuthed: () => (
+        <React.Fragment>
+          <button onClick={() => sendRSVP(true)} className={s.link}>
+            Click here to sign up
           </button>
           <p className={s.fieldCaption}>
-            If you don't RSVP via GitHub, you won't be able to change your RSVP!
+            We will record your attendance using your Github details
           </p>
-        </>
-      )}
-      <form className={formVisible ? s.form : s.hidden} onSubmit={handleSubmit}>
-        <label className={s.formField}>
-          <span className={s.fieldLabel}>Name *</span>
-          <input
-            name="name"
-            value={state.name}
-            onChange={({ target: { name, value } }) => {
-              dispatch({ type: 'input', payload: { name, value } });
-            }}
-          />
-          {nameError && <span className={s.fieldError}>{nameError}</span>}
-        </label>
-        {state.submissionError && (
-          <p className={s.submissionError}>{state.submissionError}</p>
-        )}
-        {/* Ask if they want their name to be shown? */}
-        <button className={s.btn} disabled={state.submitting}>
-          <b>Sign Me Up</b>
-        </button>
-      </form>
-      {(state.submissionSuccess || isGoing) && (
-        <p>
-          See you there :) Would you like to{' '}
-          <a href={calendarLink} target="_blank">
-            add this to your calendar
-          </a>
-          ?
-        </p>
-      )}
-    </React.Fragment>
+        </React.Fragment>
+      ),
+    },
+    () => (
+      <a href={getGithubURL()} className={s.link}>
+        <img src={githubLogo} alt="github-logo" width={20} />
+        <b>Login to RSVP</b>
+      </a>
+    )
   );
 };
 
-function insertAttendee({ eventId, username, name }) {
-  return axios.post(`/.netlify/functions/airtable`, {
-    name,
-    username,
-    eventId,
+function insertAttendee({ eventId }) {
+  return axios({
+    method: 'post',
+    url: `/.netlify/functions/airtable`,
+    data: {
+      eventId,
+    },
+    headers: {
+      Authorization: getToken(),
+    },
+  });
+}
+
+function removeAttendee({ eventId }) {
+  return axios({
+    method: 'delete',
+    url: `/.netlify/functions/airtable`,
+    data: {
+      eventId,
+    },
+    headers: {
+      Authorization: getToken(),
+    },
   });
 }
 
@@ -180,4 +142,50 @@ function getRSVPStatus(eventId, token) {
     .then(({ data }) => {
       return !!data;
     });
+}
+
+function taggedSum(state, pattern, def) {
+  if (state.isWorking) return pattern.isWorking();
+  if (state.isGoing) return pattern.isGoing();
+  if (state.isAuthed) return pattern.isAuthed();
+  return def();
+}
+
+const initialState = {
+  isWorking: false,
+  isAuthed: false,
+  isGoing: false,
+};
+
+function reducer(state = initialState, action = { type: '' }) {
+  switch (action.type) {
+    case 'REQUEST_STATUS':
+      return {
+        ...state,
+        isWorking: true,
+      };
+    case 'RECEIVE_AUTH':
+      return {
+        ...state,
+        isWorking: false,
+        isAuthed: action.payload.authStatus,
+        // if not authed, clear out any stale rsvp status
+        isGoing: action.payload.authStatus === false ? false : state.isGoing,
+      };
+    case 'RECEIVE_RSVP':
+      return {
+        ...state,
+        isWorking: false,
+        isAuthed: true,
+        isGoing: action.payload.rsvpStatus,
+      };
+    case 'SEND_RSVP':
+      return {
+        ...state,
+        isWorking: true,
+        isGoing: action.payload.rsvpStatus,
+      };
+    default:
+      return state;
+  }
 }
