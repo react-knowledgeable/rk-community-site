@@ -69,11 +69,14 @@ async function insertAttendee(Client, event, callback) {
     data: { login, name },
   } = userDetails;
   const { eventId } = JSON.parse(event.body);
-  const userExists = Client.getSingleAttendee({ eventId, username: login });
-  if (userExists) {
+  const userRecord = await Client.getSingleAttendee({
+    eventId,
+    username: login,
+  });
+  if (userRecord && userRecord.id) {
     return callback(null, {
       statusCode: 409,
-      body: JSON.stringify(userExists),
+      body: userRecord.id,
     });
   }
   await Client.insertAttendee({ eventId, name, login });
