@@ -84,7 +84,7 @@ async function insertAttendee(Client, event, callback) {
 }
 
 async function removeAttendee(Client, event, callback) {
-  const { eventId } = event.queryStringParameters;
+  const { eventId } = JSON.parse(event.body);
   if (!eventId) {
     throw new Error('Missing Parameters: eventId');
   }
