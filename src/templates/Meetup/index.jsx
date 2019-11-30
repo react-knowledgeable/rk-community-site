@@ -249,12 +249,14 @@ export default ({
         <section>
           <h1>{title}</h1>
           <p>
-            <i>{parseDate(date)}</i>
+            <i>{parseDate(date)}, 7:30pm</i>
           </p>
         </section>
         <div className={cx(s.doNotPresent, s.attendees)}>
-          <RSVP eventId={id} calendarLink={calendarLink} />
           <Participants rawParticipants={rawParticipants} />
+        </div>
+        <div className={s.doNotPresent}>
+          <RSVP eventId={id} calendarLink={calendarLink} />
         </div>
         {content && content}
         <section>
