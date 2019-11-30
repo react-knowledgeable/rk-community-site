@@ -13,6 +13,13 @@ const Participants = ({ rawParticipants }) => {
     // dedupe
     participants.add(username ? username.toLowerCase() : 'react-knowledgeable');
   });
+  const numberOfSecretParticipants = rawParticipants.filter(
+    ({
+      node: {
+        data: { Github_Username: username },
+      },
+    }) => !username || username === 'react-knowledgeable'
+  ).length;
 
   return participants.size > 0 ? (
     <>
@@ -25,11 +32,19 @@ const Participants = ({ rawParticipants }) => {
           👥
         </span>
       </h2>
-      {participants.size > 1 ? (
-        <p>{participants.size} amazing RK kids are going</p>
-      ) : (
-        <p>an amazing RK kid is going</p>
-      )}
+      <p>
+        {participants.size > 1 ? (
+          <span>{participants.size} amazing RK kids are going</span>
+        ) : (
+          <span>an amazing RK kid is going</span>
+        )}
+        {participants.size && numberOfSecretParticipants > 0 && (
+          <span>
+            , {numberOfSecretParticipants} more are going but prefer not to let
+            us know.
+          </span>
+        )}
+      </p>
       {/* @TODO: Put this back when we have added the ability for people to hide their profile */
       Array.from(participants).map(username => {
         return <Avatar key={username} {...getAvatarProps(username)} />;
