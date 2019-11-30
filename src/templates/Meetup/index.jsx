@@ -253,8 +253,10 @@ export default ({
           </p>
         </section>
         <div className={cx(s.doNotPresent, s.attendees)}>
-          <RSVP eventId={id} calendarLink={calendarLink} />
           <Participants rawParticipants={rawParticipants} />
+        </div>
+        <div className={s.doNotPresent}>
+          <RSVP eventId={id} calendarLink={calendarLink} />
         </div>
         {content && content}
         <section>
