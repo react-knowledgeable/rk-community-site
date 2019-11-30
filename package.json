@@ -40,7 +40,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "build": "yarn run functions && gatsby build",
+    "build": "yarn run functions && GATSBY_URL=$DEPLOY_PRIME_URL gatsby build",
     "functions": "cd src/functions && yarn run build"
   },
   "resolutions": {
