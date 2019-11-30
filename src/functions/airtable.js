@@ -76,7 +76,7 @@ async function insertAttendee(Client, event, callback) {
   if (userRecord && userRecord.id) {
     return callback(null, {
       statusCode: 409,
-      body: userRecord.id,
+      body: `You are already signed up!`,
     });
   }
   await Client.insertAttendee({ eventId, name, login });

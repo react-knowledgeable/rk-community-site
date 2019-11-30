@@ -6,6 +6,7 @@ import githubLogo from './GitHub-Mark-Light-64px.png';
 
 export default ({ eventId, calendarLink }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
+  const handleError = makeHandleError(dispatch);
   React.useEffect(() => {
     dispatch({ type: 'REQUEST_STATUS' });
     const token = getToken();
@@ -24,9 +25,13 @@ export default ({ eventId, calendarLink }) => {
         authStatus: true,
       },
     });
-    getRSVPStatus(eventId, token).then(isGoing => {
-      dispatch({ type: 'RECEIVE_RSVP', payload: { rsvpStatus: isGoing } });
-    });
+    getRSVPStatus(eventId, token)
+      .then(isGoing => {
+        dispatch({ type: 'RECEIVE_RSVP', payload: { rsvpStatus: isGoing } });
+      })
+      .catch(err => {
+        handleError(err);
+      });
   }, []);
 
   async function sendRSVP(isGoing) {
@@ -39,13 +44,14 @@ export default ({ eventId, calendarLink }) => {
       }
       dispatch({ type: 'RECEIVE_RSVP', payload: { rsvpStatus: isGoing } });
     } catch (e) {
-      // ??
+      handleError(e);
     }
   }
 
   return taggedSum(
     state,
     {
+      isError: err => <p>{err}</p>,
       isWorking: () => <p>Hard at work...</p>,
       isGoing: () => (
         <React.Fragment>
@@ -146,6 +152,7 @@ function getRSVPStatus(eventId, token) {
 }
 
 function taggedSum(state, pattern, def) {
+  if (state.error) return pattern.isError(state.error);
   if (state.isWorking) return pattern.isWorking();
   if (state.isGoing) return pattern.isGoing();
   if (state.isAuthed) return pattern.isAuthed();
@@ -156,6 +163,7 @@ const initialState = {
   isWorking: false,
   isAuthed: false,
   isGoing: false,
+  error: '',
 };
 
 function reducer(state = initialState, action = { type: '' }) {
@@ -164,6 +172,7 @@ function reducer(state = initialState, action = { type: '' }) {
       return {
         ...state,
         isWorking: true,
+        error: '',
       };
     case 'RECEIVE_AUTH':
       return {
@@ -186,7 +195,33 @@ function reducer(state = initialState, action = { type: '' }) {
         isWorking: true,
         isGoing: action.payload.rsvpStatus,
       };
+    case 'RECEIVE_ERROR':
+      return {
+        ...state,
+        isWorking: false,
+        error: action.payload.error,
+      };
     default:
       return state;
   }
+}
+
+function makeHandleError(dispatch) {
+  return function handleError(err) {
+    const { response } = err;
+    if (response) {
+      const { data } = response;
+      const errorMessage =
+        typeof data === 'string' ? data : 'Something went wrong :(';
+      dispatch({
+        type: 'RECEIVE_ERROR',
+        payload: { error: errorMessage },
+      });
+    } else {
+      dispatch({
+        type: 'RECEIVE_ERROR',
+        payload: { error: 'Something went wrong :(' },
+      });
+    }
+  };
 }
