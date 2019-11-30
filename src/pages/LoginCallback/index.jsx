@@ -2,8 +2,10 @@ import * as React from 'react';
 import qs from 'query-string';
 import axios from 'axios';
 import { navigate } from '@reach/router';
+import AuthContext from '../../context/auth';
 
 const LoginCallback = () => {
+  const { setToken } = React.useContext(AuthContext);
   React.useEffect(() => {
     const { code, state, from } = qs.parse(window.location.search);
     const nextPage = from || '/';
@@ -21,7 +23,7 @@ const LoginCallback = () => {
         if (!access_token || typeof access_token !== 'string') {
           throw new Error();
         }
-        localStorage.setItem('RK_auth_token', access_token);
+        setToken(access_token);
         navigate(nextPage);
       })
       .catch(() => {

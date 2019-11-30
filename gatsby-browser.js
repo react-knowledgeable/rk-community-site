@@ -1,4 +1,10 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { AuthProvider } from './src/context/auth';
+
+export const wrapRootElement = ({ element }) => (
+  <AuthProvider>{element}</AuthProvider>
+);
 
 // https://twitter.com/EphemeralCircle/status/1190670453221842944?s=20
 // our own @thchia actually also pointed this out as well

@@ -3,13 +3,14 @@ import axios from 'axios';
 import qs from 'query-string';
 import s from './s.module.scss';
 import githubLogo from './GitHub-Mark-Light-64px.png';
+import AuthContext from '../../context/auth';
 
 export default ({ eventId, calendarLink }) => {
+  const { token } = React.useContext(AuthContext);
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const handleError = makeHandleError(dispatch);
   React.useEffect(() => {
     dispatch({ type: 'REQUEST_STATUS' });
-    const token = getToken();
     if (!token) {
       dispatch({
         type: 'RECEIVE_AUTH',
@@ -44,10 +45,10 @@ export default ({ eventId, calendarLink }) => {
       if (isGoing) {
         const {
           data: { name },
-        } = await insertAttendee({ eventId });
+        } = await insertAttendee({ eventId, token });
         rsvpName = name;
       } else {
-        await removeAttendee({ eventId });
+        await removeAttendee({ eventId, token });
       }
       dispatch({
         type: 'RECEIVE_RSVP',
@@ -97,7 +98,7 @@ export default ({ eventId, calendarLink }) => {
   );
 };
 
-function insertAttendee({ eventId }) {
+function insertAttendee({ eventId, token }) {
   return axios({
     method: 'post',
     url: `/.netlify/functions/airtable`,
@@ -105,12 +106,12 @@ function insertAttendee({ eventId }) {
       eventId,
     },
     headers: {
-      Authorization: `token ${getToken()}`,
+      Authorization: `token ${token}`,
     },
   });
 }
 
-function removeAttendee({ eventId }) {
+function removeAttendee({ eventId, token }) {
   return axios({
     method: 'delete',
     url: `/.netlify/functions/airtable`,
@@ -118,7 +119,7 @@ function removeAttendee({ eventId }) {
       eventId,
     },
     headers: {
-      Authorization: `token ${getToken()}`,
+      Authorization: `token ${token}`,
     },
   });
 }
@@ -135,10 +136,6 @@ function getGithubURL() {
       scope: 'read:user',
     })
   );
-}
-
-function getToken() {
-  return localStorage.getItem('RK_auth_token');
 }
 
 function getRSVPStatus(eventId, token) {
