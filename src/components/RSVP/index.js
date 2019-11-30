@@ -26,8 +26,11 @@ export default ({ eventId, calendarLink }) => {
       },
     });
     getRSVPStatus(eventId, token)
-      .then(isGoing => {
-        dispatch({ type: 'RECEIVE_RSVP', payload: { rsvpStatus: isGoing } });
+      .then(rsvpName => {
+        dispatch({
+          type: 'RECEIVE_RSVP',
+          payload: { rsvpStatus: !!rsvpName, rsvpName },
+        });
       })
       .catch(err => {
         handleError(err);
@@ -53,10 +56,10 @@ export default ({ eventId, calendarLink }) => {
     {
       isError: err => <p>{err}</p>,
       isWorking: () => <p>Hard at work...</p>,
-      isGoing: () => (
+      isGoing: name => (
         <React.Fragment>
           <p>
-            See you there :) Would you like to{' '}
+            See you there {name} :) Would you like to{' '}
             <a href={calendarLink} target="_blank">
               add this to your calendar
             </a>
@@ -147,14 +150,14 @@ function getRSVPStatus(eventId, token) {
       });
     })
     .then(({ data }) => {
-      return !!data;
+      if (data) return data.Name;
     });
 }
 
 function taggedSum(state, pattern, def) {
   if (state.error) return pattern.isError(state.error);
   if (state.isWorking) return pattern.isWorking();
-  if (state.isGoing) return pattern.isGoing();
+  if (state.isGoing) return pattern.isGoing(state.rsvpName);
   if (state.isAuthed) return pattern.isAuthed();
   return def();
 }
@@ -163,6 +166,7 @@ const initialState = {
   isWorking: false,
   isAuthed: false,
   isGoing: false,
+  rsvpName: '',
   error: '',
 };
 
@@ -181,6 +185,7 @@ function reducer(state = initialState, action = { type: '' }) {
         isAuthed: action.payload.authStatus,
         // if not authed, clear out any stale rsvp status
         isGoing: action.payload.authStatus === false ? false : state.isGoing,
+        rsvpName: action.payload.authStatus === false ? '' : state.rsvpName,
       };
     case 'RECEIVE_RSVP':
       return {
@@ -188,6 +193,7 @@ function reducer(state = initialState, action = { type: '' }) {
         isWorking: false,
         isAuthed: true,
         isGoing: action.payload.rsvpStatus,
+        rsvpName: action.pay.load.rsvpName,
       };
     case 'SEND_RSVP':
       return {
