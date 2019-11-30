@@ -39,13 +39,20 @@ export default ({ eventId, calendarLink }) => {
 
   async function sendRSVP(isGoing) {
     try {
+      let rsvpName = '';
       dispatch({ type: 'SEND_RSVP', payload: { rsvpStatus: isGoing } });
       if (isGoing) {
-        await insertAttendee({ eventId });
+        const {
+          data: { name },
+        } = await insertAttendee({ eventId });
+        rsvpName = name;
       } else {
         await removeAttendee({ eventId });
       }
-      dispatch({ type: 'RECEIVE_RSVP', payload: { rsvpStatus: isGoing } });
+      dispatch({
+        type: 'RECEIVE_RSVP',
+        payload: { rsvpStatus: isGoing, rsvpName },
+      });
     } catch (e) {
       handleError(e);
     }
