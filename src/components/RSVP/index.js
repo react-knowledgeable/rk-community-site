@@ -1,134 +1,240 @@
 import React from 'react';
 import axios from 'axios';
+import qs from 'query-string';
 import s from './s.module.scss';
+import githubLogo from './GitHub-Mark-Light-64px.png';
+
+export default ({ eventId, calendarLink }) => {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const handleError = makeHandleError(dispatch);
+  React.useEffect(() => {
+    dispatch({ type: 'REQUEST_STATUS' });
+    const token = getToken();
+    if (!token) {
+      dispatch({
+        type: 'RECEIVE_AUTH',
+        payload: {
+          authStatus: false,
+        },
+      });
+      return;
+    }
+    dispatch({
+      type: 'RECEIVE_AUTH',
+      payload: {
+        authStatus: true,
+      },
+    });
+    getRSVPStatus(eventId, token)
+      .then(rsvpName => {
+        dispatch({
+          type: 'RECEIVE_RSVP',
+          payload: { rsvpStatus: !!rsvpName, rsvpName },
+        });
+      })
+      .catch(err => {
+        handleError(err);
+      });
+  }, []);
+
+  async function sendRSVP(isGoing) {
+    try {
+      let rsvpName = '';
+      dispatch({ type: 'SEND_RSVP', payload: { rsvpStatus: isGoing } });
+      if (isGoing) {
+        const {
+          data: { name },
+        } = await insertAttendee({ eventId });
+        rsvpName = name;
+      } else {
+        await removeAttendee({ eventId });
+      }
+      dispatch({
+        type: 'RECEIVE_RSVP',
+        payload: { rsvpStatus: isGoing, rsvpName },
+      });
+    } catch (e) {
+      handleError(e);
+    }
+  }
+
+  return taggedSum(
+    state,
+    {
+      isError: err => <p>{err}</p>,
+      isWorking: () => <p>Hard at work...</p>,
+      isGoing: name => (
+        <React.Fragment>
+          <p>
+            See you there {name} :) Would you like to{' '}
+            <a href={calendarLink} target="_blank">
+              add this to your calendar
+            </a>
+            ?
+          </p>
+          <button onClick={() => sendRSVP(false)} className={s.link}>
+            Cannot go anymore :(
+          </button>
+        </React.Fragment>
+      ),
+      isAuthed: () => (
+        <React.Fragment>
+          <button onClick={() => sendRSVP(true)} className={s.link}>
+            Click here to sign up
+          </button>
+          <p className={s.fieldCaption}>
+            We will record your attendance using your Github details
+          </p>
+        </React.Fragment>
+      ),
+    },
+    () => (
+      <a href={getGithubURL()} className={s.link}>
+        <img src={githubLogo} alt="github-logo" width={20} />
+        <b>Login to RSVP</b>
+      </a>
+    )
+  );
+};
+
+function insertAttendee({ eventId }) {
+  return axios({
+    method: 'post',
+    url: `/.netlify/functions/airtable`,
+    data: {
+      eventId,
+    },
+    headers: {
+      Authorization: `token ${getToken()}`,
+    },
+  });
+}
+
+function removeAttendee({ eventId }) {
+  return axios({
+    method: 'delete',
+    url: `/.netlify/functions/airtable`,
+    data: {
+      eventId,
+    },
+    headers: {
+      Authorization: `token ${getToken()}`,
+    },
+  });
+}
+
+function getGithubURL() {
+  const base = process.env.GATSBY_URL || 'http://localhost:8000';
+  const from = typeof window !== 'undefined' ? window.location.pathname : '/';
+  return (
+    'https://github.com/login/oauth/authorize?' +
+    qs.stringify({
+      client_id: 'e3a62ea68aca5801ec9b',
+      state: 'home',
+      redirect_uri: `${base}/LoginCallback?from=${from}`,
+      scope: 'read:user',
+    })
+  );
+}
+
+function getToken() {
+  return localStorage.getItem('RK_auth_token');
+}
+
+function getRSVPStatus(eventId, token) {
+  return axios({
+    method: 'GET',
+    url: 'https://api.github.com/user',
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: `token ${token}`,
+    },
+  })
+    .then(({ data: { login } }) => {
+      return axios({
+        method: 'get',
+        url: `/.netlify/functions/airtable?eventId=${eventId}&username=${login}`,
+      });
+    })
+    .then(({ data }) => {
+      if (data) return data.Name;
+    });
+}
+
+function taggedSum(state, pattern, def) {
+  if (state.error) return pattern.isError(state.error);
+  if (state.isWorking) return pattern.isWorking();
+  if (state.isGoing) return pattern.isGoing(state.rsvpName);
+  if (state.isAuthed) return pattern.isAuthed();
+  return def();
+}
 
 const initialState = {
-  name: '',
-  username: '',
-  submissionError: '',
-  submitting: false,
-  submissionSuccess: false,
+  isWorking: false,
+  isAuthed: false,
+  isGoing: false,
+  rsvpName: '',
+  error: '',
 };
+
 function reducer(state = initialState, action = { type: '' }) {
   switch (action.type) {
-    case 'input':
+    case 'REQUEST_STATUS':
       return {
         ...state,
-        [action.payload.name]: action.payload.value,
-        submission_error: '',
-        submissionSuccess: false,
+        isWorking: true,
+        error: '',
       };
-    case 'submit':
+    case 'RECEIVE_AUTH':
       return {
         ...state,
-        submissionError: '',
-        submissionSuccess: false,
-        submitting: true,
+        isWorking: false,
+        isAuthed: action.payload.authStatus,
+        // if not authed, clear out any stale rsvp status
+        isGoing: action.payload.authStatus === false ? false : state.isGoing,
+        rsvpName: action.payload.authStatus === false ? '' : state.rsvpName,
       };
-    case 'submission_error':
+    case 'RECEIVE_RSVP':
       return {
         ...state,
-        submissionError: action.payload.error,
-        submissionSuccess: false,
-        submitting: false,
+        isWorking: false,
+        isAuthed: true,
+        isGoing: action.payload.rsvpStatus,
+        rsvpName: action.payload.rsvpName,
       };
-    case 'submission_success':
+    case 'SEND_RSVP':
       return {
         ...state,
-        name: '',
-        username: '',
-        submissionSuccess: true,
-        submissionError: '',
-        submitting: false,
+        isWorking: true,
+        isGoing: action.payload.rsvpStatus,
+      };
+    case 'RECEIVE_ERROR':
+      return {
+        ...state,
+        isWorking: false,
+        error: action.payload.error,
       };
     default:
       return state;
   }
 }
 
-export default ({ eventId, calendarLink }) => {
-  const [formVisible, setFormVisible] = React.useState(false);
-  const [nameError, setNameError] = React.useState('');
-  const [state, dispatch] = React.useReducer(reducer, initialState);
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!state.name) {
-      return setNameError('Required');
+function makeHandleError(dispatch) {
+  return function handleError(err) {
+    const { response } = err;
+    if (response) {
+      const { data } = response;
+      const errorMessage =
+        typeof data === 'string' ? data : 'Something went wrong :(';
+      dispatch({
+        type: 'RECEIVE_ERROR',
+        payload: { error: errorMessage },
+      });
     } else {
-      dispatch({ type: 'submit' });
-      insertAttendee({ name: state.name, username: state.username, eventId })
-        .then(() => {
-          dispatch({ type: 'submission_success' });
-          setFormVisible(false);
-        })
-        .catch(() => {
-          dispatch({
-            type: 'submission_error',
-            payload: {
-              error: "Oops, we couldn't register you, please try again.",
-            },
-          });
-        });
+      dispatch({
+        type: 'RECEIVE_ERROR',
+        payload: { error: 'Something went wrong :(' },
+      });
     }
   };
-  return (
-    <React.Fragment>
-      {!state.submissionSuccess && (
-        <button className={s.btn} onClick={() => setFormVisible(!formVisible)}>
-          <b>RSVP</b>
-        </button>
-      )}
-      <form className={formVisible ? s.form : s.hidden} onSubmit={handleSubmit}>
-        <label className={s.formField}>
-          <span className={s.fieldLabel}>Name *</span>
-          <input
-            name="name"
-            value={state.name}
-            onChange={({ target: { name, value } }) => {
-              dispatch({ type: 'input', payload: { name, value } });
-            }}
-          />
-          {nameError && <span className={s.fieldError}>{nameError}</span>}
-        </label>
-        <label className={s.formField}>
-          <span className={s.fieldLabel}>GitHub Username * </span>
-          <p className={s.fieldCaption}>
-            if you prefer to hide your attendance, please put our GitHub
-            username "react-knowledgeable"
-          </p>
-          <input
-            name="username"
-            value={state.username}
-            onChange={({ target: { name, value } }) => {
-              dispatch({ type: 'input', payload: { name, value } });
-            }}
-          />
-        </label>
-        {state.submissionError && (
-          <p className={s.submissionError}>{state.submissionError}</p>
-        )}
-        {/* Ask if they want their name to be shown? */}
-        <button className={s.btn} disabled={state.submitting}>
-          <b>Sign Me Up</b>
-        </button>
-      </form>
-      {state.submissionSuccess && (
-        <p>
-          See you there :) Would you like to{' '}
-          <a href={calendarLink} target="_blank">
-            add this to your calendar
-          </a>
-          ?
-        </p>
-      )}
-    </React.Fragment>
-  );
-};
-
-function insertAttendee({ eventId, username, name }) {
-  return axios.post(`/.netlify/functions/airtable`, {
-    name,
-    username,
-    eventId,
-  });
 }
