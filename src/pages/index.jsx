@@ -71,7 +71,9 @@ export default ({
                   <Link to={nextMeetupSlug}>{meetupTitle}</Link>
                 </h3>
                 <p>
-                  {date ? `Date: ${parseDate(date)}` : 'Mysterious date...'}
+                  {date
+                    ? `Date: ${parseDate(date)}, 7:30pm`
+                    : 'Mysterious date...'}
                 </p>
                 <p>{venue ? `Venue: ${venue}` : 'Mysterious venue...'}</p>
                 <RSVP

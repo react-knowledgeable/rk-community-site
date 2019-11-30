@@ -249,7 +249,7 @@ export default ({
         <section>
           <h1>{title}</h1>
           <p>
-            <i>{parseDate(date)}</i>
+            <i>{parseDate(date)}, 7:30pm</i>
           </p>
         </section>
         <div className={cx(s.doNotPresent, s.attendees)}>
