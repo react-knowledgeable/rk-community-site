@@ -20,11 +20,9 @@ export default () => {
             replace({
               __AIRTABLE_API_KEY__: process.env.AIRTABLE_API_KEY,
               __AIRTABLE_BASE_ID__: process.env.AIRTABLE_BASE_ID,
-              __RK_RSVP_CLIENT_ID__: process.env.RK_RSVP_CLIENT_ID,
-              __RK_RSVP_CLIENT_SECRET__: process.env.RK_RSVP_CLIENT_SECRET,
             }),
           ],
-          external: ['airtable'],
+          external: ['airtable']
         }))
       );
     });
@@ -40,8 +38,10 @@ async function _getFunctionPaths() {
         'node_modules',
         'package.json',
         'yarn.lock',
-        'rollup.config.js',
-      ].includes(filePath);
+        'rollup.config.js'
+      ].includes(
+        filePath
+      );
     })
     .map(filePath => ({
       input: path.resolve(functionSrc, filePath),

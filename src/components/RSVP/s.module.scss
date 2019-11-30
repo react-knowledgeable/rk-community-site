@@ -21,19 +21,6 @@
   }
 }
 
-.link {
-  @extend .btn;
-  background-color: black;
-  border-color: white;
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 0.5em;
-  img {
-    margin: 0 1em 0 0;
-  }
-}
-
 .formField {
   display: block;
   margin: 0.5em 0em;
@@ -51,7 +38,7 @@
 .fieldCaption {
   color: #777;
   font-size: .75em;
-  margin: .5em 0;
+  margin-bottom: .5em;
 }
 
 .fieldError {
