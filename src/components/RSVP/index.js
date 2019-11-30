@@ -193,7 +193,7 @@ function reducer(state = initialState, action = { type: '' }) {
         isWorking: false,
         isAuthed: true,
         isGoing: action.payload.rsvpStatus,
-        rsvpName: action.pay.load.rsvpName,
+        rsvpName: action.payload.rsvpName,
       };
     case 'SEND_RSVP':
       return {
