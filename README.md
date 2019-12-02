@@ -17,7 +17,7 @@ This repo is the community site for `<RK />`.
 
 You can either create a `.env` file, or specify these keys when running the `start` command:
 
-`GITHUB_TOKEN=XXX AIRTABLE_API_KEY=YYY ... yarn start`
+`GITHUB_TOKEN=XXX AIRTABLE_API_KEY=YYY ... yarn start` or `env GITHUB_TOKEN=XXX AIRTABLE_API_KEY=YYY ... npm start`
 
 ```
 // .env file
@@ -48,4 +48,4 @@ The above error occurred in the <StoreStateProvider> component:
 React will try to recreate this component tree from scratch using the error boundary you provided, App.
 Warning: App: Error boundaries should implement getDerivedStateFromError(). In that method, return a state update to display an error message or fallback UI.
 ```
-The actual cause of this error might be due to the differences between how both package managers handle things. Running `yarn` and letting the yarn resolve dependencies will fix the issue. You can then continue to use `GITHUB_TOKEN=<xxx> npm start` again.
+The actual cause of this error might be due to the differences between how both package managers handle things. Running `yarn` and letting the yarn resolve dependencies will fix the issue.
