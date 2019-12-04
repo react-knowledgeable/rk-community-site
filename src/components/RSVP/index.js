@@ -9,7 +9,7 @@ export default ({ eventId, calendarLink }) => {
   const { token } = React.useContext(AuthContext);
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const handleError = makeHandleError(dispatch);
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     dispatch({ type: 'REQUEST_STATUS' });
     if (!token) {
       dispatch({
@@ -26,17 +26,21 @@ export default ({ eventId, calendarLink }) => {
         authStatus: true,
       },
     });
-    getRSVPStatus(eventId, token)
-      .then(rsvpName => {
-        dispatch({
-          type: 'RECEIVE_RSVP',
-          payload: { rsvpStatus: !!rsvpName, rsvpName },
-        });
-      })
-      .catch(err => {
-        handleError(err);
-      });
   }, []);
+  React.useEffect(() => {
+    if (state.isAuthed && token) {
+      getRSVPStatus(eventId, token)
+        .then(rsvpName => {
+          dispatch({
+            type: 'RECEIVE_RSVP',
+            payload: { rsvpStatus: !!rsvpName, rsvpName },
+          });
+        })
+        .catch(err => {
+          handleError(err);
+        });
+    }
+  }, [state.isAuthed]);
 
   async function sendRSVP(isGoing) {
     try {
