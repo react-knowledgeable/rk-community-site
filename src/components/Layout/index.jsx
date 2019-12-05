@@ -34,7 +34,7 @@ export default props => {
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta name="twitter:site" content={`@${twitter}`}></meta>
       </Helmet>
-      <header>
+      <header style={{backgroundColor: 'peachpuff'}}>
         <h1>
           <svg
             className={s.logo}
