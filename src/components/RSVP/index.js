@@ -40,7 +40,7 @@ export default ({ eventId, calendarLink }) => {
           handleError(err);
         });
     }
-  }, [state.isAuthed]);
+  }, [state.isAuthed, token]);
 
   async function sendRSVP(isGoing) {
     try {
