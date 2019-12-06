@@ -1,6 +1,6 @@
-import axios from 'axios';
+const axios = require('axios');
 
-export default axios.create({
+module.exports = axios.create({
   validateStatus: function(status) {
     return status >= 200 && status < 300;
   },
