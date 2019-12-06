@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('../src/utils/axios');
 const qs = require('query-string');
 
 exports.handler = async event => {
