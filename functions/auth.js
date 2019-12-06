@@ -3,7 +3,7 @@ const qs = require('query-string');
 
 exports.handler = async event => {
   try {
-    return await _retrieveToken(event, callback);
+    return await _retrieveToken(event);
   } catch (e) {
     let body = `Server Error`;
     if (e.message) {
