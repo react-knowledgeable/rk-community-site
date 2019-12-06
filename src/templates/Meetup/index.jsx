@@ -177,7 +177,11 @@ export default ({
               {venueAddressLink && (
                 <>
                   ,{' '}
-                  <a href={venueAddressLink} target="_blank">
+                  <a
+                    href={venueAddressLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Google Map
                   </a>
                   <ExternalLinkIcon />

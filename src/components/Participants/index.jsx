@@ -9,7 +9,7 @@ const getAvatarProps = username => ({
 
 const Participants = ({ rawParticipants }) => {
   const participants = new Set();
-  rawParticipants.map(({ node: { Github_Username: username } }) => {
+  rawParticipants.forEach(({ node: { Github_Username: username } }) => {
     // dedupe
     participants.add(username ? username.toLowerCase() : 'react-knowledgeable');
   });

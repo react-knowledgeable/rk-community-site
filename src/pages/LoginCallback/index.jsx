@@ -29,7 +29,7 @@ const LoginCallback = () => {
       .catch(() => {
         navigate(nextPage);
       });
-  }, []);
+  }, [setToken]);
   return <div>logging in...</div>;
 };
 

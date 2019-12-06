@@ -8,7 +8,9 @@ import AuthContext from '../../context/auth';
 export default ({ eventId, calendarLink }) => {
   const { token } = React.useContext(AuthContext);
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const handleError = makeHandleError(dispatch);
+  const handleError = React.useCallback(() => makeHandleError(dispatch), [
+    dispatch,
+  ]);
   React.useLayoutEffect(() => {
     dispatch({ type: 'REQUEST_STATUS' });
     if (!token) {
@@ -26,7 +28,7 @@ export default ({ eventId, calendarLink }) => {
         authStatus: true,
       },
     });
-  }, []);
+  }, [token]);
   React.useEffect(() => {
     if (state.isAuthed && token) {
       getRSVPStatus(eventId, token)
@@ -40,7 +42,7 @@ export default ({ eventId, calendarLink }) => {
           handleError(err);
         });
     }
-  }, [state.isAuthed, token]);
+  }, [state.isAuthed, token, handleError, eventId]);
 
   async function sendRSVP(isGoing) {
     try {
@@ -72,7 +74,7 @@ export default ({ eventId, calendarLink }) => {
         <React.Fragment>
           <p>
             See you there {name} :) Would you like to{' '}
-            <a href={calendarLink} target="_blank">
+            <a href={calendarLink} target="_blank" rel="noopener noreferrer">
               add this to your calendar
             </a>
             ?
