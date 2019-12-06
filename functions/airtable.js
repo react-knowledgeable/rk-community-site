@@ -1,5 +1,5 @@
 const Airtable = require('airtable');
-const axios = require('../src/utils/axios');
+const axios = require('axios');
 
 const ERROR_MSGS = {
   UNSUPPORTED_METHOD: 'Unsupported method',

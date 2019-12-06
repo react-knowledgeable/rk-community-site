@@ -1,10 +1,14 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
-const axios = require('./src/utils/axios');
+const axios = require('axios');
 
 exports.sourceNodes = async ({ actions, reporter, createContentDigest }) => {
   const { createNode } = actions;
   const host = `https://reactknowledgeable.org`;
+  // const host =
+  //   process.env.NODE_ENV === 'production'
+  //     ? `https://reactknowledgeable.org`
+  //     : ``;
   const data = await axios.get(`${host}/.netlify/functions/airtable`);
   if (data.status >= 200 && data.status < 300) {
     data.data.forEach(datum =>
