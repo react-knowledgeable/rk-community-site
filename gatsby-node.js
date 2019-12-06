@@ -2,32 +2,33 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const axios = require('axios');
 
-// exports.sourceNodes = async ({ actions, reporter, createContentDigest }) => {
-//   const { createNode } = actions;
-//   const host =
-//     process.env.NODE_ENV === 'production'
-//       ? `https://reactknowledgeable.org`
-//       : ``;
-//   const data = await axios.get(`${host}/.netlify/functions/airtable`);
-//   if (data.status >= 200 && data.status < 300) {
-//     data.data.forEach(datum =>
-//       createNode({
-//         ...datum,
-//         id: `${datum.Name}-${datum['Created Date']}`,
-//         parent: null,
-//         children: [],
-//         internal: {
-//           type: 'RKAttendee',
-//           contentDigest: createContentDigest(datum),
-//         },
-//       })
-//     );
-//     reporter.success('Retrieved attendee data');
-//   } else {
-//     reporter.error('Error encountered retrieving attendees');
-//   }
-//   return;
-// };
+exports.sourceNodes = async ({ actions, reporter, createContentDigest }) => {
+  const { createNode } = actions;
+  const host = `https://reactknowledgeable.org`;
+  // const host =
+  //   process.env.NODE_ENV === 'production'
+  //     ? `https://reactknowledgeable.org`
+  //     : ``;
+  const data = await axios.get(`${host}/.netlify/functions/airtable`);
+  if (data.status >= 200 && data.status < 300) {
+    data.data.forEach(datum =>
+      createNode({
+        ...datum,
+        id: `${datum.Name}-${datum['Created Date']}`,
+        parent: null,
+        children: [],
+        internal: {
+          type: 'RKAttendee',
+          contentDigest: createContentDigest(datum),
+        },
+      })
+    );
+    reporter.success('Retrieved attendee data');
+  } else {
+    reporter.error('Error encountered retrieving attendees');
+  }
+  return;
+};
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;

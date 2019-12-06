@@ -40,7 +40,7 @@ export default ({
   location,
   pageContext: { id },
   data: {
-    allAirtable: { edges: rawParticipants },
+    allRkAttendee: { edges: rawParticipants },
     site: {
       siteMetadata: {
         description,
@@ -62,7 +62,6 @@ export default ({
         venueAddressLink,
         sponsors,
         talks: talkIssueIds,
-        issueLink,
         calendarLink,
       },
       htmlAst,
@@ -294,19 +293,24 @@ export default ({
 
 export const pageQuery = graphql`
   query MeetupQuery($slug: String!, $id: String!) {
-    # allRkAttendee(filter: { Event_ID: { eq: $id } }) {
-    #   totalCount
-    # }
-    allAirtable(filter: { data: { Event_ID: { eq: $id } } }) {
+    allRkAttendee(filter: { Event_ID: { eq: $id } }) {
       totalCount
       edges {
         node {
-          data {
-            Github_Username
-          }
+          Github_Username
         }
       }
     }
+    # allAirtable(filter: { data: { Event_ID: { eq: $id } } }) {
+    #   totalCount
+    #   edges {
+    #     node {
+    #       data {
+    #         Github_Username
+    #       }
+    #     }
+    #   }
+    # }
     site {
       siteMetadata {
         title

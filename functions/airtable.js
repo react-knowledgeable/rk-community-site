@@ -1,25 +1,22 @@
-import Airtable from 'airtable';
-import axios from 'axios';
+const Airtable = require('airtable');
+const axios = require('axios');
 
 const ERROR_MSGS = {
   UNSUPPORTED_METHOD: 'Unsupported method',
   UNKNOWN_ERROR: 'Server Error',
 };
 
-export const handler = async (event, _, callback) => {
+exports.handler = async event => {
   try {
     const atClient = _configureAirtable();
     const atService = AirtableService(atClient);
     switch (event.httpMethod) {
       case 'GET':
-        await retrieveAttendees(atService, event, callback);
-        break;
+        return await retrieveAttendees(atService, event);
       case 'POST':
-        await insertAttendee(atService, event, callback);
-        break;
+        return await insertAttendee(atService, event);
       case 'DELETE':
-        await removeAttendee(atService, event, callback);
-        break;
+        return await removeAttendee(atService, event);
       default:
         callback(Error({ message: ERROR_MSGS.UNSUPPORTED_METHOD }), {
           statusCode: 405,
@@ -34,7 +31,7 @@ export const handler = async (event, _, callback) => {
   }
 };
 
-async function retrieveAttendees(Client, event, callback) {
+async function retrieveAttendees(Client, event) {
   let attendees;
   const { eventId, username } = event.queryStringParameters;
   if (eventId && username) {
@@ -44,13 +41,13 @@ async function retrieveAttendees(Client, event, callback) {
   } else {
     throw new Error('Missing parameters');
   }
-  callback(null, {
+  return {
     statusCode: 200,
     body: JSON.stringify(attendees),
-  });
+  };
 }
 
-async function insertAttendee(Client, event, callback) {
+async function insertAttendee(Client, event) {
   if (event.httpMethod !== 'POST') {
     return callback(Error({ message: ERROR_MSGS.UNSUPPORTED_METHOD }), {
       statusCode: 405,
@@ -74,19 +71,19 @@ async function insertAttendee(Client, event, callback) {
     username: login,
   });
   if (userRecord && userRecord.id) {
-    return callback(null, {
+    return {
       statusCode: 409,
       body: `You are already signed up!`,
-    });
+    };
   }
   await Client.insertAttendee({ eventId, name, login });
-  callback(null, {
+  return {
     statusCode: 200,
     body: JSON.stringify({ name, eventId }),
-  });
+  };
 }
 
-async function removeAttendee(Client, event, callback) {
+async function removeAttendee(Client, event) {
   const { eventId } = JSON.parse(event.body);
   if (!eventId) {
     throw new Error('Missing Parameters: eventId');
@@ -107,23 +104,25 @@ async function removeAttendee(Client, event, callback) {
     username: login,
   });
   if (!userRecord) {
-    return callback(Error('User Not Found'), {
+    return {
       statusCode: 404,
       body: 'User not found',
-    });
+    };
   }
   const { id } = userRecord;
   await Client.removeAttendee({ id });
-  callback(null, {
-    statusCode: 200,
-  });
+  return { statusCode: 200 };
 }
 
 /****** UTILS ******/
 
 function _configureAirtable() {
-  Airtable.configure({ apiKey: '__AIRTABLE_API_KEY__' });
-  return Airtable.base('__AIRTABLE_BASE_ID__')('Attendees');
+  if (!process.env.AIRTABLE_BASE_ID)
+    throw new Error('must set process.env.AIRTABLE_BASE_ID');
+  if (!process.env.AIRTABLE_API_KEY)
+    throw new Error('must set process.env.AIRTABLE_API_KEY');
+  Airtable.configure({ apiKey: process.env.AIRTABLE_API_KEY });
+  return Airtable.base(process.env.AIRTABLE_BASE_ID)('Attendees');
 }
 
 function AirtableService(client) {
