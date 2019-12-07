@@ -10,7 +10,7 @@ This repo is the community site for `<RK />`.
 
 1. Run `yarn` (or `npm install`)
 2. Set up [GitHub Personal Access Token](https://github.com/settings/tokens), refer to [Authenticating with GraphQL](https://developer.github.com/v4/guides/forming-calls/#authenticating-with-graphql) for requisite scope
-3. Acquire Airtable API Key and set it into your environment.
+3. Acquire Airtable API Key and Base ID and set it into your environment. Your Airtable base should have a table named `Attendees` and short string fields with "Event ID", "Github Username", "Created Date", "Name" and "Type".
 4. Run `yarn start` or `npm start` (see below for variable configuration).
 
 ### API Keys
