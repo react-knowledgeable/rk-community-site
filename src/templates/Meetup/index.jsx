@@ -310,6 +310,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        image
         description
         url
         twitter

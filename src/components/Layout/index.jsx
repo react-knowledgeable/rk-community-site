@@ -17,6 +17,7 @@ export default props => {
     coverImage,
     className,
     onKeyPress,
+    twitterCardType,
   } = props;
   const fullImageUrl = coverImage ? `${url}${coverImage}` : `${url}${image}`;
   const usedTitle = titleTemplate ? titleTemplate.replace('%s', title) : title;
@@ -31,7 +32,7 @@ export default props => {
         <meta property="twitter:description" content={description} />
         <meta property="og:image" content={fullImageUrl} />
         <meta property="twitter:image" content={fullImageUrl} />
-        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:card" content={twitterCardType || 'summary'}></meta>
         <meta name="twitter:site" content={`@${twitter}`}></meta>
       </Helmet>
       <header>
