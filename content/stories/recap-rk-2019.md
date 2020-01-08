@@ -18,11 +18,8 @@ Then when you go to him for help, he'll do only one thing. He'll just ask, "What
 
 This is when you realize that something may have been wrong. Because chances are, you can't explain. He seems to possess both the patience and the cavalier to never let out any hints. But it's exactly his "not helpful" that makes sure *he never spoils your pleasure of finding things out*.
 
-That professor defined my college experience by showing me the unparalleled reward of claiming the main body of my learning journey. To me, however great a lecture can be, its educational value has its limit if all it does is to tell me how to do things. The greatest learning materials should be inspirational rather than instructional. We're all problem driven and not instruction driven. At least, as an engineer I find it that way.
+That professor defined my college experience. When I claim the main body of my learning journy, I gain unparalleled joy of finding things out. My favorite learning materials are inspirational rather than instructional, its educational value has its limit if all it does is to tell me how to do things.
 
-If there's one thing I learned out of my college, it would be
-
-> ...the main body of learning must be done by the learner, not by the instructor
 
 ---
 
@@ -36,7 +33,11 @@ So is it worth it? Why RK? Why every week / month? Why must constantly poke you 
 
 ---
 
+In my third year of college, while I was spamming the "whats your progress" thingy on the most ubiquitous animal in my major -- smart guys, I was also working at a learning center where, instead of having us help students who were taking the classes we took before, it actually let us help students who were _taking the same class with us_. This is where sharing my learning process turned out to help me. By explaining my the problems over and over again, _I_ get a much refined understanding myself. 
+
 There's a #learnInPublic hashtag where one of our friends, swyx, is a major advocate behind its recent upbeats. RK will repeatedly share its taste in this guiding principle because, as Professor Feynman has also said, *teaching is the best way to learn*.
+
+---
 
 The podium *shines* when it is picked up by a first-time speaker, or someone who rarely speaks up in the team, or someone sees something so interesting that she absolutely has to share it. Be it initializing a new life experience, providing a stage for the rarely-heard-from, this podium has those "extra" meanings which now is an essential existence that I believe every team must possess. 
 
@@ -47,6 +48,8 @@ I mean, conference talks are certainly great — they're impeccable performances
 And, if you know our internal RK and know me as a person behind it, you know that at least half of my brain is full of craps. Is RK suspiciously a release of my accumulated nonsenses throughout the week? I don't know. But it'd be my crowning achievement if I successfully make us laugh, lol. Writing bugs is hard, have some fun yo.
 
 It's a gift if you can *always* enjoy coding and constantly sharpening your skills. Not many people have it. That is why I see the fun part the most important because fun sparks joy, it brings me back, it spirals for refinement. Nothing beats having a fun career.
+
+That job as a tutor at the learning center also taught me the importance of asking the right questions. In a larger, philosophical sense, what you ask means what you propose the others to think about. Throughout this years we've attempted to ask and solve many practical questions. At the back of my mind practical questions are leaves, and figuring out what they lead me to is at the heart of my brain child. What's RK trying to tell us by pushing us to share what we do and learn? What does it contribute to our team? How does it affect our careers? How do we want to build our careers?
 
 ---
 
