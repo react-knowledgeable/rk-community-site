@@ -76,7 +76,7 @@ const typography = new Typography({
         marginBottom: '5rem',
       },
       'hr::after': {
-        content: '***',
+        content: "'***'",
         textAlign: 'center',
         display: 'block',
         padding: '2rem 0',
