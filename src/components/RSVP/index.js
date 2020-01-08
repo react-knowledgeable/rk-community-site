@@ -115,7 +115,7 @@ export default ({ eventId, calendarLink }) => {
       {state.submissionSuccess && (
         <p>
           See you there :) Would you like to{' '}
-          <a href={calendarLink} target="_blank">
+          <a href={calendarLink} target="_blank" rel="noopener noreferrer">
             add this to your calendar
           </a>
           ?
