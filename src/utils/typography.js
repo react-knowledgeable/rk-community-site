@@ -71,6 +71,20 @@ const typography = new Typography({
       'ul li': {
         marginBottom: '8px',
       },
+      hr: {
+        height: 0,
+        marginBottom: '5rem',
+      },
+      'hr::after': {
+        content: '***',
+        textAlign: 'center',
+        display: 'block',
+        padding: '2rem 0',
+        marginBottom: '4rem',
+        fontSize: '1.5rem',
+        opacity: 0.5,
+        letterSpacing: '10px',
+      },
     };
   },
 });
