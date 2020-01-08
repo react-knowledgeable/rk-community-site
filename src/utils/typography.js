@@ -79,8 +79,6 @@ const typography = new Typography({
         content: "'***'",
         textAlign: 'center',
         display: 'block',
-        padding: '2rem 0',
-        marginBottom: '4rem',
         fontSize: '1.5rem',
         opacity: 0.5,
         letterSpacing: '10px',
