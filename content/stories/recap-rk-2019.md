@@ -18,12 +18,12 @@ Then when you go to him for help, he'll do only one thing. He'll just ask, "What
 
 This is when you realize that something may have been wrong. Because chances are, you can't explain. He seems to possess both the patience and the cavalier to never let out any hints. But it's exactly his "not helpful" that makes sure *he never spoils your pleasure of finding things out*.
 
-That professor defined my college experience. When I claim the main body of my learning journy, I gain unparalleled joy of finding things out. My favorite learning materials are inspirational rather than instructional, its educational value has its limit if all it does is to tell me how to do things.
+That professor defined my college experience. When I claim the main body of my learning journey, I gain unparalleled joy of finding things out. My favorite learning materials are inspirational rather than instructional, its educational value has its limit if all it does is to tell me how to do things.
 
 
 ---
 
-To be fair, I never really had the motivation to go to meetups until I began running RK. I don't like lectures and I'm particularly flawed in peopling. I went to Super Silly Hackathon last year in hope to learn what a tech event is like, followed by Global Diversity CFP day, where I met the most amazing friend ever, Huijing. Later this year we went to an incredible amount of meetups, conferences, ramens and dumplings together. And the two meetups that we run are now best friend meetups, yes meetups also got frens yo.
+Frankly, I never really had the motivation to go to meetups until I began running RK. I don't like lectures and I'm particularly flawed in peopling. I went to Super Silly Hackathon last year in hope to learn what a tech event is like, followed by Global Diversity CFP day, where I met the most amazing friend ever, Huijing. Later this year we went to an incredible amount of meetups, conferences, ramens and dumplings together. And the two meetups that we run are now best friend meetups, yes meetups also got frens yo.
 
 Huijing knows on a Singapore and a 4-year scale that it is hard to find speakers. I know it on a weekly clock and it's damn stressful sia. In retro, *RK Originals* now has 90 talks over 60 weeks in its back. If I thought about this set of numbers when I proposed it (1~2 talks per week by proposals), I would have probably dropped the idea immediately. So sometimes it is good to be not very smart to foresee the impossible, i.e., we don't have many people, we Asians, we no experience in speaking, life damn hard eh.
 
@@ -49,7 +49,7 @@ And, if you know our internal RK and know me as a person behind it, you know tha
 
 It's a gift if you can *always* enjoy coding and constantly sharpening your skills. Not many people have it. That is why I see the fun part the most important because fun sparks joy, it brings me back, it spirals for refinement. Nothing beats having a fun career.
 
-That job as a tutor at the learning center also taught me the importance of asking the right questions. In a larger, philosophical sense, what you ask means what you propose the others to think about. Throughout this years we've attempted to ask and solve many practical questions. At the back of my mind practical questions are leaves, and figuring out what they lead me to is at the heart of my brain child. What's RK trying to tell us by pushing us to share what we do and learn? What does it contribute to our team? How does it affect our careers? How do we want to build our careers?
+<!-- That job as a tutor at the learning center also taught me the importance of asking the right questions. In a larger, philosophical sense, what you ask means what you propose the others to think about. Throughout this year we've attempted to ask and solve many practical questions. At the back of my mind practical questions are leaves, and figuring out what they lead me to is at the heart of my brain child. What's RK trying to tell us by pushing us to share what we do and learn? What does it contribute to our team? How does it affect our careers? How do we want to build our careers? -->
 
 ---
 
