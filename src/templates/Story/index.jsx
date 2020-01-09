@@ -56,6 +56,7 @@ export const pageQuery = graphql`
         url
         twitter
         titleTemplate
+        image
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
