@@ -15,19 +15,28 @@
     width: 100%;
   }
   @media (min-width: 1145px) {
+    display: -ms-grid;
     display: grid;
+    // -ms-grid-columns: minmax(900px, 1fr) minmax(440px, 1fr);
     grid-template-columns: minmax(--main-width, 1fr) minmax(--aside-width, 1fr);
     header, footer {
+      -ms-grid-column: 1;
+      -ms-grid-column-span: 2;
       grid-column: 1 / -1;
     }
-    header {
-      grid-row: 1;
-    }
     main {
+      -ms-grid-row: 2;
       grid-column: 1;
       grid-row: 2;
     }
+    aside:first-of-type {
+      -ms-grid-row: 2;
+    }
+    aside:nth-of-type(2) {
+      -ms-grid-row: 3;
+    }
     aside {
+      -ms-grid-column: 2;
       grid-column: 2;
     }
   }
@@ -59,6 +68,7 @@
   box-shadow: #222 2px 2px 0 0;
 }
 .speakAtRKLogo {
+  width: 1em;
   height: 1em;
   margin-right: 0.25em;
 }
