@@ -38,7 +38,7 @@
     "sass": "^1.23.1"
   },
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
     "start": "npm run develop",
     "build": "yarn run functions && gatsby build",
     "functions": "cd src/functions && yarn run build"

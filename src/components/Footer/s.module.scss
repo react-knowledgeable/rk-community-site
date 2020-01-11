@@ -2,8 +2,13 @@
   .footer {
     min-width: 16em;
     padding: 1em;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    -ms-grid-row: 4;
     grid-column: 1 / span 2;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: max-content 1fr;
     grid-template-columns: max-content 1fr;
     margin-top: 3.8326rem;
     @media (min-width: 518px) {
@@ -22,6 +27,8 @@
   }
 
   .footer div {
+    -ms-grid-column: 2;
+    -ms-grid-column-align: end;
     justify-self: end;
     display: flex;
     flex-direction: column;
@@ -93,6 +100,7 @@
   }
 
   .friendIcon {
+    width: 1em;
     height: 1em;
     margin-right: 0.25em;
     transition: transform 0.5s ease-in-out;
