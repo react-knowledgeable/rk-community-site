@@ -1,14 +1,12 @@
 .homePageLayout {
   @media (min-width: 1145px) {
-    display: grid;
+    -ms-grid-columns: 1fr minmax(20em, 30%);
     grid-template-columns: auto minmax(20em, 30%);
+    -ms-grid-rows: min-content min-content 1fr auto;
     grid-template-rows: min-content min-content 1fr auto;
     main {
-      grid-column: 1;
+      -ms-grid-row-span: 2;
       grid-row: 2 / span 2;
-    }
-    aside {
-      grid-column: 2;
     }
   }
 }
@@ -35,11 +33,14 @@
   break-inside: avoid;
 }
 .topicIntro {
-  display: -webkit-box;
-  /* autoprefixer: off */
-  -webkit-box-orient: vertical;
-  /* autoprefixer: on */
-  -webkit-line-clamp: 3;
+  max-height: 5em;
+  @supports (-webkit-line-clamp: 3) {
+    display: -webkit-box;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    -webkit-line-clamp: 3;
+  }
   overflow: hidden;
 }
 

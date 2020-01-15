@@ -4,7 +4,7 @@ title: Year 2019 with RK
 date: 2020-01-09
 ---
 
-This week marks the 60th week of *RK Originals* and the 6th month of *RK Lightning Singapore* the meetup. Excuse us for the lack of concerns of the confusions it causes, I want to ask a potentially provoking question:
+This week marks the 60th week of [*RK Originals*](https://github.com/Shopee/shopee-react-knowledgeable) and the 6th month of [*RK Lightning Singapore*](https://reactknowledgeable.org/) the meetup. Excuse us for the confusions it causes. I want to ask a potentially provoking question:
 
 > What do you want to get out of going to a meetup?
 
@@ -23,7 +23,7 @@ That professor defined my college experience. When I claim the main body of my l
 
 ---
 
-Frankly, I never really had the motivation to go to meetups until I began running RK. I don't like lectures and I'm particularly flawed in peopling. I went to Super Silly Hackathon last year in hope to learn what a tech event is like, followed by Global Diversity CFP day, where I met the most amazing friend ever, Huijing. Later this year we went to an incredible amount of meetups, conferences, ramens and dumplings together. And the two meetups that we run are now best friend meetups, yes meetups also got frens yo.
+Frankly, I never really had the motivation to go to meetups until I began running RK. I don't like lectures and I'm particularly flawed in peopling. I went to [Super Silly Hackathon](https://supersillyhackathon.sg/) last year in hope to learn what a tech event is like, followed by [Global Diversity CFP Day](https://www.globaldiversitycfpday.com/), where I met the most amazing friend ever, [Huijing](https://www.chenhuijing.com/). Later this year we went to an incredible number of meetups, conferences, ramens and dumplings together. And the two meetups that we run are now best friend meetups, yes meetups also got frens yo.
 
 Huijing knows on a Singapore and a 4-year scale that it is hard to find speakers. I know it on a weekly clock and it's damn stressful sia. In retro, *RK Originals* now has 90 talks over 60 weeks in its back. If I thought about this set of numbers when I proposed it (1~2 talks per week by proposals), I would have probably dropped the idea immediately. So sometimes it is good to be not very smart to foresee the impossible, i.e., we don't have many people, we Asians, we no experience in speaking, life damn hard eh.
 
@@ -33,17 +33,17 @@ So is it worth it? Why RK? Why every week / month? Why must constantly poke you 
 
 ---
 
-In my third year of college, while I was spamming the "whats your progress" thingy on the most ubiquitous animal in my major -- smart guys, I was also working at a learning center where, instead of having us help students who were taking the classes we took before, it actually let us help students who were _taking the same class with us_. This is where sharing my learning process turned out to help me. By explaining my the problems over and over again, _I_ get a much refined understanding myself. 
+In my third year of college, while I was spamming the "whats your progress" thingy on the most ubiquitous animal in my major -- smart guys, I was also working at a learning center where, instead of having us help students who were taking the classes we took before, it actually let us help students who were _taking the same classes with us_. This is where sharing my learning process turned out to help me. By explaining my the problems over and over again, _I_ get a much refined understanding myself. 
 
-There's a #learnInPublic hashtag where one of our friends, swyx, is a major advocate behind its recent upbeats. RK will repeatedly share its taste in this guiding principle because, as Professor Feynman has also said, *teaching is the best way to learn*.
+There's a [#learnInPublic](https://twitter.com/hashtag/learninpublic) hashtag where one of our friends, [swyx](https://twitter.com/swyx), is a major advocate behind its recent upbeats. RK will repeatedly share its taste in this guiding principle because, as Professor Feynman has also said, *teaching is the best way to learn*.
 
 ---
 
 The podium *shines* when it is picked up by a first-time speaker, or someone who rarely speaks up in the team, or someone sees something so interesting that she absolutely has to share it. Be it initializing a new life experience, providing a stage for the rarely-heard-from, this podium has those "extra" meanings which now is an essential existence that I believe every team must possess. 
 
-By running this podium I virtually encounter all talks more than once. It's the most humbling experience I've ever had because without this podium I would have never known that we have Van who masters drawing with CSS, Lihau who is an expert in a spectrum of subjects that seems unreal as someone who works near me, and many more who prefer not to be in the public. The best content is right near me. 
+By running this podium I virtually encounter all talks more than once. It's the most humbling experience I've ever had because without this podium I would have never known that we have [Van](https://twitter.com/bokukage) who [masters drawing with CSS](https://smokinclove.github.io/writeups/a-tale-of-css-drawings/), [Lihau](https://twitter.com/lihautan) who is an expert in a spectrum of subjects that seems unreal as someone who works near me, and many more who prefer not to be in the public. The best content is right near me. 
 
-I mean, conference talks are certainly great — they're impeccable performances, extremely well polished, speakers look more noble in front of hundreds of people. But so as great are internal sharing talks — the problems are complex but we share the same context to understand quickly, less polished but full of true gems in content, speakers sit right next to me at work every day. Never in my life have I had such a humbling year and the strikes are on a weekly basis and I need to travel only four floors.
+I mean, conference talks are certainly great — they're impeccable performances, extremely well polished, speakers look more noble in front of hundreds of people. But so as great are internal sharing talks — the problems are complex but we share the same context to absorb them quickly, the talks are less polished but full of true gems in content, speakers sit right next to me at work every day. Never in my life have I had such a humbling year and the strikes are on a weekly basis and I need to travel only four floors.
 
 And, if you know our internal RK and know me as a person behind it, you know that at least half of my brain is full of craps. Is RK suspiciously a release of my accumulated nonsenses throughout the week? I don't know. But it'd be my crowning achievement if I successfully make us laugh, lol. Writing bugs is hard, have some fun yo.
 

@@ -143,6 +143,10 @@ export default ({
       )}
       <aside>
         <section>
+          <h1>React Knowledgeable</h1>
+          <p>A fun & fair podium to share what we learn as a React developer</p>
+        </section>
+        <section>
           <h2>
             <span role="img" aria-label="celebration">
               🎉
